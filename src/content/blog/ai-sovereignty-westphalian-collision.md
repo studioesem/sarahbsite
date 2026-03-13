@@ -4,5 +4,4 @@ description: "On Dario Amodei's 'Adolescence of Technology' essay and what the A
 pubDate: 2026-02-28
 category: "Civic AI"
 ---
-
-This post is a placeholder. Replace this content with your actual writing.
+There is much about Dario Amodei that intrigues me. Firstly, his name. 'Amo-dei', Italian by origin, resonates with a god-like timbre. 'Dei' being derived from God. Of course he is not a God, he's the CEO of Anthropic, he grew up in the Bay Area, he studied physics and biology. But whose world are we living in? My daughter Annika is writing assignments about the role of mythology in everyday culture - the beauty myth, our fashion icons as present-day Goddesses - and I cant help but wonder what kind of a God Dario is performing. 
