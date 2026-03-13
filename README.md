@@ -60,3 +60,4 @@ By default TinaCMS runs locally. To edit your site from anywhere:
 ## Design
 
 Dark ground aesthetic inspired by the Sightings/Gathering Intelligences canvas. Newsreader body font, Cormorant Garamond headings. Category colours from the Sightings system.
+
