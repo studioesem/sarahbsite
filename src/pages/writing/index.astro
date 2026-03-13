@@ -1,0 +1,44 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog'))
+  .filter(post => !post.data.draft)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+function formatDate(date: Date) {
+  return date.toLocaleDateString('en-AU', { day: 'numeric', month: 'short', year: 'numeric' });
+}
+
+function estimateReadTime(body: string) {
+  return Math.max(1, Math.round(body.split(/\s+/).length / 250));
+}
+
+function categoryClass(cat?: string) {
+  return cat ? 'cat-' + cat.toLowerCase().replace(/\s+/g, '-') : '';
+}
+---
+
+<Base title="Writing — Sarah Barns">
+  <div class="page-header">
+    <h1>Writing</h1>
+    <p class="page-intro">On technology, place, governance, and the slow work of paying attention.</p>
+  </div>
+
+  <ul class="post-list">
+    {posts.map(post => (
+      <li class="post-item">
+        <a href={`/writing/${post.id.replace(/\.md$/, '')}`} class="post-link">
+          <div class="post-meta">
+            <span class="post-date">{formatDate(post.data.pubDate)}</span>
+            <span class="post-dot"></span>
+            <span class="post-read-time">{estimateReadTime(post.body ?? '')} min read</span>
+            {post.data.category && <span class={`post-category ${categoryClass(post.data.category)}`}>{post.data.category}</span>}
+          </div>
+          <div class="post-title">{post.data.title}</div>
+          <p class="post-excerpt">{post.data.description}</p>
+        </a>
+      </li>
+    ))}
+  </ul>
+</Base>
