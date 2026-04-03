@@ -22,7 +22,7 @@
 }
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html { font-size: 19px; scroll-behavior: smooth; }
+html { font-size: 17px; scroll-behavior: smooth; }
 
 body {
   font-family: var(--body);
@@ -69,7 +69,7 @@ nav { padding: 1.5rem 0; display: flex; justify-content: space-between; align-it
 .post-item:nth-child(9) { animation-delay: 0.71s; }
 .post-item:nth-child(10) { animation-delay: 0.78s; }
 
-.post-link { display: block; padding: 1.4rem 0; text-decoration: none; color: inherit; transition: all 0.3s ease; position: relative; }
+.post-link { display: block; padding: 1.1rem 0; text-decoration: none; color: inherit; transition: all 0.3s ease; position: relative; }
 .post-link:hover { background: var(--hover-bg); margin: 0 -1.5rem; padding: 1.4rem 1.5rem; }
 .post-link:hover::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: var(--accent); opacity: 0.5; }
 
