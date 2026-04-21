@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Places are made of wax — Sarah Barns</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf9f7;
+    --text: #1c1917;
+    --text-dim: rgba(28, 25, 23, 0.6);
+    --text-faint: rgba(28, 25, 23, 0.35);
+    --border: rgba(28, 25, 23, 0.1);
+    --accent: #9b2d9b;
+    --accent-light: rgba(155, 45, 155, 0.08);
+    --heading: 'Cormorant Garamond', Georgia, serif;
+    --body: 'Newsreader', Georgia, serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { font-size: 17px; scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--body);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container { max-width: 700px; margin: 0 auto; padding: 0 1.5rem; }
+
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { color: #c44ec4; }
+
+  /* Nav */
+  nav {
+    padding: 1.5rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-name { font-family: var(--heading); font-size: 1.2rem; font-weight: 400; color: var(--text); text-decoration: none; }
+
+  /* Page header */
+  .page-header {
+    padding: 3rem 0 2rem;
+    border-bottom: 1px solid var(--border);
+    animation: fadeIn 0.6s ease both;
+  }
+
+  .page-label {
+    font-family: var(--heading);
+    font-size: 0.68rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--text-faint);
+    margin-bottom: 1rem;
+  }
+
+  .page-header h1 {
+    font-family: var(--heading);
+    font-size: 2.4rem;
+    font-weight: 400;
+    line-height: 1.1;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    margin-bottom: 0.8rem;
+  }
+
+  .page-header .subtitle {
+    font-family: var(--heading);
+    font-size: 1.1rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--text-dim);
+    line-height: 1.45;
+    margin-bottom: 1rem;
+  }
+
+  .page-header .byline {
+    font-family: var(--heading);
+    font-size: 0.78rem;
+    font-weight: 300;
+    color: var(--text-faint);
+    letter-spacing: 0.03em;
+  }
+
+  /* Sections */
+  .section {
+    border-bottom: 1px solid var(--border);
+    opacity: 0;
+    animation: fadeIn 0.5s ease forwards;
+  }
+
+  .section:nth-child(1) { animation-delay: 0.1s; }
+  .section:nth-child(2) { animation-delay: 0.18s; }
+  .section:nth-child(3) { animation-delay: 0.26s; }
+  .section:nth-child(4) { animation-delay: 0.34s; }
+  .section:nth-child(5) { animation-delay: 0.42s; }
+  .section:nth-child(6) { animation-delay: 0.5s; }
+
+  .section-header {
+    padding: 1.4rem 0;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    user-select: none;
+    transition: opacity 0.2s;
+  }
+
+  .section-header:hover { opacity: 0.7; }
+
+  .section-header h2 {
+    font-family: var(--heading);
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--text);
+    line-height: 1.3;
+  }
+
+  .section-header .section-sub {
+    font-family: var(--heading);
+    font-size: 0.85rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--text-dim);
+    margin-left: 0.5rem;
+  }
+
+  .section-toggle {
+    font-family: var(--heading);
+    font-size: 0.85rem;
+    color: var(--text-faint);
+    flex-shrink: 0;
+    margin-left: 1rem;
+    transition: transform 0.3s ease;
+  }
+
+  .section.open .section-toggle { transform: rotate(45deg); }
+
+  .section-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, padding 0.3s ease;
+    padding: 0 0;
+  }
+
+  .section.open .section-body {
+    max-height: 3000px;
+    padding: 0 0 1.5rem 0;
+  }
+
+  /* Quote cards */
+  .quote {
+    padding: 1.2rem 0;
+    border-top: 1px solid var(--border);
+    transition: background 0.3s ease, padding 0.3s ease;
+  }
+
+  .quote:hover {
+    background: rgba(155, 45, 155, 0.03);
+    padding-left: 0.8rem;
+  }
+
+  .quote:first-child { border-top: none; }
+
+  .quote-number {
+    font-family: var(--heading);
+    font-size: 0.72rem;
+    font-weight: 300;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.4rem;
+    opacity: 0.7;
+  }
+
+  .quote-text {
+    font-family: var(--body);
+    font-size: 0.95rem;
+    font-style: italic;
+    color: var(--text);
+    line-height: 1.55;
+    margin-bottom: 0.4rem;
+  }
+
+  .quote-text .note {
+    font-style: normal;
+    color: var(--text-dim);
+  }
+
+  .quote-source {
+    font-family: var(--heading);
+    font-size: 0.75rem;
+    font-weight: 300;
+    color: var(--text-faint);
+  }
+
+  /* Back link */
+  .back { padding: 2rem 0; }
+  .back a { font-family: var(--heading); font-size: 0.88rem; color: var(--text-dim); }
+  .back a:hover { color: var(--text); }
+  .back a::before { content: '← '; }
+
+  /* Footer */
+  footer {
+    padding: 2rem 0;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .footer-note { font-family: var(--heading); font-size: 0.75rem; font-weight: 300; color: var(--text-faint); }
+
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+  @media (max-width: 640px) {
+    .container { padding: 0 1rem; }
+    .page-header h1 { font-size: 1.9rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <nav>
+    <a href="/" class="nav-name">Sarah Barns</a>
+  </nav>
+
+  <div class="page-header">
+    <div class="page-label">A reading list</div>
+    <h1>Places are made of wax</h1>
+    <p class="subtitle">A reading list on navigating resonant places</p>
+    <p class="byline">Sarah Barns · From <em>Navigating the Real Times of Space</em> (PhD, 2011)</p>
+  </div>
+
+  <div class="sections">
+
+    <!-- I. Country -->
+    <div class="section open">
+      <div class="section-header" onclick="this.parentElement.classList.toggle('open')">
+        <h2>I. Learning with Country <span class="section-sub">Aunty Rhonda</span></h2>
+        <span class="section-toggle">+</span>
+      </div>
+      <div class="section-body">
+        <div class="quote">
+          <div class="quote-number">01</div>
+          <div class="quote-text">"You all have come here, to this country to see, to listen, and remember." <span class="note">Nyura yin-gu mara-la barray-gu, nyaa-gi, ngarra-gi.</span></div>
+          <div class="quote-source">Aunty Rhonda, cited in Inside Story (2021)</div>
+        </div>
+        <div class="quote">
+          <div class="quote-number">02</div>
+          <div class="quote-text"><span class="note">In my view the sacred world of the Australians in 1788 — the world of mind and spirit, none of it written but stored in landscape, artefact, dance and story — is closed to us outsiders.</span></div>
+          <div class="quote-source">Inga Clendinnen</div>
+        </div>
+        <div class="quote">
+          <div class="quote-number">03</div>
+          <div class="quote-text">"The song is gone; the dance is secret with the dancers in the earth..."</div>
+          <div class="quote-source">Judith Wright</div>
+        </div>
+        <div class="quote">
+          <div class="quote-number">04</div>
+          <div class="quote-text"><span class="note">If we view "places as Country" as lively landscapes of the human and non-human, deeply interconnected, then can new precinct designs for place support cooler, restorative habitats for both human and non-human life forms in more equal measure?</span></div>
+          <div class="quote-source">Sarah Barns, "If we care for Country, it will care for us," Inside Story (2021)</div>
+        </div>
+        <div class="quote">
+          <div class="quote-number">05</div>
+          <div class="quote-text"><span class="note">In the words of designer Alison Page, the work of building can be a way to</span> "sing creation stories into existence," <span class="note">reinforcing ecological responsibilities to care for land, sea and sky.</span></div>
+          <div class="quote-source">Alison Page, cited in Inside Story (2021)</div>
+        </div>
+        <div class="quote">
+          <div class="quote-number">06</div>
+          <div class="quote-text"><span class="note">There is something exhilarating about this idea that we are living on a land where the energies of ancestors continue to enfold and enliven the spirits of everyday places, animating hard and soft matter and the air in between, taking us beyond the humdrum worlds of everyday streets and regimented lifestyles.</span></div>
+          <div class="quote-source">Sarah Barns, Inside Story (2021)</div>
+        </div>
+        <div class="quote">
+          <div class="quote-number">07</div>
+          <div class="quote-text"><span class="note">As historian Bill Gammage says,</span> "if we can succeed in understanding our country, one day we might become Australians."</div>
+          <div class="quote-source">Bill Gammage, cited in Inside Story (2021)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- II. Cicero -->
+    <div class="section">
+      <div class="section-header" onclick="this.parentElement.classList.toggle('open')">
+        <h2>II. Places as wax <span class="section-sub">Cicero</span></h2>
+        <span class="section-toggle">+</span>
+      </div>
+      <div class="section-body">
+        <div class="quote">
+          <div class="quote-number">01</div>
+          <div class="quote-text">"It is an assistance to the memory if localities are sharply impressed on the mind… We require places, real or imaginary, and images or simulacra which we must, of course, invest for ourselves… As Cicero says 'we use places as wax'."</div>
+          <div class="quote-source">Quintilian, quoting Cicero (p. 83)</div>
+        </div>
+        <div class="quote">
+          <div class="quote-number">02</div>
+          <div class="quote-text">"The most complete pictures are formed in our minds of the things that have been conveyed to them and imprinted on them by the senses."</div>
+          <div class="quote-source">Cicero (p. 83)</div>
+        </div>
+        <div class="quote">
+          <div class="quote-number">03</div>
+          <div class="quote-text"><span class="note">The 'memory palace' gave the ancients an understanding not only of the importance of order to memory but also of the role of the senses in building what</span> Ad Herennium <span class="note">called "the treasure house of invention."</span></div>
+          <div class="quote-source">My framing (p. 83)</div>
+        </div>
+        <div class="quote">
+          <div class="quote-number">04</div>
+          <div class="quote-text"><span class="note">The arts of memory work less as a theory of representation than enactive, spatial practices — a narrative, mobile experience of a site, an "archipelago of incidents," affective and sensorially charged.</span></div>
+          <div class="quote-source">My framing (p. 83)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- II. Lefebvre -->
+    <div class="section">
+      <div class="section-header" onclick="this.parentElement.classList.toggle('open')">
+        <h2>III. Spatial practices <span class="section-sub">Lefebvre</span></h2>
+        <span class="section-toggle">+</span>
+      </div>
+      <div class="section-body">
+        <div class="quote">
+          <div class="quote-number">05</div>
+          <div class="quote-text">"'Change life! Change society!' These precepts mean nothing without the production of an appropriate space."</div>
+          <div class="quote-source">Lefebvre (p. 8)</div>
+        </div>
+        <div class="quote">
+          <div class="quote-number">06</div>
+          <div class="quote-text">"(Social) space is a (social) product."</div>
+          <div class="quote-source">Lefebvre (p. 56)</div>
+        </div>
+        <div class="quote">
+          <div class="quote-number">07</div>
+          <div class="quote-text"><span class="note">Planning is an ideology — an urban ideology — which</span> "formulates all the problems of society into questions of space and transposes all that comes from history and consciousness into spatial terms."</div>
+          <div class="quote-source">Lefebvre (p. 57)</div>
+        </div>
+        <div class="quote">
+          <div class="quote-number">08</div>
+          <div class="quote-text"><span class="note">Fixed myths of the city risk</span> "fetishising space in a way reminiscent of the old fetishism of commodities… instead of uncovering the social relationships that are latent in spaces, we fall into the trap of treating space 'in itself', as space as such."</div>
+          <div class="quote-source">Lefebvre (p. 57)</div>
+        </div>
+        <div class="quote">
+          <div class="quote-number">09</div>
+          <div class="quote-text">"Space is nothing but the inscription of time in the world."</div>
+          <div class="quote-source">Lefebvre (p. 80)</div>
+        </div>
+        <div class="quote">
+          <div class="quote-number">10</div>
+          <div class="quote-text"><span class="note">In Rhythmanalysis, Lefebvre used rhythm to think time and space together — time as non-linear, cyclical, situated within the spaces of embodiment and memory.</span></div>
+          <div class="quote-source">On Lefebvre (p. 82)</div>
+        </div>
+        <div class="quote">
+          <div class="quote-number">11</div>
+          <div class="quote-text"><span class="note">Abstract spatiality carries</span> "within itself the seeds of a new kind of space" <span class="note">— Lefebvre's differential space.</span></div>
+          <div class="quote-source">Lefebvre (p. 175)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- III. Bachelard -->
+    <div class="section">
+      <div class="section-header" onclick="this.parentElement.classList.toggle('open')">
+        <h2>IV. Feeling reverberations <span class="section-sub">Bachelard</span></h2>
+        <span class="section-toggle">+</span>
+      </div>
+      <div class="section-body">
+        <div class="quote">
+          <div class="quote-number">12</div>
+          <div class="quote-text"><span class="note">An image is experienced not purely by its visual impact but through its "reverberations" — the aural metaphor establishing a continuous, rhythmic connection between subject and object; the poetic image possessed of a</span> "sonority of being."</div>
+          <div class="quote-source">Bachelard (p. 83)</div>
+        </div>
+        <div class="quote">
+          <div class="quote-number">13</div>
+          <div class="quote-text">"For a knowledge of intimacy, localisation in the spaces of our intimacy is more urgent than the determination of dates."</div>
+          <div class="quote-source">Bachelard (p. 82)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- IV. Benjamin -->
+    <div class="section">
+      <div class="section-header" onclick="this.parentElement.classList.toggle('open')">
+        <h2>V. Excavating against the grain <span class="section-sub">Benjamin</span></h2>
+        <span class="section-toggle">+</span>
+      </div>
+      <div class="section-body">
+        <div class="quote">
+          <div class="quote-number">14</div>
+          <div class="quote-text">"He who seeks to approach his own buried past must conduct himself like a man digging… Fruitless searching is as much a part of this as succeeding, and consequently, remembrance must not proceed in the manner of a narrative or still less that of a report, but must, in the strictest epic and rhapsodic manner, assay its spade in ever new places, and in the old ones delve to ever deeper levels."</div>
+          <div class="quote-source">Benjamin (p. 89)</div>
+        </div>
+        <div class="quote">
+          <div class="quote-number">15</div>
+          <div class="quote-text">"The historical materialist must sacrifice the epic dimension of history. The past for him becomes the subject of a construction whose locus is not empty time, but the particular epoch, the particular life, the particular work."</div>
+          <div class="quote-source">Benjamin (p. 81)</div>
+        </div>
+        <div class="quote">
+          <div class="quote-number">16</div>
+          <div class="quote-text"><span class="note">To Horkheimer's claim that "past injustice has occurred and is done with," Benjamin replied:</span> "What the science has 'established', recollection can modify."</div>
+          <div class="quote-source">Benjamin (p. 84)</div>
+        </div>
+        <div class="quote">
+          <div class="quote-number">17</div>
+          <div class="quote-text">"The modern is always the main stress… but it is precisely the modern which always conjures up pre-history."</div>
+          <div class="quote-source">Benjamin on Baudelaire (p. 86)</div>
+        </div>
+        <div class="quote">
+          <div class="quote-number">18</div>
+          <div class="quote-text">"I needn't say anything. Merely show."</div>
+          <div class="quote-source">Benjamin (p. 87)</div>
+        </div>
+        <div class="quote">
+          <div class="quote-number">19</div>
+          <div class="quote-text">"What was carved in it four thousand years ago today stands at the centre in the greatest of city squares. Had that been foretold to him — what a triumph for the Pharaoh! Not one among the tens of thousands who pass by pauses; not one among the tens of thousands who pause can read the inscription."</div>
+          <div class="quote-source">Benjamin on the Obelisk at Place de la Concorde (p. 90)</div>
+        </div>
+        <div class="quote">
+          <div class="quote-number">20</div>
+          <div class="quote-text"><span class="note">The archaeologist is concerned with the forgotten dead —</span> "beneath our feet are the countless bones and remains of those who have no monument, no landmark to indicate their passing."</div>
+          <div class="quote-source">Gilloch glossing Benjamin (p. 89)</div>
+        </div>
+        <div class="quote">
+          <div class="quote-number">21</div>
+          <div class="quote-text">"But the rags, the refuse — these I will not inventory but allow, in the only way possible, to come into their own: by making use of them."</div>
+          <div class="quote-source">Benjamin (p. 120)</div>
+        </div>
+        <div class="quote">
+          <div class="quote-number">22</div>
+          <div class="quote-text">"An urban culture that predicates itself chiefly on an obsession with development is not worth having. A city needs deep memory, without which it becomes merely a stage set."</div>
+          <div class="quote-source">Robert Hughes, National Trust lecture (1998)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VI. Learning to Dream -->
+    <div class="section">
+      <div class="section-header" onclick="this.parentElement.classList.toggle('open')">
+        <h2>VI. Learning to dream <span class="section-sub">Wilson</span></h2>
+        <span class="section-toggle">+</span>
+      </div>
+      <div class="section-body">
+        <div class="quote">
+          <div class="quote-number">22</div>
+          <div class="quote-text">"Perhaps we should be happier in our cities were we to respond to them as nature or dreams; as objects of exploration, investigation, and interpretation, settings for voyages of discovery."</div>
+          <div class="quote-source">Elizabeth Wilson (p. 126)</div>
+        </div>
+        <div class="quote">
+          <div class="quote-number">23</div>
+          <div class="quote-text"><span class="note">There is no 'earlid' (Schafer). As Cage put it:</span> "try as we might to find a silence, we cannot."</div>
+          <div class="quote-source">Schafer & Cage (p. 10)</div>
+        </div>
+        <div class="quote">
+          <div class="quote-number">24</div>
+          <div class="quote-text"><span class="note">Hearing is passive;</span> listening implies an active attentiveness to auditory information and a desire to establish meaning. <span class="note">Auditory geography is "time-space geography, a dynamic geography of events rather than images."</span></div>
+          <div class="quote-source">Rodaway (p. 99)</div>
+        </div>
+        <div class="quote">
+          <div class="quote-number">25</div>
+          <div class="quote-text">"I have come to think of these contested recordings of urban memory as resonant traces… reverberating with the echoes of past battles, evidencing the often contested, productive possibilities of a given location."</div>
+          <div class="quote-source">Sarah Barns (p. 126)</div>
+        </div>
+        <div class="quote">
+          <div class="quote-number">26</div>
+          <div class="quote-text">"Something of an archaeological dig for media artefacts buried beneath the surface of the emergent digital terrain, this dig of mine is not for physical remnants, but for sound traces… an archaeology of recorded action, rather than of surviving artefact."</div>
+          <div class="quote-source">Sarah Barns (p. 121)</div>
+        </div>
+        <div class="quote">
+          <div class="quote-number">27</div>
+          <div class="quote-text"><span class="note">Koolhaas once remarked that the most attractive parts of a city are often those where "nobody has ever done anything."</span> "We could apply this thinking to the way we approach the city's resonant spaces. It's not the interactivity of mobile listening platforms per se that sounds these spaces, but the capacity for an everyday attentiveness to the political and poetic possibilities of the city. Media recordings or platforms don't themselves have that capacity. But we do."</div>
+          <div class="quote-source">Sarah Barns (p. 177)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VII. Civic Interplay -->
+    <div class="section">
+      <div class="section-header" onclick="this.parentElement.classList.toggle('open')">
+        <h2>VII. Testing civic interplays <span class="section-sub">AI and the now-now</span></h2>
+        <span class="section-toggle">+</span>
+      </div>
+      <div class="section-body">
+        <div class="quote">
+          <div class="quote-number">28</div>
+          <div class="quote-text"><span class="note">We are the interface for a new politics of becoming. By 'interface' I mean something specific: we are the living, sensing, semi-autonomous connection between the world as it has been and the world as it might become.</span></div>
+          <div class="quote-source">Sarah Barns, "What is Civic Interplay?" (2025)</div>
+        </div>
+        <div class="quote">
+          <div class="quote-number">29</div>
+          <div class="quote-text"><span class="note">Through our daily choices, about which platforms to use, which data to share, which automated systems to trust or resist, what terms and conditions we say yes to, we are actively training the planetary intelligences that shape material futures.</span></div>
+          <div class="quote-source">Sarah Barns, "What is Civic Interplay?" (2025)</div>
+        </div>
+        <div class="quote">
+          <div class="quote-number">30</div>
+          <div class="quote-text"><span class="note">What counts as an act of politics, when digital scrolling places us in the crosshairs of a cybernetically-engineered system we didn't realise we'd sworn allegiance to?</span></div>
+          <div class="quote-source">Sarah Barns, "What is Civic Interplay?" (2025)</div>
+        </div>
+        <div class="quote">
+          <div class="quote-number">31</div>
+          <div class="quote-text"><span class="note">To refuse the work of imagination is to accept the world as given by those who are already building it. But imagination requires practice. It requires spaces to think differently, to experiment with alternative relations, to repair what has been damaged.</span></div>
+          <div class="quote-source">Sarah Barns, "What is Civic Interplay?" (2025)</div>
+        </div>
+        <div class="quote">
+          <div class="quote-number">32</div>
+          <div class="quote-text"><span class="note">Our imagined communities today contain multitudes: of species, of co-intelligences. How do we craft the workflows and digital relations that shape what kinds of 'imagined community' we belong to? These are micro political acts; acts of civic interplay.</span></div>
+          <div class="quote-source">Sarah Barns, "What is Civic Interplay?" (2025)</div>
+        </div>
+        <div class="quote">
+          <div class="quote-number">33</div>
+          <div class="quote-text"><span class="note">I am also an eighth-generation descendant of convicts and emancipists; I trace my line to the first generation of Australian farmers who worked the land for the Macarthur family.</span></div>
+          <div class="quote-source">Sarah Barns, "If we care for Country, it will care for us," Inside Story (2021)</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="back">
+    <a href="/">Sarah Barns</a>
+  </div>
+
+  <footer>
+    <p class="footer-note">&copy; 2026 Sarah Barns</p>
+  </footer>
+
+</div>
+
+</body>
+</html>
