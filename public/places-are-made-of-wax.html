@@ -223,6 +223,21 @@
   }
   .footer-note { font-family: var(--heading); font-size: 0.75rem; font-weight: 300; color: var(--text-faint); }
 
+  .glitch { display: inline; position: relative; cursor: default; }
+  .glitch:hover { animation: glitch 0.4s steps(2) forwards; }
+  @keyframes glitch {
+    0% { text-shadow: none; }
+    10% { text-shadow: 2px 0 #9b2d9b, -2px 0 rgba(91,106,173,0.5); }
+    20% { text-shadow: -1px 0 #9b2d9b, 1px 0 rgba(91,106,173,0.5); }
+    30% { text-shadow: none; }
+    40% { text-shadow: 1px 0 #9b2d9b, -1px 0 rgba(91,106,173,0.5); letter-spacing: 0.02em; }
+    50% { text-shadow: none; letter-spacing: normal; }
+    60% { text-shadow: -2px 0 #9b2d9b; }
+    70% { text-shadow: none; }
+    80% { text-shadow: 1px 0 rgba(91,106,173,0.3); }
+    100% { text-shadow: none; }
+  }
+
   @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
   @media (max-width: 640px) {
