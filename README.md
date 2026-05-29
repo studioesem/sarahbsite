@@ -1,4 +1,4 @@
-# sarahbarns.me
+# sarahbarns.com
 
 Personal website built with [Astro](https://astro.build) + [TinaCMS](https://tina.io).
 
