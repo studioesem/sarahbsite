@@ -7,35 +7,37 @@
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #2b494d;
-    --text: #ecefee;
-    --text-dim: rgba(236, 239, 238, 0.68);
-    --text-faint: rgba(236, 239, 238, 0.45);
-    --border: rgba(236, 239, 238, 0.15);
-    --accent: #d6ab52;
-    --accent-light: rgba(214, 171, 82, 0.12);
-    --heading: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    --body: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --bg: #ffffff;
+    --text: #1a1a1a;
+    --text-dim: #555555;
+    --text-faint: #999999;
+    --border: rgba(0, 0, 0, 0.1);
+    --accent: #b87800;
+    --accent-light: rgba(255, 170, 0, 0.14);
+    --heading: 'Fira Sans', system-ui, sans-serif;
+    --body: 'Merriweather', Georgia, serif;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { font-size: 19px; scroll-behavior: smooth; }
+  html { font-size: 17px; scroll-behavior: smooth; }
 
   body {
     font-family: var(--body);
+    font-weight: 300;
     background: var(--bg);
     color: var(--text);
-    line-height: 1.5;
+    line-height: 1.7;
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
 
   .container { max-width: 1080px; margin: 0 auto; padding: 0 2.5rem; }
 
   a { color: var(--accent); text-decoration: none; }
-  a:hover { color: #e8c87a; }
+  a:hover { color: #8a6c25; }
 
   /* Nav */
   nav {
@@ -158,30 +160,53 @@
     padding: 0 0 1.5rem 0;
   }
 
+  /* Per-section highlight colours */
+  .section { --cat: var(--accent); }
+  .sections .section:nth-of-type(1) { --cat: #00a69b; }  /* Country — teal */
+  .sections .section:nth-of-type(2) { --cat: #ffaa00; }  /* wax — tangerine */
+  .sections .section:nth-of-type(3) { --cat: #8c39d8; }  /* Lefebvre — ultraviolet */
+  .sections .section:nth-of-type(4) { --cat: #d7df23; }  /* Bachelard — chartreuse */
+  .sections .section:nth-of-type(5) { --cat: #00a69b; }  /* Benjamin — teal */
+  .sections .section:nth-of-type(6) { --cat: #ffaa00; }  /* dream — tangerine */
+  .sections .section:nth-of-type(7) { --cat: #8c39d8; }  /* civic — ultraviolet */
+
   /* Quote cards */
   .quote {
-    padding: 1.2rem 0;
+    position: relative;
+    padding: 1.3rem 1.6rem;
+    margin: 0 -1.6rem;
+    border-radius: 6px;
     border-top: 1px solid var(--border);
-    transition: background 0.3s ease, padding 0.3s ease, transform 0.3s ease;
+    transition: background 0.45s ease;
   }
 
-  .quote:hover {
-    background: rgba(236, 239, 238, 0.05);
-    padding-left: 1rem;
-    padding-right: 0.5rem;
-    transform: scale(1.01);
+  .quote::before {
+    content: '';
+    position: absolute;
+    left: 0.7rem;
+    top: 0.8rem;
+    bottom: 0.8rem;
+    width: 3px;
+    border-radius: 2px;
+    background: var(--cat);
+    opacity: 0;
+    transition: opacity 0.45s ease;
   }
+
+  .quote.is-active::before, .quote:hover::before { opacity: 1; }
+  .quote.is-active { background: color-mix(in srgb, var(--cat) 6%, transparent); }
+  .quote:hover { background: color-mix(in srgb, var(--cat) 9%, transparent); }
+  .quote.is-active .quote-text { color: color-mix(in srgb, var(--cat) 22%, var(--text)); }
 
   .quote:first-child { border-top: none; }
 
   .quote-number {
     font-family: var(--heading);
     font-size: 0.72rem;
-    font-weight: 300;
-    color: var(--accent);
+    font-weight: 400;
+    color: color-mix(in srgb, var(--cat) 70%, #000);
     letter-spacing: 0.05em;
     margin-bottom: 0.4rem;
-    opacity: 0.7;
   }
 
   .quote-text {
@@ -191,6 +216,7 @@
     color: var(--text);
     line-height: 1.55;
     margin-bottom: 0.4rem;
+    transition: color 0.45s ease;
   }
 
   .quote-text .note {
@@ -227,12 +253,12 @@
   .glitch:hover { animation: glitch 0.4s steps(2) forwards; }
   @keyframes glitch {
     0% { text-shadow: none; }
-    10% { text-shadow: 2px 0 #d6ab52, -2px 0 rgba(91,106,173,0.5); }
-    20% { text-shadow: -1px 0 #d6ab52, 1px 0 rgba(91,106,173,0.5); }
+    10% { text-shadow: 2px 0 #8c39d8, -2px 0 rgba(91,106,173,0.5); }
+    20% { text-shadow: -1px 0 #8c39d8, 1px 0 rgba(91,106,173,0.5); }
     30% { text-shadow: none; }
-    40% { text-shadow: 1px 0 #d6ab52, -1px 0 rgba(91,106,173,0.5); letter-spacing: 0.02em; }
+    40% { text-shadow: 1px 0 #8c39d8, -1px 0 rgba(91,106,173,0.5); letter-spacing: 0.02em; }
     50% { text-shadow: none; letter-spacing: normal; }
-    60% { text-shadow: -2px 0 #d6ab52; }
+    60% { text-shadow: -2px 0 #8c39d8; }
     70% { text-shadow: none; }
     80% { text-shadow: 1px 0 rgba(91,106,173,0.3); }
     100% { text-shadow: none; }
@@ -579,6 +605,18 @@
   </footer>
 
 </div>
+
+<script>
+  // Scroll-driven highlight: the quote passing through the viewport centre lights up in its section colour.
+  const quotes = document.querySelectorAll('.quote');
+  if (quotes.length && 'IntersectionObserver' in window) {
+    const obs = new IntersectionObserver(
+      (entries) => entries.forEach((e) => e.target.classList.toggle('is-active', e.isIntersecting)),
+      { rootMargin: '-45% 0px -45% 0px', threshold: 0 }
+    );
+    quotes.forEach((el) => obs.observe(el));
+  }
+</script>
 
 </body>
 </html>

@@ -42,3 +42,15 @@ function categoryClass(cat?: string) {
     ))}
   </ul>
 </Base>
+
+<script>
+  // Scroll-driven highlight: the row passing through the viewport centre lights up in its category colour.
+  const items = document.querySelectorAll('.post-link');
+  if (items.length && 'IntersectionObserver' in window) {
+    const obs = new IntersectionObserver(
+      (entries) => entries.forEach((e) => e.target.classList.toggle('is-active', e.isIntersecting)),
+      { rootMargin: '-45% 0px -45% 0px', threshold: 0 }
+    );
+    items.forEach((el) => obs.observe(el));
+  }
+</script>
