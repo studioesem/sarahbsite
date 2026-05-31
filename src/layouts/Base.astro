@@ -6,6 +6,66 @@ interface Props {
 
 const { title = 'Sarah Barns', description = 'Public historian and creative producer working with digital methods to enliven storied-connections between people, places, and habitats.' } = Astro.props;
 const currentPath = Astro.url.pathname;
+
+// Author identity graph. Identical block also lives on civicinterplay.io,
+// storybox.co, studioesem.com. Same @id everywhere so crawlers fuse the
+// four surfaces into one Person entity.
+const identityGraph = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Person',
+      '@id': 'https://civicinterplay.io/#sarahbarns',
+      name: 'Sarah Barns',
+      givenName: 'Sarah',
+      familyName: 'Barns',
+      url: 'https://sarahbarns.com/',
+      jobTitle: "Vice Chancellor's Senior Research Fellow",
+      affiliation: [
+        {
+          '@type': 'Organization',
+          name: 'RMIT University',
+          url: 'https://www.rmit.edu.au/',
+        },
+        { '@id': 'https://www.studioesem.com/#org' },
+      ],
+      identifier: {
+        '@type': 'PropertyValue',
+        propertyID: 'ORCID',
+        value: '0000-0002-0087-7166',
+      },
+      sameAs: [
+        'https://orcid.org/0000-0002-0087-7166',
+        'https://scholar.google.com/citations?user=cnGxyWQAAAAJ',
+        'https://www.rmit.edu.au/profiles/b/sarah-barns2',
+        'https://www.linkedin.com/in/sarahbarns/',
+        'https://civicinterplay.io/',
+        'https://www.studioesem.com/',
+        'https://storybox.co/',
+        'https://sarahbarns.com/',
+      ],
+    },
+    {
+      '@type': 'Organization',
+      '@id': 'https://www.studioesem.com/#org',
+      name: 'Studio ESEM',
+      alternateName: 'Esem Projects',
+      url: 'https://www.studioesem.com/',
+      founder: [
+        { '@id': 'https://civicinterplay.io/#sarahbarns' },
+        { '@type': 'Person', name: 'Michael Killalea' },
+      ],
+    },
+    {
+      '@type': 'Organization',
+      '@id': 'https://storybox.co/#org',
+      name: 'STORYBOX',
+      url: 'https://storybox.co/',
+      parentOrganization: { '@id': 'https://www.studioesem.com/#org' },
+      founder: { '@id': 'https://civicinterplay.io/#sarahbarns' },
+    },
+  ],
+};
 ---
 
 <!DOCTYPE html>
@@ -17,6 +77,7 @@ const currentPath = Astro.url.pathname;
   <title>{title}</title>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="alternate" type="application/rss+xml" title="Sarah Barns" href="/rss.xml" />
+  <script type="application/ld+json" set:html={JSON.stringify(identityGraph)}></script>
 </head>
 <body>
   <div class="site-banner" aria-hidden="true">
