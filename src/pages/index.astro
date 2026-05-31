@@ -21,94 +21,288 @@ function categoryClass(cat?: string) {
 ---
 
 <Base>
-  <div class="profile">
-    <img src="/sarah-avatar.png" alt="Sarah Barns" class="avatar" />
-    <div class="profile-text">
-      <h1>Hi, I'm Sarah Barns.</h1>
-      <p class="profile-lead">
+  <!-- Masthead -->
+  <section class="hp-intro">
+    <img src="/sarah-avatar.png" alt="Sarah Barns" class="hp-avatar" />
+    <div class="hp-text">
+      <p class="hp-kicker"><span class="hp-tick"></span><em>an evolving practice</em></p>
+      <h1 class="hp-name">Hi, I&rsquo;m Sarah Barns.</h1>
+      <p class="hp-lead">
         Public historian and creative producer working with digital methods to enliven storied-connections between people, places, and habitats.
       </p>
-      <details class="bio-more">
+      <details class="hp-more">
         <summary>More about me</summary>
-        <p class="profile-bio">
+        <p class="hp-bio">
           I co-founded <a href="https://studioesem.com">Studio ESEM</a> and <a href="https://storybox.co">STORYBOX.CO</a>, and am the author of <em>Platform Urbanism</em> (Palgrave Macmillan, 2019).
-          Currently a <a href="https://www.rmit.edu.au">Vice Chancellor's Senior Research Fellow</a> at RMIT University. PhD in public history. This is a kind of <span class="glitch">scratch pad</span> for my work today.
+          Currently a <a href="https://www.rmit.edu.au">Vice Chancellor&rsquo;s Senior Research Fellow</a> at RMIT University. PhD in public history. This is a kind of <span class="glitch">scratch pad</span> for my work today.
         </p>
       </details>
-      <div class="socials">
-        <a href="/about" class="social-link">
+      <div class="hp-socials">
+        <a href="/about" class="hp-pill">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
           About
         </a>
-        <a href="/manifesto" class="social-link">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
-          Manifesto
+        <a href="https://studioesem.com" class="hp-pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          Studio ESEM
         </a>
-<a href="https://studioesem.com" class="social-link">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-  Studio ESEM
-</a>
-        <a href="https://civicinterplay.io" class="social-link">
+        <a href="https://civicinterplay.io" class="hp-pill">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
           Civic Interplay
         </a>
-        <a href="https://storybox.co" class="social-link">
+        <a href="https://storybox.co" class="hp-pill">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
           STORYBOX
         </a>
-        <a href="/strategy" class="social-link">
+        <a href="/strategy" class="hp-pill">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
           Strategy
         </a>
-        <a href="https://scholar.google.com" class="social-link">
+        <a href="https://scholar.google.com" class="hp-pill">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
           Scholar
         </a>
-        <a href="https://www.linkedin.com/in/sarahbarns" class="social-link">
+        <a href="https://www.linkedin.com/in/sarahbarns" class="hp-pill">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
           LinkedIn
         </a>
-        <a href="mailto:sarah@studioesem.com" class="social-link">
+        <a href="mailto:sarah@studioesem.com" class="hp-pill">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
           Email
         </a>
-<a href="/places-are-made-of-wax.html" class="social-link">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/><path d="M12 13V7"/><path d="M9 10l3-3 3 3"/></svg>
-  Resonant Places
-</a>
+        <a href="/places-are-made-of-wax.html" class="hp-pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/><path d="M12 13V7"/><path d="M9 10l3-3 3 3"/></svg>
+          Resonant Places
+        </a>
       </div>
     </div>
-  </div>
+  </section>
 
-  <hr class="divider" />
+  <!-- Threshold into the manifesto: a warm-dark window into the dark room -->
+  <a class="hp-door" href="/manifesto">
+    <span class="hp-door-label"><em>the manifesto</em></span>
+    <span class="hp-door-title">From enlightenment to <span class="hp-enliven">enlivenment</span></span>
+    <span class="hp-door-arrow" aria-hidden="true">&#8594;</span>
+  </a>
 
-  <div class="posts-header">Recent Writing</div>
-  <ul class="post-list">
-    {posts.map(post => (
-      <li class="post-item">
-       <a href="#" class={`post-link ${categoryClass(post.data.category)}`} onclick="return false">
-          <div class="post-meta">
-            <span class="post-date">{formatDate(post.data.pubDate)}</span>
-            <span class="post-dot"></span>
-            <span class="post-read-time">{estimateReadTime(post.body ?? '')} min read</span>
-            {post.data.category && <span class={`post-category ${categoryClass(post.data.category)}`}>{post.data.category}</span>}
-          </div>
-          <div class="post-title">{post.data.title}</div>
-          <p class="post-excerpt">{post.data.description}</p>
-        </a>
-      </li>
-    ))}
-  </ul>
-
-  <div class="all-posts">
-    <a href="/writing">All Writing</a>
-  </div>
+  <!-- Writing -->
+  <section class="hp-writing">
+    <h2 class="hp-h2"><span class="hp-tick"></span>Recent writing</h2>
+    <ol class="hpw-list">
+      {posts.map(post => (
+        <li class="hpw-item">
+          <a href="#" class={`hpw-link ${categoryClass(post.data.category)}`} onclick="return false">
+            <span class="hpw-node" aria-hidden="true"></span>
+            <div class="hpw-meta">
+              <span class="hpw-date">{formatDate(post.data.pubDate)}</span>
+              <span class="hpw-dot"></span>
+              <span class="hpw-read">{estimateReadTime(post.body ?? '')} min read</span>
+              {post.data.category && <span class="hpw-cat">{post.data.category}</span>}
+            </div>
+            <div class="hpw-title">{post.data.title}</div>
+            <p class="hpw-excerpt">{post.data.description}</p>
+          </a>
+        </li>
+      ))}
+    </ol>
+    <a href="/writing" class="hpw-all">All writing</a>
+  </section>
 </Base>
 
+<style>
+  /* ====== Elevated light homepage — shares the Manifesto's design language ====== */
+
+  /* Masthead */
+  .hp-intro {
+    display: flex; gap: clamp(1.1rem, 3vw, 1.8rem); align-items: flex-start;
+    padding: clamp(2.5rem, 6vw, 3.6rem) 0 clamp(1.8rem, 4vw, 2.6rem);
+    animation: fadeIn 0.7s ease 0.05s both;
+  }
+  .hp-avatar {
+    width: 78px; height: 78px; border-radius: 50%; object-fit: cover; object-position: center 20%;
+    flex-shrink: 0; border: 1px solid var(--border); filter: grayscale(0.55) sepia(0.08);
+  }
+  .hp-kicker {
+    font-family: var(--body); font-style: italic; font-weight: 400;
+    font-size: 0.96rem; letter-spacing: 0; text-transform: none; color: var(--ember-ink);
+    display: flex; align-items: center; gap: 0.65rem; margin-bottom: 0.85rem;
+  }
+  .hp-kicker em { font-style: italic; }
+  .hp-tick { width: 1.7rem; height: 1px; background: var(--ember-ink); display: inline-block; flex-shrink: 0; opacity: 0.75; }
+  .hp-name {
+    font-family: var(--display); font-weight: 400;
+    font-size: clamp(1.95rem, 4.6vw, 2.85rem); line-height: 1.05;
+    letter-spacing: -0.012em; color: var(--text); margin-bottom: 0.9rem;
+  }
+  .hp-lead {
+    font-family: var(--body); font-size: clamp(1.02rem, 1.6vw, 1.15rem); font-weight: 400;
+    line-height: 1.65; color: var(--text); max-width: 46ch; margin-bottom: 1.1rem;
+  }
+  .hp-more { margin-bottom: 1.3rem; }
+  .hp-more > summary {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    font-family: var(--heading); font-size: 0.8rem; font-weight: 500; letter-spacing: 0.02em;
+    color: var(--ember-ink); cursor: pointer; list-style: none; transition: opacity 0.2s ease;
+  }
+  .hp-more > summary::-webkit-details-marker { display: none; }
+  .hp-more > summary::after { content: '+'; font-size: 0.95rem; line-height: 1; color: var(--text-faint); }
+  .hp-more[open] > summary::after { content: '\2013'; }
+  .hp-more > summary:hover { opacity: 0.7; }
+  .hp-more[open] > summary { margin-bottom: 0.6rem; }
+  .hp-bio {
+    font-family: var(--body); font-size: 0.98rem; color: var(--text-dim); line-height: 1.65;
+    max-width: 52ch; animation: fadeIn 0.4s ease both;
+  }
+  .hp-bio a { text-decoration: underline; text-underline-offset: 2px; text-decoration-color: color-mix(in srgb, var(--accent) 35%, transparent); }
+  .hp-bio a:hover { text-decoration-color: var(--accent); }
+  .hp-bio em { color: var(--text); }
+
+  .hp-socials { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .hp-pill {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    font-family: var(--heading); font-size: 0.8rem; font-weight: 500; color: var(--text-dim);
+    text-decoration: none; padding: 0.36rem 0.8rem;
+    border: 1px solid color-mix(in srgb, var(--ember-ink) 22%, var(--border-hover));
+    border-radius: 100px; transition: color 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+    white-space: nowrap;
+  }
+  .hp-pill svg { width: 13px; height: 13px; color: var(--ember-ink); transition: color 0.25s ease; }
+  .hp-pill:hover {
+    color: var(--ember-ink);
+    border-color: color-mix(in srgb, var(--ember-ink) 55%, transparent);
+    background: var(--ember-bg);
+  }
+
+  /* Manifesto threshold — a warm-dark window into the dark room */
+  .hp-door {
+    --door-ink: oklch(0.185 0.024 47);
+    --door-paper: oklch(0.93 0.015 84);
+    --door-teal: oklch(0.78 0.10 193);
+    --door-glow: oklch(0.70 0.13 60 / 0.22);
+    display: grid; grid-template-columns: 1fr auto; align-items: center;
+    gap: 0.4rem 1.2rem;
+    padding: clamp(1.5rem, 3.5vw, 2.1rem) clamp(1.4rem, 3vw, 1.9rem);
+    margin: clamp(1.7rem, 4vw, 2.6rem) 0;
+    background: var(--door-ink); border-radius: 11px;
+    text-decoration: none; color: var(--door-paper);
+    position: relative; overflow: hidden; isolation: isolate;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+    animation: fadeIn 0.7s ease 0.16s both;
+  }
+  .hp-door::before {
+    content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+    background: radial-gradient(120% 135% at 100% 125%, var(--door-glow), transparent 58%);
+  }
+  .hp-door-label {
+    grid-column: 1; font-family: var(--body); font-style: italic; font-weight: 300;
+    font-size: 0.96rem; color: var(--door-teal); margin-bottom: 0.4rem;
+    display: inline-flex; align-items: center; gap: 0.6rem;
+  }
+  .hp-door-label::before {
+    content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--door-teal);
+    box-shadow: 0 0 0 4px oklch(0.78 0.10 193 / 0.20); flex-shrink: 0;
+  }
+  .hp-door-title {
+    grid-column: 1; font-family: var(--display); font-weight: 400;
+    font-size: clamp(1.4rem, 3vw, 2rem); line-height: 1.1; letter-spacing: -0.01em;
+    color: var(--door-paper);
+  }
+  .hp-enliven { color: var(--door-teal); }
+  .hp-door-arrow {
+    grid-column: 2; grid-row: 1 / span 2; align-self: center;
+    font-size: 1.5rem; color: var(--door-teal);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .hp-door:hover { transform: translateY(-2px); box-shadow: 0 14px 34px -16px oklch(0.2 0.03 50 / 0.55); }
+  .hp-door:hover .hp-door-arrow { transform: translateX(6px); }
+
+  /* Writing */
+  .hp-writing { padding-top: clamp(2.2rem, 5vw, 3.2rem); animation: fadeIn 0.7s ease 0.24s both; }
+  .hp-h2 {
+    font-family: var(--display); font-weight: 400; font-size: clamp(1.3rem, 2.6vw, 1.7rem);
+    line-height: 1.2; color: var(--text); margin-bottom: 1.6rem;
+    display: flex; align-items: center; gap: 0.7rem;
+  }
+  .hp-h2 .hp-tick { width: 1.5rem; }
+
+  .hpw-list { list-style: none; position: relative; }
+  .hpw-list::before {
+    content: ''; position: absolute; left: 6px; top: 1.2rem; bottom: 1.2rem; width: 1px;
+    background: var(--border-hover);
+  }
+  .hpw-item { border-bottom: 1px solid var(--border); }
+  .hpw-item:last-child { border-bottom: none; }
+  .hpw-link {
+    --cat: var(--text-faint);
+    display: block; position: relative; padding: 1.15rem 1.15rem 1.15rem 1.9rem;
+    text-decoration: none; color: inherit; border-radius: 7px;
+    transition: background 0.4s ease;
+  }
+  .hpw-node {
+    position: absolute; left: 6px; top: 2rem;
+    transform: translate(-50%, -50%);
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--bg); border: 1px solid var(--border-hover);
+    transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+  }
+  .hpw-link.is-active .hpw-node, .hpw-link:hover .hpw-node {
+    background: var(--cat); border-color: var(--cat);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--cat) 16%, transparent);
+  }
+  .hpw-link.is-active { background: color-mix(in srgb, var(--cat) 4%, transparent); }
+  .hpw-link:hover { background: color-mix(in srgb, var(--cat) 7%, transparent); }
+
+  .hpw-meta { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.4rem; flex-wrap: wrap; }
+  .hpw-date, .hpw-read { font-family: var(--heading); font-size: 0.78rem; font-weight: 300; color: var(--text-faint); }
+  .hpw-dot { width: 2px; height: 2px; border-radius: 50%; background: var(--text-faint); }
+  .hpw-cat {
+    font-family: var(--heading); font-size: 0.68rem; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-faint);
+    display: inline-flex; align-items: center; gap: 0.4rem;
+  }
+  .hpw-cat::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--cat); flex-shrink: 0; }
+
+  .hpw-title {
+    font-family: var(--display); font-weight: 400; font-size: clamp(1.15rem, 2vw, 1.4rem);
+    line-height: 1.22; margin-bottom: 0.35rem; letter-spacing: -0.005em;
+    color: color-mix(in srgb, var(--cat) 62%, #000);
+    transition: filter 0.3s ease;
+  }
+  .hpw-link:hover .hpw-title { filter: brightness(1.12); }
+  .hpw-excerpt { font-family: var(--body); font-size: 0.92rem; color: var(--text-dim); line-height: 1.5; max-width: 64ch; }
+
+  /* category hues (reuse global --cat-* tokens) */
+  .cat-civic-ai { --cat: var(--cat-civic-ai); }
+  .cat-workshop { --cat: var(--cat-workshop); }
+  .cat-storybox { --cat: var(--cat-storybox); }
+  .cat-research { --cat: var(--cat-research); }
+  .cat-practice { --cat: var(--cat-practice); }
+  .cat-platform-urbanism { --cat: var(--cat-platform-urbanism); }
+  .cat-methodology { --cat: var(--cat-methodology); }
+  .cat-deep-time { --cat: var(--cat-deep-time); }
+  .cat-circular-economy { --cat: var(--cat-circular-economy); }
+  .cat-placemaking { --cat: var(--cat-placemaking); }
+  .cat-evaluation { --cat: var(--cat-evaluation); }
+  .cat-governance { --cat: var(--cat-governance); }
+  .cat-environment { --cat: var(--cat-environment); }
+
+  .hpw-all { display: inline-block; padding: 1.5rem 0 0.5rem; font-family: var(--heading); font-size: 0.9rem; color: var(--accent); }
+  .hpw-all::after { content: ' \2192'; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hp-intro, .hp-door, .hp-writing, .hp-bio { animation: none; }
+  }
+
+  @media (max-width: 640px) {
+    .hp-intro { flex-direction: column; gap: 1rem; }
+    .hp-avatar { width: 68px; height: 68px; }
+  }
+</style>
+
 <script>
-  // Scroll-driven highlight: the row passing through the viewport centre lights up in its category colour.
-  const items = document.querySelectorAll('.post-link');
-  if (items.length && 'IntersectionObserver' in window) {
+  // Scroll-driven node highlight (same mechanism as the Manifesto thread)
+  const items = document.querySelectorAll('.hpw-link');
+  if (items.length && 'IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     const obs = new IntersectionObserver(
       (entries) => entries.forEach((e) => e.target.classList.toggle('is-active', e.isIntersecting)),
       { rootMargin: '-45% 0px -45% 0px', threshold: 0 }

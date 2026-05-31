@@ -37,7 +37,7 @@ const principles = [
   <main id="manifesto" class="wrap">
     <!-- Masthead -->
     <div class="mast">
-      <p class="kicker"><span class="tick"></span>A manifesto, of sorts</p>
+      <p class="kicker"><span class="tick"></span><em>a manifesto, of sorts</em></p>
       <h1 class="m-title">From enlightenment to <span class="enliven">enlivenment</span></h1>
       <p class="m-sub">Connecting my interests in place-making technology, and how I approach the field.</p>
       <p class="m-meta">Sarah Barns &middot; 2026</p>
@@ -128,24 +128,28 @@ const principles = [
     <footer class="m-foot">
       <span class="seed" aria-hidden="true"></span>
       <p class="foot-cta">If it resonates, <a href="https://civicinterplay.substack.com/p/from-enlightenment-to-enlivenment">I&rsquo;d love to know &mdash; read &amp; subscribe on Civic Interplay</a>.</p>
+      <p class="foot-lineage">The word <em>enlivenment</em> I take from the philosopher Andreas Weber; the deeper lineage from many others, gathered in <a href="/places-are-made-of-wax.html">Resonant Places</a>.</p>
       <p class="foot-nav"><a href="/">Return home</a> &middot; <a href="/about">About</a> &middot; &copy; 2026 Sarah Barns</p>
     </footer>
   </main>
 
   <style is:global>
     :root {
-      --ink:        oklch(0.165 0.012 60);
-      --ink-2:      oklch(0.205 0.014 62);
-      --paper:      oklch(0.95 0.012 88);
-      --paper-soft: oklch(0.885 0.013 86);
-      --paper-dim:  oklch(0.72 0.016 84);
-      --paper-faint:oklch(0.56 0.018 80);
-      --thread-top: oklch(0.40 0.018 250);   /* cool, distant — enlightenment */
-      --thread-bot: oklch(0.78 0.13 72);     /* warm ember — enlivenment */
-      --ember:      oklch(0.81 0.125 72);
-      --ember-soft: oklch(0.81 0.125 72 / 0.30);
+      --ink:        oklch(0.172 0.024 47);    /* deep umber-soil — warm, not navy */
+      --ink-2:      oklch(0.215 0.026 48);
+      --paper:      oklch(0.95 0.015 84);
+      --paper-soft: oklch(0.885 0.017 80);
+      --paper-dim:  oklch(0.72 0.022 74);
+      --paper-faint:oklch(0.57 0.024 68);
+      --thread-top: oklch(0.43 0.022 58);     /* warm-grey, distant — enlightenment (no cool blue) */
+      --thread-bot: oklch(0.76 0.10 193);     /* teal — enlivenment / alive */
+      --ember:      oklch(0.82 0.135 67);
+      --ember-soft: oklch(0.82 0.135 67 / 0.30);
+      --clay:       oklch(0.72 0.10 52);     /* deepened, muted warm */
+      --teal:       oklch(0.76 0.10 193);    /* brand teal, cool counter-accent */
+      --teal-soft:  oklch(0.76 0.10 193 / 0.28);
       --living:     oklch(0.86 0.15 122);
-      --hair:       oklch(0.32 0.012 70);
+      --hair:       oklch(0.345 0.022 56);
 
       --display: 'Young Serif', Georgia, serif;
       --body:    'Merriweather', Georgia, serif;
@@ -170,7 +174,7 @@ const principles = [
       position: relative;
       overflow-x: hidden;
     }
-    /* Warm ember atmosphere rising from below — enlivenment glow, kept very low */
+    /* Warm ember atmosphere rising from below — enlivenment glow, all warm, no cool tones */
     body::before {
       content: '';
       position: fixed;
@@ -178,11 +182,21 @@ const principles = [
       z-index: 0;
       pointer-events: none;
       background:
-        radial-gradient(135% 90% at 50% 118%, oklch(0.80 0.12 70 / 0.13), transparent 58%),
-        radial-gradient(120% 70% at 50% -10%, oklch(0.55 0.04 250 / 0.10), transparent 55%);
+        radial-gradient(135% 92% at 50% 118%, oklch(0.78 0.13 66 / 0.16), transparent 56%),
+        radial-gradient(120% 80% at 12% -8%, oklch(0.40 0.05 50 / 0.16), transparent 52%);
+    }
+    /* Fine grain — material/soil texture their flat dark lacks */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.05;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     }
 
-    ::selection { background: var(--ember); color: var(--ink); }
+    ::selection { background: var(--teal); color: var(--ink); }
 
     .skip {
       position: absolute; left: -9999px; top: 0;
@@ -191,7 +205,7 @@ const principles = [
     }
     .skip:focus { left: 1rem; top: 1rem; }
 
-    a { color: var(--ember); text-decoration: none; }
+    a { color: var(--teal); text-decoration: none; }
 
     /* ---- top bar ---- */
     .topbar {
@@ -221,26 +235,27 @@ const principles = [
     /* ---- masthead ---- */
     .mast { padding: clamp(3.5rem, 13vh, 9rem) 0 clamp(3rem, 7vw, 5.5rem); max-width: 26ch; }
     .kicker {
-      font-family: var(--label); font-size: 0.74rem; font-weight: 500;
-      text-transform: uppercase; letter-spacing: 0.24em; color: var(--paper-faint);
-      display: flex; align-items: center; gap: 0.7rem; margin-bottom: clamp(1.4rem, 3vw, 2.2rem);
+      font-family: var(--body); font-style: italic; font-weight: 300;
+      font-size: clamp(1rem, 1.8vw, 1.18rem); letter-spacing: 0; color: var(--clay);
+      display: flex; align-items: center; gap: 0.85rem; margin-bottom: clamp(1.4rem, 3vw, 2.2rem);
     }
-    .kicker .tick { width: 1.8rem; height: 1px; background: var(--ember); display: inline-block; }
+    .kicker em { font-style: italic; }
+    .kicker .tick { width: 2rem; height: 1px; background: var(--clay); display: inline-block; flex-shrink: 0; opacity: 0.8; }
     .m-title {
       font-family: var(--display); font-weight: 400;
       font-size: clamp(2.7rem, 8.5vw, 5.6rem); line-height: 1.02;
       letter-spacing: -0.012em; color: var(--paper);
       text-wrap: balance;
     }
-    .m-title .enliven { color: var(--ember); }
+    .m-title .enliven { color: var(--teal); }
     .m-sub {
       font-family: var(--body); font-style: italic; font-weight: 300;
       font-size: clamp(1.05rem, 2.2vw, 1.4rem); line-height: 1.5;
       color: var(--paper-dim); margin-top: clamp(1.5rem, 3vw, 2.2rem); max-width: 32ch;
     }
     .m-meta {
-      font-family: var(--label); font-size: 0.76rem; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--paper-faint); margin-top: 1.4rem;
+      font-family: var(--label); font-size: 0.82rem; letter-spacing: 0.02em;
+      text-transform: none; color: var(--paper-faint); margin-top: 1.4rem;
     }
 
     /* ---- the thread ---- */
@@ -279,8 +294,8 @@ const principles = [
       text-wrap: balance;
     }
     .sec.is-active .sec-no {
-      background: var(--ember); border-color: var(--ember);
-      box-shadow: 0 0 0 4px oklch(0.81 0.125 72 / 0.14);
+      background: var(--teal); border-color: var(--teal);
+      box-shadow: 0 0 0 4px oklch(0.76 0.10 193 / 0.16);
     }
 
     .sec-body { max-width: var(--measure); }
@@ -291,7 +306,7 @@ const principles = [
       font-size: clamp(1.18rem, 2.3vw, 1.42rem); line-height: 1.6;
       color: var(--paper); font-weight: 400;
     }
-    .bird { color: var(--living); }
+    .bird { color: var(--teal); }
 
     /* ---- pull quotes ---- */
     .pq {
@@ -304,11 +319,11 @@ const principles = [
     }
     .pq::before {
       content: ''; display: block;
-      width: 2.6rem; height: 2px; background: var(--ember);
+      width: 2.6rem; height: 2px; background: var(--clay);
       margin-bottom: clamp(1.2rem, 2.5vw, 1.8rem);
     }
-    .pq-final { color: var(--ember); max-width: 18ch; }
-    .pq-final::before { background: var(--living); }
+    .pq-final { color: var(--teal); max-width: 18ch; }
+    .pq-final::before { background: var(--teal); }
 
     /* ---- principles ---- */
     .principles {
@@ -326,10 +341,9 @@ const principles = [
     }
     .principle:last-child { border-bottom: 1px solid var(--hair); }
     .p-no {
-      font-family: var(--label); font-size: 0.82rem; font-weight: 500;
-      letter-spacing: 0.05em; color: var(--ember);
-      padding-top: 0.4rem;
-      font-variant-numeric: tabular-nums;
+      font-family: var(--display); font-size: clamp(1.15rem, 2.1vw, 1.5rem); font-weight: 400;
+      letter-spacing: 0; color: var(--teal);
+      padding-top: 0.05rem; line-height: 1;
     }
     .p-text h3 {
       font-family: var(--display); font-weight: 400;
@@ -347,8 +361,8 @@ const principles = [
     }
     .seed {
       display: block; width: 9px; height: 9px; border-radius: 50%;
-      background: var(--living);
-      box-shadow: 0 0 0 5px oklch(0.86 0.15 122 / 0.13);
+      background: var(--teal);
+      box-shadow: 0 0 0 5px oklch(0.76 0.10 193 / 0.16);
       margin-bottom: clamp(1.8rem, 4vw, 2.6rem);
       margin-left: calc(var(--rail) * -0.5);
       transform: translateX(-50%);
@@ -358,8 +372,15 @@ const principles = [
       font-size: clamp(1.05rem, 2vw, 1.25rem); line-height: 1.55;
       color: var(--paper); margin-bottom: 1.6rem;
     }
-    .foot-cta a { text-decoration: underline; text-underline-offset: 4px; text-decoration-color: var(--ember-soft); }
-    .foot-cta a:hover { text-decoration-color: var(--ember); }
+    .foot-cta a { text-decoration: underline; text-underline-offset: 4px; text-decoration-color: var(--teal-soft); }
+    .foot-cta a:hover { text-decoration-color: var(--teal); }
+    .foot-lineage {
+      font-family: var(--body); font-size: 0.92rem; line-height: 1.6;
+      color: var(--paper-dim); margin-bottom: 1.6rem; max-width: 52ch;
+    }
+    .foot-lineage em { font-style: italic; color: var(--paper); }
+    .foot-lineage a { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--teal-soft); }
+    .foot-lineage a:hover { text-decoration-color: var(--teal); }
     .foot-nav {
       font-family: var(--label); font-size: 0.8rem; letter-spacing: 0.04em;
       color: var(--paper-faint);
@@ -392,9 +413,9 @@ const principles = [
       .sec-no {
         position: static; transform: none;
         width: auto; height: auto; border: none; background: none;
-        display: inline-block; font-size: 0.74rem;
-        font-family: var(--label); font-weight: 500; letter-spacing: 0.18em;
-        color: var(--ember); margin-bottom: 0.5rem;
+        display: inline-block;
+        font-family: var(--display); font-size: 1.05rem; font-weight: 400; letter-spacing: 0;
+        color: var(--ember); margin-bottom: 0.4rem;
       }
       .sec.is-active .sec-no { box-shadow: none; background: none; }
       .principle { grid-template-columns: 2.2rem 1fr; }

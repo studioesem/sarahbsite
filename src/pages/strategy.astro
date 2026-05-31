@@ -4,6 +4,7 @@ import Base from '../layouts/Base.astro';
 
 <Base title="Strategy — Sarah Barns">
   <div class="page-header">
+    <p class="page-kicker"><span class="ktick"></span><em>practice &amp; advisory</em></p>
     <h1>Strategy</h1>
     <p class="page-intro">Civic AI governance, participatory design, and place-based strategy work delivered through Studio ESEM — for cultural institutions, councils, and communities.</p>
   </div>
@@ -124,3 +125,15 @@ import Base from '../layouts/Base.astro';
     <a href="mailto:sarah@studioesem.com">Get in touch</a>
   </div>
 </Base>
+
+<script>
+  // Scroll-driven node highlight — same mechanism as the writing list & manifesto thread
+  const items = document.querySelectorAll('.strategy-item');
+  if (items.length && 'IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const obs = new IntersectionObserver(
+      (entries) => entries.forEach((e) => e.target.classList.toggle('is-active', e.isIntersecting)),
+      { rootMargin: '-45% 0px -45% 0px', threshold: 0 }
+    );
+    items.forEach((el) => obs.observe(el));
+  }
+</script>
