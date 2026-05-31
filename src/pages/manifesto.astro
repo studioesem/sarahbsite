@@ -1,102 +1,433 @@
 ---
-import Base from '../layouts/Base.astro';
+// Standalone immersive page — deliberately does NOT use Base.astro.
+// A warm deep-time dark "departure" from the light site. See .impeccable.md.
+const principles = [
+  { name: 'Place is relational, not just physical.', text: 'Place is defined by lived and everyday experience, by memory, sensation, and connection, not just geography or the outcome of a masterplan. Good masterplans matter. But so do acts of care.' },
+  { name: 'Story is infrastructure.', text: 'A narrative or story of a place is not decoration. It shapes how place is experienced, remembered, and shared. Stories act as infrastructures for being.' },
+  { name: 'Time is radical.', text: 'The ability for places to hold the traces of the past is one of the most beautiful things in our lives. First Nations people honour this when they recognise Country as being a part of ‘deep time’. European philosophers have also explored ideas of non-linear, immanent time. Time is a creative force to play with in the dance of life.' },
+  { name: 'Listening before intervention.', text: 'Work-in-place begins with listening. Not only to what exists, but to what came before, and what might be hidden but wants to emerge. This form of listening can be described as attunement: to people, to place, to history; to grief, to hope.' },
+  { name: 'Technology can be a gift.', text: 'Many who own the world’s most powerful technologies use them as sources of power and wealth. But this is not the only path. Technology can inspire connection, curiosity, and even presence.' },
+  { name: 'People in places are not users.', text: 'The dominant way of designing technologies puts “the user” at the centre. This user is abstracted from their place, their community, their environment. Technologies are optimised in ways that take us away from the places we live in. We are citizens, not consumers. We are neighbours, not data points.' },
+  { name: 'Enlivenment is a space of possibility, not a solution.', text: 'A commitment to enlivenment is about creating conditions, not determining outcomes. It is quite distinct from the impulse to control, to contain, or to use expertise to prescribe what comes next.' },
+  { name: 'Care as the foundation of value.', text: 'Those who tend to and shape places should be visible, supported, and recognised. Care is the infrastructure upon which other good things can happen.' },
+];
 ---
 
-<Base title="From Enlightenment to Enlivenment — Sarah Barns" description="A manifesto of sorts, connecting my interests in place-making technology and how I approach the field. By Sarah Barns.">
-  <div class="page-header">
-    <h1>From enlightenment to enlivenment</h1>
-    <p class="page-subtitle">A manifesto of sorts, connecting my interests in place-making technology and how I approach the field.</p>
-  </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A manifesto of sorts, connecting my interests in place-making technology and how I approach the field. From enlightenment to enlivenment — by Sarah Barns." />
+  <title>From Enlightenment to Enlivenment — Sarah Barns</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="alternate" type="application/rss+xml" title="Sarah Barns" href="/rss.xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Fira+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <a class="skip" href="#manifesto">Skip to manifesto</a>
 
-  <div class="prose">
-    <h2>What is a place?</h2>
+  <header class="topbar">
+    <a class="back" href="/"><span class="arr">&#8592;</span> Sarah Barns</a>
+    <a class="src" href="https://civicinterplay.substack.com/p/from-enlightenment-to-enlivenment">Civic Interplay <span class="arr">&#8599;</span></a>
+  </header>
 
-    <p>We live on land where the energies of ancestors continue to enfold and enliven the spirits of everyday places, animating hard and soft matter and the air in between. Where the ground we dance on is the soil that knowing trees grew tall from. That is true whether we recognise it or not.</p>
+  <main id="manifesto" class="wrap">
+    <!-- Masthead -->
+    <div class="mast">
+      <p class="kicker"><span class="tick"></span>A manifesto, of sorts</p>
+      <h1 class="m-title">From enlightenment to <span class="enliven">enlivenment</span></h1>
+      <p class="m-sub">Connecting my interests in place-making technology, and how I approach the field.</p>
+      <p class="m-meta">Sarah Barns &middot; 2026</p>
+    </div>
 
-    <p>A place is not an empty backdrop on which we act. It is how we feel where we are. It is memory, sensation, a relationship, an act of care. It is the space that holds our lives together, unfolding. Always-in-the-making, shaped by people, story, and time.</p>
+    <article class="manifesto">
+      <span class="thread" aria-hidden="true"></span>
 
-    <p>And yet: what is a place becoming, in a world that has learned the power not only of atoms, or of clay, but also of information? And who are we becoming, when our consciousness is being shaped by systems whose logics we didn’t ask for and don’t fully understand?</p>
+      <section class="sec" data-i="01">
+        <header class="sec-head"><span class="sec-no">01</span><h2>What is a place?</h2></header>
+        <div class="sec-body">
+          <p>We live on land where the energies of ancestors continue to enfold and enliven the spirits of everyday places, animating hard and soft matter and the air in between. Where the ground we dance on is the soil that knowing trees grew tall from. That is true whether we recognise it or not.</p>
+          <p>A place is not an empty backdrop on which we act. It is how we feel where we are. It is memory, sensation, a relationship, an act of care. It is the space that holds our lives together, unfolding. Always-in-the-making, shaped by people, story, and time.</p>
+          <p>And yet: what is a place becoming, in a world that has learned the power not only of atoms, or of clay, but also of information? And who are we becoming, when our consciousness is being shaped by systems whose logics we didn&rsquo;t ask for and don&rsquo;t fully understand?</p>
+          <p>I watch, listen, create, learn. I make no firm conclusions.</p>
+          <p>But I have spent twenty years working in the in-between space where the bounded worlds of place and the seemingly unbounded realities of information collide, co-evolve, and become something new. After this span of time, it seems I have a particular point of view, becoming clear to me now.</p>
+          <p>With every new gadget, data source, code base and now AI model we are confronted with variants on the same question: what can we do faster, cheaper, more, to get what we want, now?</p>
+          <p>But I keep getting bewildered by this desire for speed and for optimum control, because it&rsquo;s not how I want to live in this world, and it&rsquo;s not how I think about technology.</p>
+          <p>With every new platform, app, AI model, I instead find myself returning to variants on a different question:</p>
+        </div>
+        <blockquote class="pq">Instead of using technology to control, to plan, and to dominate workflows, can we use it to enliven the magic of the places that sustain and nurture us?</blockquote>
+      </section>
 
-    <p>I watch, listen, create, learn. I make no firm conclusions.</p>
+      <section class="sec" data-i="02">
+        <header class="sec-head"><span class="sec-no">02</span><h2>Why does place matter now?</h2></header>
+        <div class="sec-body">
+          <p>We feel we are connected to everything. And yet, isn&rsquo;t it strange, given all that connection, how often we are pulled away from where we actually are?</p>
+          <p>Our attention is elsewhere, captured by platforms designed to keep us scrolling, not noticing.</p>
+          <p>&ldquo;An urban culture that predicates itself chiefly on an obsession with development is not worth having. A city needs deep memory, without which it becomes merely a stage set.&rdquo; Robert Hughes said that in 1998. It feels ever more urgent now.</p>
+          <p>In 2005 I left full time work in media policy to study a PhD. I could see the shape of distributed, convergent media, and wanted to work with it as a different way to experientially encounter the city&rsquo;s archive. Through sound recordings, I sought out places that &ldquo;have no monument, no landmark to indicate their passing.&rdquo; I called these <em>resonant traces</em>: reverberating with the echoes of past battles, evidencing the often contested, productive possibilities of a given location.</p>
+          <p>The practice of listening I cultivated then &mdash; of noticing what is hidden but wants to emerge &mdash; was designed to bring to life a more resonant and alive landscape that easily gets hidden in the built environment. Why couldn&rsquo;t technologies of listening open up our minds and our imaginations to a different concept of place, one that holds within it many deep-time stories, within which we act.</p>
+          <p>This was my &lsquo;place-making&rsquo; practice in motion. It has continued to evolve.</p>
+          <p>Across 15+ years of practice, I see a clear thread. Places are like archives, full of material and recorded and imaginative histories. In an age of immersive, experiential and now agentic media, how might we choose to encounter these many-storied collections? What practices might that entail.</p>
+        </div>
+      </section>
 
-    <p>But I have spent twenty years working in the in-between space where the bounded worlds of place and the seemingly unbounded realities of information collide, co-evolve, and become something new. After this span of time, it seems I have a particular point of view, becoming clear to me now.</p>
+      <section class="sec" data-i="03">
+        <header class="sec-head"><span class="sec-no">03</span><h2>Choices are always made</h2></header>
+        <div class="sec-body">
+          <p>Technology pulls us elsewhere, yes. But technology also brought us closer to each other in ways that would have been unimaginable a generation ago.</p>
+          <p>Technology in place can be used to enliven felt-connections to the lives of others, and in so doing, can help us maintain a situated, experiential knowledge of the environments that shape us. This perspective shapes all my work: from STORYBOX installations in community spaces, to participatory storytelling programs, to the civic AI governance work I do now.</p>
+          <p>The question is not whether we are pro-AI, or not. We are deeply enmeshed in planetary-scale technological architectures, which operate under conditions of &lsquo;state craft&rsquo;, whether or not we voted for them. Through our daily choices, about which platforms to use, which data to share, which automated systems to trust or resist, we are actively training the intelligences that shape material futures. These are micro political acts.</p>
+          <p>Increasingly, I wonder what kind of citizens we are becoming in relation to these planetary-scale systems. And I wonder: why can&rsquo;t we create technologies that deepen our relationship to place? That open up our senses, our sightings. That help us to notice, connect, and experience more. Not to control or contain, but to enliven.</p>
+          <p>This is the practice I work to refine, with all my clients and collaborators.</p>
+        </div>
+      </section>
 
-    <p>With every new gadget, data source, code base and now AI model we are confronted with variants on the same question: what can we do faster, cheaper, more, to get what we want, now?</p>
+      <section class="sec" data-i="04">
+        <header class="sec-head"><span class="sec-no">04</span><h2>From enlightenment to enlivenment</h2></header>
+        <div class="sec-body">
+          <p class="lede">It is from this grounding, rooted in both the power of places and the potential for a more relational, care-full approach to designing technologies, that I forge my work.</p>
+          <p>I call this practice: <em>from enlightenment to enlivenment.</em></p>
+          <p>Enlightenment promised that knowledge would set us free. It gave us extraordinary tools for understanding the world. But it also gave us the habit of standing outside the things we study, treating places as objects, people as users, knowledge as something to extract rather than something to tend.</p>
+          <p>Enlivenment begins from a different place. It asks: what if the work is not to illuminate from above, but to animate <em>from within</em>? What if the goal is not to know more, but to notice more? Not to design solutions, but to create conditions from which acts of care, custodianship, and curiosity can emerge?</p>
+        </div>
+        <blockquote class="pq">There is no landing place, only transitions between. Trace the line between them.</blockquote>
+      </section>
 
-    <p>But I keep getting bewildered by this desire for speed and for optimum control, because it’s not how I want to live in this world, and it’s not how I think about technology.</p>
+      <section class="sec" data-i="05">
+        <header class="sec-head"><span class="sec-no">05</span><h2>The principles</h2></header>
+        <div class="sec-body">
+          <p class="lede">So I have arrived at a set of principles. These guide a practice that interweaves place-stories with digital architectures. I have watched many waves of urban technology &lsquo;flood the zone&rsquo; with triumphalist accounts, which I feel often flatten the mysterious wonder of places-in-transition.</p>
+        </div>
+        <ol class="principles">
+          {principles.map((p, i) => (
+            <li class="principle">
+              <span class="p-no">{String(i + 1).padStart(2, '0')}</span>
+              <div class="p-text">
+                <h3>{p.name}</h3>
+                <p>{p.text}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
 
-    <p>With every new platform, app, AI model, I instead find myself returning to variants on a different question:</p>
+      <section class="sec sec-final" data-i="06">
+        <header class="sec-head"><span class="sec-no">06</span><h2>An invitation</h2></header>
+        <blockquote class="pq pq-final">So: we don&rsquo;t plan places. We enliven them.</blockquote>
+        <div class="sec-body">
+          <p>My work is an invitation to ask the questions that matter about the places we inhabit and the technologies that increasingly inhabit them alongside us. To keep asking, because the asking itself is the practice. To sculpt, together, a reality in which technology and place are in relationship rather than in conflict.</p>
+          <p>If this resonates, I would love to know.</p>
+          <p>In the meantime, let&rsquo;s go outside, and notice where we are. We might not do anything much. Or we might find ourselves wanting to record the <span class="bird">bird song</span>.</p>
+        </div>
+      </section>
+    </article>
 
-    <blockquote>Instead of using technology to control, to plan, and to dominate workflows, can we use it to enliven the magic of the places that sustain and nurture us?</blockquote>
+    <footer class="m-foot">
+      <span class="seed" aria-hidden="true"></span>
+      <p class="foot-cta">If it resonates, <a href="https://civicinterplay.substack.com/p/from-enlightenment-to-enlivenment">I&rsquo;d love to know &mdash; read &amp; subscribe on Civic Interplay</a>.</p>
+      <p class="foot-nav"><a href="/">Return home</a> &middot; <a href="/about">About</a> &middot; &copy; 2026 Sarah Barns</p>
+    </footer>
+  </main>
 
-    <h2>Why does place matter now?</h2>
+  <style is:global>
+    :root {
+      --ink:        oklch(0.165 0.012 60);
+      --ink-2:      oklch(0.205 0.014 62);
+      --paper:      oklch(0.95 0.012 88);
+      --paper-soft: oklch(0.885 0.013 86);
+      --paper-dim:  oklch(0.72 0.016 84);
+      --paper-faint:oklch(0.56 0.018 80);
+      --thread-top: oklch(0.40 0.018 250);   /* cool, distant — enlightenment */
+      --thread-bot: oklch(0.78 0.13 72);     /* warm ember — enlivenment */
+      --ember:      oklch(0.81 0.125 72);
+      --ember-soft: oklch(0.81 0.125 72 / 0.30);
+      --living:     oklch(0.86 0.15 122);
+      --hair:       oklch(0.32 0.012 70);
 
-    <p>We feel we are connected to everything. And yet, isn’t it strange, given all that connection, how often we are pulled away from where we actually are?</p>
+      --display: 'Young Serif', Georgia, serif;
+      --body:    'Merriweather', Georgia, serif;
+      --label:   'Fira Sans', system-ui, sans-serif;
 
-    <p>Our attention is elsewhere, captured by platforms designed to keep us scrolling, not noticing.</p>
+      --measure: 38rem;
+      --rail: clamp(2.4rem, 6vw, 4.2rem);
+    }
 
-    <p>“An urban culture that predicates itself chiefly on an obsession with development is not worth having. A city needs deep memory, without which it becomes merely a stage set.” Robert Hughes said that in 1998. It feels ever more urgent now.</p>
+    * , *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
-    <p>In 2005 I left full time work in media policy to study a PhD. I could see the shape of distributed, convergent media, and wanted to work with it as a different way to experientially encounter the city’s archive. Through sound recordings, I sought out places that “have no monument, no landmark to indicate their passing.” I called these <em>resonant traces</em>: reverberating with the echoes of past battles, evidencing the often contested, productive possibilities of a given location.</p>
+    html, body { background: var(--ink); }
+    body {
+      font-family: var(--body);
+      color: var(--paper-soft);
+      line-height: 1.85;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+    /* Warm ember atmosphere rising from below — enlivenment glow, kept very low */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(135% 90% at 50% 118%, oklch(0.80 0.12 70 / 0.13), transparent 58%),
+        radial-gradient(120% 70% at 50% -10%, oklch(0.55 0.04 250 / 0.10), transparent 55%);
+    }
 
-    <p>The practice of listening I cultivated then — of noticing what is hidden but wants to emerge — was designed to bring to life a more resonant and alive landscape that easily gets hidden in the built environment. Why couldn’t technologies of listening open up our minds and our imaginations to a different concept of place, one that holds within it many deep-time stories, within which we act.</p>
+    ::selection { background: var(--ember); color: var(--ink); }
 
-    <p>This was my ‘place-making’ practice in motion. It has continued to evolve.</p>
+    .skip {
+      position: absolute; left: -9999px; top: 0;
+      font-family: var(--label); font-size: 0.85rem;
+      background: var(--ember); color: var(--ink); padding: 0.6rem 1rem; border-radius: 4px; z-index: 50;
+    }
+    .skip:focus { left: 1rem; top: 1rem; }
 
-    <p>Across 15+ years of practice, I see a clear thread. Places are like archives, full of material and recorded and imaginative histories. In an age of immersive, experiential and now agentic media, how might we choose to encounter these many-storied collections? What practices might that entail.</p>
+    a { color: var(--ember); text-decoration: none; }
 
-    <h2>Choices are always made</h2>
+    /* ---- top bar ---- */
+    .topbar {
+      position: relative; z-index: 2;
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 1rem;
+      padding: 1.4rem clamp(1.25rem, 5vw, 3rem);
+      max-width: 1180px; margin: 0 auto;
+    }
+    .topbar a {
+      font-family: var(--label); font-size: 0.78rem; font-weight: 400;
+      letter-spacing: 0.06em; color: var(--paper-faint);
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      transition: color 0.3s ease;
+    }
+    .topbar a:hover { color: var(--paper); }
+    .topbar .arr { color: var(--ember); font-size: 0.9em; }
 
-    <p>Technology pulls us elsewhere, yes. But technology also brought us closer to each other in ways that would have been unimaginable a generation ago.</p>
+    /* ---- layout wrap ---- */
+    .wrap {
+      position: relative; z-index: 1;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 clamp(1.25rem, 5vw, 3rem) clamp(4rem, 9vw, 7rem);
+    }
 
-    <p>Technology in place can be used to enliven felt-connections to the lives of others, and in so doing, can help us maintain a situated, experiential knowledge of the environments that shape us. This perspective shapes all my work: From STORYBOX installations in community spaces, to participatory storytelling programs, to the civic AI governance work I do now.</p>
+    /* ---- masthead ---- */
+    .mast { padding: clamp(3.5rem, 13vh, 9rem) 0 clamp(3rem, 7vw, 5.5rem); max-width: 26ch; }
+    .kicker {
+      font-family: var(--label); font-size: 0.74rem; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0.24em; color: var(--paper-faint);
+      display: flex; align-items: center; gap: 0.7rem; margin-bottom: clamp(1.4rem, 3vw, 2.2rem);
+    }
+    .kicker .tick { width: 1.8rem; height: 1px; background: var(--ember); display: inline-block; }
+    .m-title {
+      font-family: var(--display); font-weight: 400;
+      font-size: clamp(2.7rem, 8.5vw, 5.6rem); line-height: 1.02;
+      letter-spacing: -0.012em; color: var(--paper);
+      text-wrap: balance;
+    }
+    .m-title .enliven { color: var(--ember); }
+    .m-sub {
+      font-family: var(--body); font-style: italic; font-weight: 300;
+      font-size: clamp(1.05rem, 2.2vw, 1.4rem); line-height: 1.5;
+      color: var(--paper-dim); margin-top: clamp(1.5rem, 3vw, 2.2rem); max-width: 32ch;
+    }
+    .m-meta {
+      font-family: var(--label); font-size: 0.76rem; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--paper-faint); margin-top: 1.4rem;
+    }
 
-    <p>The question is not whether we are pro-AI, or not. We are deeply enmeshed in planetary-scale technological architectures, which operate under conditions of ‘state craft’, whether or not we voted for them. Through our daily choices, about which platforms to use, which data to share, which automated systems to trust or resist, we are actively training the intelligences that shape material futures. These are micro political acts.</p>
+    /* ---- the thread ---- */
+    .manifesto { position: relative; }
+    .thread {
+      position: absolute; top: 0; bottom: 0;
+      left: calc(var(--rail) * 0.5); width: 1px;
+      background: linear-gradient(to bottom,
+        var(--thread-top) 0%,
+        var(--hair) 22%,
+        var(--hair) 55%,
+        var(--thread-bot) 100%);
+      opacity: 0.9;
+    }
 
-    <p>Increasingly, I wonder what kind of citizens we are becoming in relation to these planetary-scale systems. And I wonder: Why can’t we create technologies that deepen our relationship to place? That open up our senses, our sightings. That help us to notice, connect, and experience more. Not to control or contain, but to enliven.</p>
+    /* ---- sections ---- */
+    .sec {
+      position: relative;
+      padding-left: var(--rail);
+      margin-top: clamp(4rem, 9vw, 7.5rem);
+    }
+    .sec:first-of-type { margin-top: clamp(1rem, 3vw, 2rem); }
+    .sec-head { position: relative; margin-bottom: clamp(1.4rem, 3vw, 2rem); }
+    .sec-no {
+      position: absolute; left: calc(var(--rail) * -0.5); top: 0.55em;
+      transform: translate(-50%, -50%);
+      width: 11px; height: 11px; border-radius: 50%;
+      background: var(--ink); border: 1px solid var(--hair);
+      transition: border-color 0.5s ease, background 0.5s ease, box-shadow 0.5s ease;
+      font-size: 0; /* hide the digits; node only on desktop */
+    }
+    .sec-head h2 {
+      font-family: var(--display); font-weight: 400;
+      font-size: clamp(1.7rem, 3.6vw, 2.55rem); line-height: 1.12;
+      letter-spacing: -0.01em; color: var(--paper);
+      text-wrap: balance;
+    }
+    .sec.is-active .sec-no {
+      background: var(--ember); border-color: var(--ember);
+      box-shadow: 0 0 0 4px oklch(0.81 0.125 72 / 0.14);
+    }
 
-    <p>This is the practice I work to refine, with all my clients and collaborators.</p>
+    .sec-body { max-width: var(--measure); }
+    .sec-body p { margin-bottom: 1.4rem; color: var(--paper-soft); }
+    .sec-body p:last-child { margin-bottom: 0; }
+    .sec-body em { font-style: italic; color: var(--paper); }
+    .sec-body .lede {
+      font-size: clamp(1.18rem, 2.3vw, 1.42rem); line-height: 1.6;
+      color: var(--paper); font-weight: 400;
+    }
+    .bird { color: var(--living); }
 
-    <h2>From enlightenment to enlivenment</h2>
+    /* ---- pull quotes ---- */
+    .pq {
+      position: relative;
+      max-width: 24ch;
+      margin: clamp(2.6rem, 6vw, 4rem) 0 clamp(0.5rem, 2vw, 1rem);
+      font-family: var(--display); font-weight: 400;
+      font-size: clamp(1.7rem, 4.2vw, 3rem); line-height: 1.16;
+      letter-spacing: -0.012em; color: var(--paper);
+    }
+    .pq::before {
+      content: ''; display: block;
+      width: 2.6rem; height: 2px; background: var(--ember);
+      margin-bottom: clamp(1.2rem, 2.5vw, 1.8rem);
+    }
+    .pq-final { color: var(--ember); max-width: 18ch; }
+    .pq-final::before { background: var(--living); }
 
-    <p><strong>It is from this grounding, rooted in both the power of places and the potential for a more relational, care-full approach to designing technologies, that I forge my work.</strong></p>
+    /* ---- principles ---- */
+    .principles {
+      list-style: none;
+      margin-top: clamp(2.2rem, 5vw, 3.4rem);
+      counter-reset: none;
+    }
+    .principle {
+      display: grid;
+      grid-template-columns: 2.8rem 1fr;
+      gap: clamp(0.8rem, 2vw, 1.4rem);
+      padding: clamp(1.5rem, 3.2vw, 2.2rem) 0;
+      border-top: 1px solid var(--hair);
+      max-width: calc(var(--measure) + 2.8rem);
+    }
+    .principle:last-child { border-bottom: 1px solid var(--hair); }
+    .p-no {
+      font-family: var(--label); font-size: 0.82rem; font-weight: 500;
+      letter-spacing: 0.05em; color: var(--ember);
+      padding-top: 0.4rem;
+      font-variant-numeric: tabular-nums;
+    }
+    .p-text h3 {
+      font-family: var(--display); font-weight: 400;
+      font-size: clamp(1.18rem, 2.4vw, 1.5rem); line-height: 1.25;
+      color: var(--paper); margin-bottom: 0.55rem; letter-spacing: -0.005em;
+    }
+    .p-text p { font-size: 1rem; line-height: 1.72; color: var(--paper-dim); }
 
-    <p>I call this practice: <em>from enlightenment to enlivenment.</em></p>
+    /* ---- footer ---- */
+    .m-foot {
+      position: relative; z-index: 1;
+      margin-top: clamp(4.5rem, 10vw, 8rem);
+      padding-left: var(--rail);
+      max-width: var(--measure);
+    }
+    .seed {
+      display: block; width: 9px; height: 9px; border-radius: 50%;
+      background: var(--living);
+      box-shadow: 0 0 0 5px oklch(0.86 0.15 122 / 0.13);
+      margin-bottom: clamp(1.8rem, 4vw, 2.6rem);
+      margin-left: calc(var(--rail) * -0.5);
+      transform: translateX(-50%);
+    }
+    .foot-cta {
+      font-family: var(--body); font-style: italic;
+      font-size: clamp(1.05rem, 2vw, 1.25rem); line-height: 1.55;
+      color: var(--paper); margin-bottom: 1.6rem;
+    }
+    .foot-cta a { text-decoration: underline; text-underline-offset: 4px; text-decoration-color: var(--ember-soft); }
+    .foot-cta a:hover { text-decoration-color: var(--ember); }
+    .foot-nav {
+      font-family: var(--label); font-size: 0.8rem; letter-spacing: 0.04em;
+      color: var(--paper-faint);
+    }
+    .foot-nav a { color: var(--paper-dim); transition: color 0.3s ease; }
+    .foot-nav a:hover { color: var(--paper); }
 
-    <p>Enlightenment promised that knowledge would set us free. It gave us extraordinary tools for understanding the world. But it also gave us the habit of standing outside the things we study, treating places as objects, people as users, knowledge as something to extract rather than something to tend.</p>
+    /* ---- entrance motion ---- */
+    .mast > *, .sec, .principle {
+      opacity: 0; transform: translateY(14px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .mast.in > *, .sec.in, .principle.in { opacity: 1; transform: none; }
+    .mast.in > *:nth-child(1) { transition-delay: 0.05s; }
+    .mast.in > *:nth-child(2) { transition-delay: 0.16s; }
+    .mast.in > *:nth-child(3) { transition-delay: 0.30s; }
+    .mast.in > *:nth-child(4) { transition-delay: 0.42s; }
 
-    <p>Enlivenment begins from a different place. It asks: what if the work is not to illuminate from above, but to animate <em>from within</em>? What if the goal is not to know more, but to notice more? Not to design solutions, but to create conditions from which acts of care, custodianship, and curiosity can emerge?</p>
+    @media (prefers-reduced-motion: reduce) {
+      .mast > *, .sec, .principle { opacity: 1; transform: none; transition: none; }
+      body::before { display: none; }
+    }
 
-    <blockquote>There is no landing place, only transitions between. Trace the line between them.</blockquote>
+    /* ---- responsive: collapse the rail/thread on small screens ---- */
+    @media (max-width: 700px) {
+      .thread { display: none; }
+      .sec { padding-left: 0; margin-top: clamp(3.2rem, 11vw, 5rem); }
+      .m-foot { padding-left: 0; }
+      .seed { margin-left: 0; transform: none; }
+      .sec-no {
+        position: static; transform: none;
+        width: auto; height: auto; border: none; background: none;
+        display: inline-block; font-size: 0.74rem;
+        font-family: var(--label); font-weight: 500; letter-spacing: 0.18em;
+        color: var(--ember); margin-bottom: 0.5rem;
+      }
+      .sec.is-active .sec-no { box-shadow: none; background: none; }
+      .principle { grid-template-columns: 2.2rem 1fr; }
+    }
+  </style>
 
-    <h2>The principles</h2>
+  <script>
+    const mast = document.querySelector('.mast');
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    <p><strong>So I have arrived at a set of principles. These guide a practice that interweaves place-stories with digital architectures. I have watched many waves of urban technology ‘flood the zone’ with triumphalist accounts, which I feel often flatten the mysterious wonder of places-in-transition.</strong></p>
+    if (reduce) {
+      mast && mast.classList.add('in');
+      document.querySelectorAll('.sec, .principle').forEach((el) => el.classList.add('in'));
+    } else {
+      // Masthead reveals on load
+      requestAnimationFrame(() => mast && mast.classList.add('in'));
 
-    <p><strong>Place is relational, not just physical.</strong><br />Place is defined by lived and everyday experience, by memory, sensation, and connection, not just geography or the outcome of a masterplan. Good masterplans matter. But so do acts of care.</p>
+      // Sections & principles fade up as they enter
+      const reveal = new IntersectionObserver(
+        (entries, obs) => entries.forEach((e) => {
+          if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
+        }),
+        { rootMargin: '0px 0px -12% 0px', threshold: 0.12 }
+      );
+      document.querySelectorAll('.sec, .principle').forEach((el) => reveal.observe(el));
 
-    <p><strong>Story is infrastructure.</strong><br />A narrative or story of a place is not decoration. It shapes how place is experienced, remembered, and shared. Stories act as infrastructures for being.</p>
-
-    <p><strong>Time is radical.</strong><br />The ability for places to hold the traces of the past is one of the most beautiful things in our lives. First Nations people honour this when they recognise Country as being a part of ‘deep time’. European philosophers have also explored ideas of non-linear, immanent time. Time is a creative force to play with in the dance of life.</p>
-
-    <p><strong>Listening before intervention.</strong><br />Work-in-place begins with listening. Not only to what exists, but to what came before, and what might be hidden but wants to emerge. This form of listening can be described as attunement: to people, to place, to history; to grief, to hope.</p>
-
-    <p><strong>Technology can be a gift.</strong><br />Many who own the world’s most powerful technologies use them as sources of power and wealth. But this is not the only path. Technology can inspire connection, curiosity, and even presence.</p>
-
-    <p><strong>People in places are not users.</strong><br />The dominant way of designing technologies puts “the user” at the centre. This user is abstracted from their place, their community, their environment. Technologies are optimised in ways that take us away from the places we live in. We are citizens, not consumers. We are neighbours, not data points.</p>
-
-    <p><strong>Enlivenment is a space of possibility, not a solution.</strong><br />A commitment to enlivenment is about creating conditions, not determining outcomes. It is quite distinct from the impulse to control, to contain, or to use expertise to prescribe what comes next.</p>
-
-    <p><strong>Care as the foundation of value.</strong><br />Those who tend to and shape places should be visible, supported, and recognised. Care is the infrastructure upon which other good things can happen.</p>
-
-    <h2>An invitation</h2>
-
-    <blockquote>So: we don’t plan places. We enliven them.</blockquote>
-
-    <p>My work is an invitation to ask the questions that matter about the places we inhabit and the technologies that increasingly inhabit them alongside us. To keep asking, because the asking itself is the practice. To sculpt, together, a reality in which technology and place are in relationship rather than in conflict.</p>
-
-    <p>If this resonates, I would love to know.</p>
-
-    <p>In the meantime, let’s go outside, and notice where we are. We might not do anything much. Or we might find ourselves wanting to record the bird song.</p>
-  </div>
-</Base>
+      // Scroll-driven thread: the section crossing the viewport centre lights its node
+      const active = new IntersectionObserver(
+        (entries) => entries.forEach((e) => e.target.classList.toggle('is-active', e.isIntersecting)),
+        { rootMargin: '-48% 0px -48% 0px', threshold: 0 }
+      );
+      document.querySelectorAll('.sec').forEach((el) => active.observe(el));
+    }
+  </script>
+</body>
+</html>
