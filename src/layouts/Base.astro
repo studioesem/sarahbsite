@@ -1,11 +1,29 @@
 ---
+interface BannerSpec {
+  src: string;
+  captionTitle?: string;
+  captionBody?: string;
+}
+
 interface Props {
   title?: string;
   description?: string;
+  banner?: BannerSpec;
 }
 
-const { title = 'Sarah Barns', description = 'Public historian and creative producer working with digital methods to enliven storied-connections between people, places, and habitats.' } = Astro.props;
+const DEFAULT_BANNER: BannerSpec = {
+  src: 'https://pub-3c698ebb77b146ac884e0a95b8523934.r2.dev/digital-placemaking/girl-eating-a-sandwich-unguarded-moments-millers-point-sd.mp4',
+  captionTitle: "'Girl Eating a Sandwich'",
+  captionBody: "Featured for Unguarded Moments, Sarah's first public space archive project with Michael Killalea of Studio ESEM, 2011. The girl plays on a loop, looking back from the 1930s docks, wondering about the future world she finds herself in.",
+};
+
+const {
+  title = 'Sarah Barns',
+  description = 'Public historian and creative producer working with digital methods to enliven storied-connections between people, places, and habitats.',
+  banner = DEFAULT_BANNER,
+} = Astro.props;
 const currentPath = Astro.url.pathname;
+const hasCaption = Boolean(banner.captionTitle || banner.captionBody);
 
 // Author identity graph. Identical block also lives on civicinterplay.io,
 // storybox.co, studioesem.com. Same @id everywhere so crawlers fuse the
@@ -82,12 +100,16 @@ const identityGraph = {
 <body>
   <figure class="site-banner">
     <video aria-hidden="true" autoplay muted loop playsinline preload="metadata">
-      <source src="https://pub-3c698ebb77b146ac884e0a95b8523934.r2.dev/digital-placemaking/girl-eating-a-sandwich-unguarded-moments-millers-point-sd.mp4" type="video/mp4" />
+      <source src={banner.src} type="video/mp4" />
     </video>
-    <figcaption class="site-banner-caption">
-      <em class="site-banner-caption-title">'Girl Eating a Sandwich'</em>
-      Featured for <em>Unguarded Moments</em>, Sarah's first public space archive project with Michael Killalea of Studio ESEM, 2011. The girl plays on a loop, looking back from the 1930s docks, wondering about the future world she finds herself in.
-    </figcaption>
+    {hasCaption && (
+      <figcaption class="site-banner-caption">
+        {banner.captionTitle && (
+          <em class="site-banner-caption-title">{banner.captionTitle}</em>
+        )}
+        {banner.captionBody}
+      </figcaption>
+    )}
   </figure>
 
   <div class="container">
