@@ -11,7 +11,7 @@
   --accent: #8c39d8;
   --accent-light: #a55ce0;
   --accent-bg: rgba(140, 57, 216, 0.08);
-  --banner-w: clamp(300px, 36vw, 680px);
+  --banner-w: clamp(220px, 26vw, 480px);
 
   /* Category palette — each category a distinct hue (Civic Interplay base + extensions) */
   /* Studio ESEM brand hues, cycled across categories */
@@ -56,7 +56,7 @@ body {
 .site-banner { display: none; }
 .site-banner video { width: 100%; height: 100%; object-fit: cover; display: block; }
 @media (min-width: 1000px) {
-  .site-banner { display: block; position: fixed; top: 0; right: 0; bottom: 0; width: var(--banner-w); overflow: hidden; z-index: 1; background: #111; border-left: 1px solid var(--border-hover); }
+  .site-banner { display: block; position: fixed; top: 0; right: 0; bottom: 0; width: var(--banner-w); overflow: hidden; z-index: 1; background: #111; border-left: 1px solid var(--border-hover); opacity: 0.6; }
   .container { margin-left: clamp(1.5rem, 9vw, 9rem); margin-right: calc(var(--banner-w) + 3rem); }
 }
 a { color: var(--accent); text-decoration: none; transition: all 0.3s ease; }
