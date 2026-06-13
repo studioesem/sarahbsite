@@ -130,9 +130,9 @@ function categoryClass(cat?: string) {
   .hp-kicker em { font-style: italic; }
   .hp-tick { width: 1.7rem; height: 1px; background: var(--ember-ink); display: inline-block; flex-shrink: 0; opacity: 0.75; }
   .hp-name {
-    font-family: var(--display); font-weight: 400;
+    font-family: var(--display); font-weight: 600;
     font-size: clamp(1.95rem, 4.6vw, 2.85rem); line-height: 1.05;
-    letter-spacing: -0.012em; color: var(--text); margin-bottom: 0.9rem;
+    letter-spacing: -0.022em; color: var(--text); margin-bottom: 0.9rem;
   }
   .hp-lead {
     font-family: var(--body); font-size: clamp(1.02rem, 1.6vw, 1.15rem); font-weight: 400;
@@ -175,52 +175,45 @@ function categoryClass(cat?: string) {
 
   /* Manifesto threshold — a warm-dark window into the dark room */
   .hp-door {
-    --door-ink: oklch(0.185 0.024 47);
-    --door-paper: oklch(0.93 0.015 84);
-    --door-teal: oklch(0.78 0.10 193);
-    --door-glow: oklch(0.70 0.13 60 / 0.22);
     display: grid; grid-template-columns: 1fr auto; align-items: center;
     gap: 0.4rem 1.2rem;
     padding: clamp(1.5rem, 3.5vw, 2.1rem) clamp(1.4rem, 3vw, 1.9rem);
     margin: clamp(1.7rem, 4vw, 2.6rem) 0;
-    background: var(--door-ink); border-radius: 11px;
-    text-decoration: none; color: var(--door-paper);
-    position: relative; overflow: hidden; isolation: isolate;
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
-    animation: fadeIn 0.7s ease 0.16s both;
+    background: var(--text); border-radius: 2px;
+    text-decoration: none; color: #fff;
+    position: relative; isolation: isolate;
+    transition: background 0.25s ease;
   }
-  .hp-door::before {
-    content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
-    background: radial-gradient(120% 135% at 100% 125%, var(--door-glow), transparent 58%);
-  }
+  .hp-door:hover { background: #000; color: #fff; }
   .hp-door-label {
-    grid-column: 1; font-family: var(--body); font-style: italic; font-weight: 300;
-    font-size: 0.96rem; color: var(--door-teal); margin-bottom: 0.4rem;
+    grid-column: 1; font-family: var(--heading); font-style: normal; font-weight: 500;
+    font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.14em;
+    color: var(--accent-light); margin-bottom: 0.5rem;
     display: inline-flex; align-items: center; gap: 0.6rem;
   }
+  .hp-door-label em { font-style: normal; }
   .hp-door-label::before {
-    content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--door-teal);
-    box-shadow: 0 0 0 4px oklch(0.78 0.10 193 / 0.20); flex-shrink: 0;
+    content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--accent-light);
+    flex-shrink: 0;
   }
   .hp-door-title {
-    grid-column: 1; font-family: var(--display); font-weight: 400;
-    font-size: clamp(1.4rem, 3vw, 2rem); line-height: 1.1; letter-spacing: -0.01em;
-    color: var(--door-paper);
+    grid-column: 1; font-family: var(--display); font-weight: 600;
+    font-size: clamp(1.4rem, 3vw, 2rem); line-height: 1.1; letter-spacing: -0.02em;
+    color: #fff;
   }
-  .hp-enliven { color: var(--door-teal); }
+  .hp-enliven { color: var(--accent-light); }
   .hp-door-arrow {
     grid-column: 2; grid-row: 1 / span 2; align-self: center;
-    font-size: 1.5rem; color: var(--door-teal);
-    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    font-size: 1.5rem; color: var(--accent-light);
+    transition: transform 0.3s ease;
   }
-  .hp-door:hover { transform: translateY(-2px); box-shadow: 0 14px 34px -16px oklch(0.2 0.03 50 / 0.55); }
   .hp-door:hover .hp-door-arrow { transform: translateX(6px); }
 
   /* Writing */
   .hp-writing { padding-top: clamp(2.2rem, 5vw, 3.2rem); animation: fadeIn 0.7s ease 0.24s both; }
   .hp-h2 {
-    font-family: var(--display); font-weight: 400; font-size: clamp(1.3rem, 2.6vw, 1.7rem);
-    line-height: 1.2; color: var(--text); margin-bottom: 1.6rem;
+    font-family: var(--display); font-weight: 600; font-size: clamp(1.3rem, 2.6vw, 1.7rem);
+    line-height: 1.2; letter-spacing: -0.018em; color: var(--text); margin-bottom: 1.6rem;
     display: flex; align-items: center; gap: 0.7rem;
   }
   .hp-h2 .hp-tick { width: 1.5rem; }
@@ -253,7 +246,7 @@ function categoryClass(cat?: string) {
   .hpw-link:hover { background: color-mix(in srgb, var(--cat) 7%, transparent); }
 
   .hpw-meta { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.4rem; flex-wrap: wrap; }
-  .hpw-date, .hpw-read { font-family: var(--heading); font-size: 0.78rem; font-weight: 300; color: var(--text-faint); }
+  .hpw-date, .hpw-read { font-family: var(--heading); font-size: 0.72rem; font-weight: 400; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.06em; }
   .hpw-dot { width: 2px; height: 2px; border-radius: 50%; background: var(--text-faint); }
   .hpw-cat {
     font-family: var(--heading); font-size: 0.68rem; font-weight: 500;
@@ -263,8 +256,8 @@ function categoryClass(cat?: string) {
   .hpw-cat::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--cat); flex-shrink: 0; }
 
   .hpw-title {
-    font-family: var(--display); font-weight: 400; font-size: clamp(1.15rem, 2vw, 1.4rem);
-    line-height: 1.22; margin-bottom: 0.35rem; letter-spacing: -0.005em;
+    font-family: var(--display); font-weight: 600; font-size: clamp(1.15rem, 2vw, 1.4rem);
+    line-height: 1.25; margin-bottom: 0.35rem; letter-spacing: -0.018em;
     color: color-mix(in srgb, var(--cat) 62%, #000);
     transition: filter 0.3s ease;
   }
@@ -289,9 +282,9 @@ function categoryClass(cat?: string) {
   .hpw-all { display: inline-block; padding: 1.5rem 0 0.5rem; font-family: var(--heading); font-size: 0.9rem; color: var(--accent); }
   .hpw-all::after { content: ' \2192'; }
 
-  @media (prefers-reduced-motion: reduce) {
-    .hp-intro, .hp-door, .hp-writing, .hp-bio { animation: none; }
-  }
+  /* Wind-back: flat, no entrance motion; no scroll auto-highlight tint. */
+  .hp-intro, .hp-door, .hp-writing, .hp-bio { animation: none !important; opacity: 1 !important; }
+  .hpw-link.is-active { background: transparent; }
 
   @media (max-width: 640px) {
     .hp-intro { flex-direction: column; gap: 1rem; }

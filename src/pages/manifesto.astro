@@ -24,7 +24,7 @@ const principles = [
   <link rel="alternate" type="application/rss+xml" title="Sarah Barns" href="/rss.xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Fira+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@300;400;500;600&display=swap" rel="stylesheet" />
 </head>
 <body>
   <a class="skip" href="#manifesto">Skip to manifesto</a>
@@ -127,7 +127,6 @@ const principles = [
 
     <footer class="m-foot">
       <span class="seed" aria-hidden="true"></span>
-      <p class="foot-cta">If it resonates, <a href="https://civicinterplay.substack.com/p/from-enlightenment-to-enlivenment">I&rsquo;d love to know &mdash; read &amp; subscribe on Civic Interplay</a>.</p>
       <p class="foot-lineage">The word <em>enlivenment</em> I take from the philosopher Andreas Weber; the deeper lineage from many others, gathered in <a href="/places-are-made-of-wax.html">Resonant Places</a>.</p>
       <p class="foot-nav"><a href="/">Return home</a> &middot; <a href="/about">About</a> &middot; &copy; 2026 Sarah Barns</p>
     </footer>
@@ -135,25 +134,33 @@ const principles = [
 
   <style is:global>
     :root {
-      --ink:        oklch(0.172 0.024 47);    /* deep umber-soil — warm, not navy */
-      --ink-2:      oklch(0.215 0.026 48);
-      --paper:      oklch(0.95 0.015 84);
-      --paper-soft: oklch(0.885 0.017 80);
-      --paper-dim:  oklch(0.72 0.022 74);
-      --paper-faint:oklch(0.57 0.024 68);
-      --thread-top: oklch(0.43 0.022 58);     /* warm-grey, distant — enlightenment (no cool blue) */
-      --thread-bot: oklch(0.76 0.10 193);     /* teal — enlivenment / alive */
-      --ember:      oklch(0.82 0.135 67);
-      --ember-soft: oklch(0.82 0.135 67 / 0.30);
-      --clay:       oklch(0.72 0.10 52);     /* deepened, muted warm */
-      --teal:       oklch(0.76 0.10 193);    /* brand teal, cool counter-accent */
-      --teal-soft:  oklch(0.76 0.10 193 / 0.28);
-      --living:     oklch(0.86 0.15 122);
-      --hair:       oklch(0.345 0.022 56);
+      /* Pulled into the light monochrome system — same as the rest of the site. */
+      --ink:        #ffffff;                 /* the page is now paper-white */
+      --ink-2:      #f4f4f4;
+      --paper:      #111111;                 /* primary ink — headings, strong */
+      --paper-soft: #1c1c1c;                 /* body text */
+      --paper-dim:  #555555;
+      --paper-faint:#8a8a8a;
+      --hair:       rgba(0, 0, 0, 0.14);
 
-      --display: 'Young Serif', Georgia, serif;
-      --body:    'Merriweather', Georgia, serif;
-      --label:   'Fira Sans', system-ui, sans-serif;
+      --accent:     #5b5fc7;                 /* periwinkle — the one accent (the blue dots) */
+      --accent-red: #d61f3a;                 /* link underline */
+
+      /* the through-line keeps its arc: neutral at top, periwinkle at the enlivenment end */
+      --thread-top: rgba(0, 0, 0, 0.16);
+      --thread-bot: var(--accent);
+
+      /* every former warm/teal accent now collapses onto the single periwinkle */
+      --ember:      var(--accent);
+      --ember-soft: rgba(91, 95, 199, 0.30);
+      --clay:       var(--accent);
+      --teal:       var(--accent);
+      --teal-soft:  rgba(91, 95, 199, 0.30);
+      --living:     var(--accent);
+
+      --display: 'Inter', system-ui, -apple-system, sans-serif;
+      --body:    'Inter', system-ui, -apple-system, sans-serif;
+      --label:   'IBM Plex Mono', ui-monospace, monospace;
 
       --measure: 38rem;
       --rail: clamp(2.4rem, 6vw, 4.2rem);
@@ -167,36 +174,16 @@ const principles = [
     body {
       font-family: var(--body);
       color: var(--paper-soft);
-      line-height: 1.85;
+      line-height: 1.78;
+      letter-spacing: -0.011em;
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
       min-height: 100vh;
       position: relative;
       overflow-x: hidden;
     }
-    /* Warm ember atmosphere rising from below — enlivenment glow, all warm, no cool tones */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-      background:
-        radial-gradient(135% 92% at 50% 118%, oklch(0.78 0.13 66 / 0.16), transparent 56%),
-        radial-gradient(120% 80% at 12% -8%, oklch(0.40 0.05 50 / 0.16), transparent 52%);
-    }
-    /* Fine grain — material/soil texture their flat dark lacks */
-    body::after {
-      content: '';
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-      opacity: 0.05;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    }
 
-    ::selection { background: var(--teal); color: var(--ink); }
+    ::selection { background: var(--accent); color: #fff; }
 
     .skip {
       position: absolute; left: -9999px; top: 0;
@@ -205,7 +192,7 @@ const principles = [
     }
     .skip:focus { left: 1rem; top: 1rem; }
 
-    a { color: var(--teal); text-decoration: none; }
+    a { color: var(--paper); text-decoration: none; }
 
     /* ---- top bar ---- */
     .topbar {
@@ -216,13 +203,13 @@ const principles = [
       max-width: 1180px; margin: 0 auto;
     }
     .topbar a {
-      font-family: var(--label); font-size: 0.78rem; font-weight: 400;
-      letter-spacing: 0.06em; color: var(--paper-faint);
+      font-family: var(--label); font-size: 0.72rem; font-weight: 400;
+      text-transform: uppercase; letter-spacing: 0.1em; color: var(--paper-faint);
       display: inline-flex; align-items: center; gap: 0.45rem;
       transition: color 0.3s ease;
     }
     .topbar a:hover { color: var(--paper); }
-    .topbar .arr { color: var(--ember); font-size: 0.9em; }
+    .topbar .arr { color: var(--accent); font-size: 0.9em; }
 
     /* ---- layout wrap ---- */
     .wrap {
@@ -242,9 +229,9 @@ const principles = [
     .kicker em { font-style: italic; }
     .kicker .tick { width: 2rem; height: 1px; background: var(--clay); display: inline-block; flex-shrink: 0; opacity: 0.8; }
     .m-title {
-      font-family: var(--display); font-weight: 400;
+      font-family: var(--display); font-weight: 600;
       font-size: clamp(2.7rem, 8.5vw, 5.6rem); line-height: 1.02;
-      letter-spacing: -0.012em; color: var(--paper);
+      letter-spacing: -0.026em; color: var(--paper);
       text-wrap: balance;
     }
     .m-title .enliven { color: var(--teal); }
@@ -254,8 +241,8 @@ const principles = [
       color: var(--paper-dim); margin-top: clamp(1.5rem, 3vw, 2.2rem); max-width: 32ch;
     }
     .m-meta {
-      font-family: var(--label); font-size: 0.82rem; letter-spacing: 0.02em;
-      text-transform: none; color: var(--paper-faint); margin-top: 1.4rem;
+      font-family: var(--label); font-size: 0.74rem; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--paper-faint); margin-top: 1.4rem;
     }
 
     /* ---- the thread ---- */
@@ -288,14 +275,14 @@ const principles = [
       font-size: 0; /* hide the digits; node only on desktop */
     }
     .sec-head h2 {
-      font-family: var(--display); font-weight: 400;
+      font-family: var(--display); font-weight: 600;
       font-size: clamp(1.7rem, 3.6vw, 2.55rem); line-height: 1.12;
-      letter-spacing: -0.01em; color: var(--paper);
+      letter-spacing: -0.02em; color: var(--paper);
       text-wrap: balance;
     }
     .sec.is-active .sec-no {
-      background: var(--teal); border-color: var(--teal);
-      box-shadow: 0 0 0 4px oklch(0.76 0.10 193 / 0.16);
+      background: var(--accent); border-color: var(--accent);
+      box-shadow: 0 0 0 4px rgba(91, 95, 199, 0.18);
     }
 
     .sec-body { max-width: var(--measure); }
@@ -313,9 +300,9 @@ const principles = [
       position: relative;
       max-width: 24ch;
       margin: clamp(2.6rem, 6vw, 4rem) 0 clamp(0.5rem, 2vw, 1rem);
-      font-family: var(--display); font-weight: 400;
+      font-family: var(--display); font-weight: 600;
       font-size: clamp(1.7rem, 4.2vw, 3rem); line-height: 1.16;
-      letter-spacing: -0.012em; color: var(--paper);
+      letter-spacing: -0.022em; color: var(--paper);
     }
     .pq::before {
       content: ''; display: block;
@@ -346,9 +333,9 @@ const principles = [
       padding-top: 0.05rem; line-height: 1;
     }
     .p-text h3 {
-      font-family: var(--display); font-weight: 400;
+      font-family: var(--display); font-weight: 600;
       font-size: clamp(1.18rem, 2.4vw, 1.5rem); line-height: 1.25;
-      color: var(--paper); margin-bottom: 0.55rem; letter-spacing: -0.005em;
+      color: var(--paper); margin-bottom: 0.55rem; letter-spacing: -0.015em;
     }
     .p-text p { font-size: 1rem; line-height: 1.72; color: var(--paper-dim); }
 
@@ -361,8 +348,8 @@ const principles = [
     }
     .seed {
       display: block; width: 9px; height: 9px; border-radius: 50%;
-      background: var(--teal);
-      box-shadow: 0 0 0 5px oklch(0.76 0.10 193 / 0.16);
+      background: var(--accent);
+      box-shadow: 0 0 0 5px rgba(91, 95, 199, 0.18);
       margin-bottom: clamp(1.8rem, 4vw, 2.6rem);
       margin-left: calc(var(--rail) * -0.5);
       transform: translateX(-50%);
@@ -372,18 +359,18 @@ const principles = [
       font-size: clamp(1.05rem, 2vw, 1.25rem); line-height: 1.55;
       color: var(--paper); margin-bottom: 1.6rem;
     }
-    .foot-cta a { text-decoration: underline; text-underline-offset: 4px; text-decoration-color: var(--teal-soft); }
-    .foot-cta a:hover { text-decoration-color: var(--teal); }
+    .foot-cta a { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1.5px; text-decoration-color: var(--accent-red); }
+    .foot-cta a:hover { color: var(--accent-red); }
     .foot-lineage {
       font-family: var(--body); font-size: 0.92rem; line-height: 1.6;
       color: var(--paper-dim); margin-bottom: 1.6rem; max-width: 52ch;
     }
     .foot-lineage em { font-style: italic; color: var(--paper); }
-    .foot-lineage a { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--teal-soft); }
-    .foot-lineage a:hover { text-decoration-color: var(--teal); }
+    .foot-lineage a { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1.5px; text-decoration-color: var(--accent-red); }
+    .foot-lineage a:hover { color: var(--accent-red); }
     .foot-nav {
-      font-family: var(--label); font-size: 0.8rem; letter-spacing: 0.04em;
-      color: var(--paper-faint);
+      font-family: var(--label); font-size: 0.72rem; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--paper-faint);
     }
     .foot-nav a { color: var(--paper-dim); transition: color 0.3s ease; }
     .foot-nav a:hover { color: var(--paper); }

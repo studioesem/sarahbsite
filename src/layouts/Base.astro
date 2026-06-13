@@ -98,20 +98,6 @@ const identityGraph = {
   <script type="application/ld+json" set:html={JSON.stringify(identityGraph)}></script>
 </head>
 <body>
-  <figure class="site-banner">
-    <video aria-hidden="true" autoplay muted loop playsinline preload="metadata">
-      <source src={banner.src} type="video/mp4" />
-    </video>
-    {hasCaption && (
-      <figcaption class="site-banner-caption">
-        {banner.captionTitle && (
-          <em class="site-banner-caption-title">{banner.captionTitle}</em>
-        )}
-        {banner.captionBody}
-      </figcaption>
-    )}
-  </figure>
-
   <div class="container">
     <nav>
       <a href="/" class="nav-name">Sarah Barns</a>

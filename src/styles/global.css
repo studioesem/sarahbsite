@@ -1,40 +1,41 @@
-@import url('https://fonts.googleapis.com/css2?family=Young+Serif&family=Fira+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@300;400;500;600&display=swap');
 
 :root {
   --bg: #ffffff;
-  --text: #1a1a1a;
+  --text: #111111;
   --text-dim: #555555;
-  --text-faint: #999999;
-  --border: rgba(0, 0, 0, 0.1);
-  --border-hover: rgba(0, 0, 0, 0.2);
+  --text-faint: #8a8a8a;
+  --border: rgba(0, 0, 0, 0.12);
+  --border-hover: rgba(0, 0, 0, 0.28);
   --hover-bg: rgba(0, 0, 0, 0.03);
-  --accent: #8c39d8;
-  --accent-light: #a55ce0;
-  --accent-bg: rgba(140, 57, 216, 0.08);
-  --banner-w: clamp(220px, 26vw, 480px);
+  /* Two accents only — periwinkle (structure) + crimson (links), 2389-style */
+  --accent: #5b5fc7;                /* periwinkle */
+  --accent-light: #7a7ed8;
+  --accent-bg: rgba(91, 95, 199, 0.08);
+  --accent-red: #d61f3a;            /* link underline / inline emphasis */
+  --banner-w: 0px;
 
-  /* Category palette — each category a distinct hue (Civic Interplay base + extensions) */
-  /* Studio ESEM brand hues, cycled across categories */
-  --cat-civic-ai: #8c39d8;          /* ultraviolet */
-  --cat-workshop: #00a69b;          /* teal        */
-  --cat-storybox: #ffaa00;          /* tangerine   */
-  --cat-research: #d7df23;          /* chartreuse  */
-  --cat-practice: #8c39d8;          /* ultraviolet */
-  --cat-platform-urbanism: #00a69b; /* teal        */
-  --cat-methodology: #ffaa00;       /* tangerine   */
-  --cat-deep-time: #d7df23;         /* chartreuse  */
-  --cat-circular-economy: #8c39d8;  /* ultraviolet */
-  --cat-placemaking: #00a69b;       /* teal        */
-  --cat-evaluation: #ffaa00;        /* tangerine   */
-  --cat-governance: #d7df23;        /* chartreuse  */
-  --cat-environment: #8c39d8;       /* ultraviolet */
-  --social: #4f86c6;                /* used by .aside */
-  --heading: 'Fira Sans', system-ui, sans-serif;
-  --body: 'Merriweather', Georgia, serif;
-  /* Shared design language (introduced with the Manifesto showpiece) */
-  --display: 'Young Serif', Georgia, serif;
-  --ember-ink: oklch(0.56 0.135 52);          /* warm amber, legible on light */
-  --ember-bg: oklch(0.56 0.135 52 / 0.07);
+  /* Monochrome wind-back: categories no longer carry colour — every hue is ink. */
+  --cat-civic-ai: var(--text);
+  --cat-workshop: var(--text);
+  --cat-storybox: var(--text);
+  --cat-research: var(--text);
+  --cat-practice: var(--text);
+  --cat-platform-urbanism: var(--text);
+  --cat-methodology: var(--text);
+  --cat-deep-time: var(--text);
+  --cat-circular-economy: var(--text);
+  --cat-placemaking: var(--text);
+  --cat-evaluation: var(--text);
+  --cat-governance: var(--text);
+  --cat-environment: var(--text);
+  --social: var(--text-dim);        /* used by .aside */
+  --heading: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', monospace;
+  --body: 'Inter', system-ui, -apple-system, sans-serif;
+  --display: var(--body);   /* larger text is the body typeface, just bigger */
+  /* "ember" tokens repurposed as quiet monochrome kicker ink */
+  --ember-ink: var(--text-dim);
+  --ember-bg: rgba(0, 0, 0, 0.04);
 }
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -42,7 +43,7 @@ html { font-size: 16px; scroll-behavior: smooth; }
 
 body {
   font-family: var(--body);
-  font-weight: 300;
+  font-weight: 400;
   background: var(--bg);
   color: var(--text);
   line-height: 1.7;
@@ -50,44 +51,16 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-.container { max-width: 740px; margin: 0 1.25rem 0 clamp(1.25rem, 8vw, 7rem); padding: 0; }
+.container { max-width: 800px; margin: 0 auto; padding: 0 1.75rem; }
 
-/* Right-hand full-bleed video banner (large screens only) */
-.site-banner { display: none; margin: 0; }
-.site-banner video { width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.6; }
-.site-banner-caption {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 2.4rem 1.4rem 1.4rem;
-  background: linear-gradient(to top, rgba(0,0,0,0.92), rgba(0,0,0,0.65) 55%, rgba(0,0,0,0));
-  color: rgba(255,255,255,0.9);
-  font-family: var(--heading);
-  font-size: 0.72rem;
-  line-height: 1.55;
-  letter-spacing: 0.01em;
-  text-align: left;
-}
-.site-banner-caption .site-banner-caption-title {
-  display: block;
-  font-style: italic;
-  font-weight: 500;
-  font-size: 0.85rem;
-  color: #fff;
-  margin-bottom: 0.4rem;
-  letter-spacing: 0.02em;
-}
-.site-banner-caption em { font-style: italic; color: rgba(255,255,255,0.95); }
-@media (min-width: 1000px) {
-  .site-banner { display: block; position: fixed; top: 0; right: 0; bottom: 0; width: var(--banner-w); overflow: hidden; z-index: 1; background: #111; border-left: 1px solid var(--border-hover); }
-  .container { margin-left: clamp(1.5rem, 9vw, 9rem); margin-right: calc(var(--banner-w) + 3rem); }
-}
-a { color: var(--accent); text-decoration: none; transition: all 0.3s ease; }
-a:hover { color: var(--accent-light); }
+/* Video banner retired in the wind-back — kept out of the layout entirely. */
+.site-banner { display: none; }
+a { color: var(--text); text-decoration: underline; text-decoration-color: var(--accent-red); text-underline-offset: 3px; text-decoration-thickness: 1.5px; transition: color 0.2s ease; }
+a:hover { color: var(--accent-red); }
 
-nav { padding: 1.5rem 0; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); }
-.nav-name { font-family: var(--heading); font-size: 1.1rem; font-weight: 500; color: var(--text); text-decoration: none; }
+nav { padding: 1.4rem 0; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--accent); }
+.nav-name { font-family: var(--display); font-size: 1.2rem; font-weight: 400; letter-spacing: -0.01em; color: var(--text); text-decoration: none; }
+.nav-name:hover { color: var(--text); }
 
 .profile { padding: 2.5rem 0 2rem; display: flex; gap: 1.5rem; align-items: flex-start; animation: fadeIn 0.6s ease 0.1s both; }
 .avatar { width: 85px; height: 85px; border-radius: 50%; object-fit: cover; object-position: center 20%; flex-shrink: 0; border: 1px solid var(--border); filter: grayscale(0.6) sepia(0.1); }
@@ -174,7 +147,7 @@ nav { padding: 1.5rem 0; display: flex; justify-content: space-between; align-it
 .prose a:hover { text-decoration-color: var(--accent); }
 .prose h2 { font-family: var(--display); font-size: 1.55rem; font-weight: 400; letter-spacing: -0.005em; color: var(--text); margin-top: 2.8rem; margin-bottom: 0.8rem; line-height: 1.2; }
 .prose h3 { font-family: var(--display); font-size: 1.25rem; font-weight: 400; color: var(--text); margin-top: 2.5rem; margin-bottom: 0.8rem; }
-.prose blockquote { border-left: 2px solid var(--accent); padding: 0.6rem 0 0.6rem 1.2rem; margin: 1.8rem 0; font-family: var(--heading); font-size: 1.12rem; font-style: italic; font-weight: 300; color: var(--text-dim); line-height: 1.5; }
+.prose blockquote { border-left: 2px solid var(--accent); padding: 0.6rem 0 0.6rem 1.2rem; margin: 1.8rem 0; font-family: var(--body); font-size: 1.15rem; font-style: italic; font-weight: 400; color: var(--text-dim); line-height: 1.55; }
 .prose blockquote p { margin-bottom: 0; }
 .prose ul, .prose ol { margin-bottom: 1.2rem; padding-left: 1.2rem; }
 .prose li { margin-bottom: 0.35rem; }
@@ -190,14 +163,14 @@ nav { padding: 1.5rem 0; display: flex; justify-content: space-between; align-it
 .page-header .page-kicker { font-family: var(--body); font-style: italic; font-weight: 400; font-size: 0.96rem; color: var(--ember-ink); display: flex; align-items: center; gap: 0.65rem; margin-bottom: 0.85rem; }
 .page-header .page-kicker .ktick { width: 1.7rem; height: 1px; background: var(--ember-ink); display: inline-block; opacity: 0.75; flex-shrink: 0; }
 .page-header h1 { font-family: var(--display); font-size: clamp(2.2rem, 4.5vw, 2.9rem); font-weight: 400; color: var(--text); letter-spacing: -0.01em; line-height: 1.06; }
-.page-header .page-subtitle { font-family: var(--heading); font-size: 1.1rem; font-weight: 300; font-style: italic; color: var(--text-dim); margin-top: 0.7rem; line-height: 1.5; }
+.page-header .page-subtitle { font-family: var(--body); font-size: 1.1rem; font-weight: 400; font-style: italic; color: var(--text-dim); margin-top: 0.7rem; line-height: 1.5; }
 .page-header .page-intro { font-size: 1.05rem; color: var(--text-dim); margin-top: 0.8rem; line-height: 1.6; max-width: 580px; }
 
 .post-page-header { padding: 3rem 0 2rem; border-bottom: 1px solid var(--border); margin-bottom: 2.2rem; animation: fadeIn 0.8s ease forwards; }
 .post-page-header h1 { font-family: var(--display); font-size: clamp(2.1rem, 4.5vw, 2.9rem); font-weight: 400; line-height: 1.08; color: var(--text); margin-bottom: 0.8rem; letter-spacing: -0.01em; }
 .post-page-meta { font-family: var(--heading); font-size: 0.85rem; font-weight: 300; color: var(--text-faint); display: flex; gap: 0.5rem; align-items: center; }
 .post-page-meta .dot { width: 2px; height: 2px; border-radius: 50%; background: var(--text-faint); }
-.post-description { font-family: var(--heading); font-size: 1.15rem; font-weight: 300; font-style: italic; color: var(--text-dim); line-height: 1.5; margin-top: 1.2rem; padding-left: 1rem; border-left: 2px solid color-mix(in srgb, var(--accent) 30%, transparent); }
+.post-description { font-family: var(--body); font-size: 1.18rem; font-weight: 400; font-style: italic; color: var(--text-dim); line-height: 1.5; margin-top: 1.2rem; padding-left: 1rem; border-left: 2px solid var(--accent); }
 
 .affiliations { margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--border); }
 .section-label { font-family: var(--heading); font-size: 0.68rem; font-weight: 300; text-transform: uppercase; letter-spacing: 0.15em; color: var(--text-faint); margin-bottom: 1.2rem; }
@@ -260,22 +233,30 @@ footer { padding: 2rem 0; border-top: 1px solid var(--border); display: flex; ju
   .container { padding: 0 1rem; }
 }
 
-.glitch { display: inline; position: relative; cursor: default; }
-.glitch:hover { animation: glitch 0.4s steps(2) forwards; }
-.glitch { display: inline; position: relative; cursor: default; }
-.glitch:hover { animation: glitch 0.4s steps(2) forwards; }
-@keyframes glitch {
-  0% { text-shadow: none; }
-  10% { text-shadow: 2px 0 #8c39d8, -2px 0 rgba(91,106,173,0.5); }
-  20% { text-shadow: -1px 0 #8c39d8, 1px 0 rgba(91,106,173,0.5); }
-  30% { text-shadow: none; }
-  40% { text-shadow: 1px 0 #8c39d8, -1px 0 rgba(91,106,173,0.5); letter-spacing: 0.02em; }
-  50% { text-shadow: none; letter-spacing: normal; }
-  60% { text-shadow: -2px 0 #8c39d8; }
-  70% { text-shadow: none; }
-  80% { text-shadow: 1px 0 rgba(91,106,173,0.3); }
-  100% { text-shadow: none; }
+/* Glitch retired — renders as plain text. */
+.glitch { display: inline; }
+
+/* ===== Wind-back overrides: monochrome, mono labels, flat (no entrance motion) ===== */
+
+/* Small UI labels read as uppercase monospace stamps (2389-style). */
+.post-date, .post-read-time, .post-page-meta, .strategy-year, .pub-details, .affiliation-org {
+  text-transform: uppercase; letter-spacing: 0.06em;
 }
+
+/* Strip the scroll-driven entrance animations and the auto-highlight tint. */
+.profile, .post-item, .prose, .page-header, .post-page-header, .strategy-item {
+  animation: none !important; opacity: 1 !important; transform: none !important;
+}
+.post-link.is-active, .strategy-item.is-active { background: transparent; }
+
+/* Larger text shares the body typeface — weight, not a display face, gives hierarchy. */
+.nav-name, .page-header h1, .post-page-header h1, .prose h2, .prose h3,
+.post-title, .strategy-title {
+  font-weight: 600; letter-spacing: -0.02em;
+}
+/* Slightly tighter tracking throughout. */
+body { letter-spacing: -0.011em; }
+.posts-header, .section-label { letter-spacing: 0.12em; }
 
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
