@@ -156,6 +156,9 @@ nav { padding: 1.4rem 0; display: flex; justify-content: space-between; align-it
 .prose pre { background: #1c1917; color: #e7e5e4; padding: 1.2rem 1.4rem; border-radius: 4px; overflow-x: auto; margin-bottom: 1.5rem; }
 .prose hr { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
 .prose img { max-width: 100%; border-radius: 4px; margin: 2rem 0; }
+.prose figure { margin: 2rem 0; }
+.prose figure img { margin: 0 0 0.6rem; display: block; }
+.prose figcaption { font-family: var(--heading); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-faint); line-height: 1.5; }
 .prose .aside { font-size: 0.88rem; color: var(--text-dim); padding: 0.9rem 1.1rem; background: rgba(91,106,173,0.06); border: 1px solid rgba(91,106,173,0.15); border-radius: 3px; margin: 1.8rem 0; line-height: 1.55; }
 .prose .aside strong { color: var(--social); font-weight: 500; }
 
@@ -250,12 +253,36 @@ footer { padding: 2rem 0; border-top: 1px solid var(--border); display: flex; ju
 }
 @media (prefers-reduced-motion: reduce) { .glitch:hover { animation: none; } }
 
+/* ===== Foot-of-post resources (papers, slides, flyers, links) — 2389-style block ===== */
+.post-resources { margin-top: 3rem; padding-top: 1.6rem; border-top: 1px solid var(--text); }
+.post-resources .section-label { margin-bottom: 0.9rem; }
+.resource-list { list-style: none; }
+.resource-item { border-bottom: 1px solid var(--border); }
+.resource-link {
+  display: grid; grid-template-columns: auto 1fr auto; align-items: baseline; gap: 0.9rem;
+  padding: 0.85rem 0; text-decoration: none; color: var(--text); transition: color 0.2s ease;
+}
+.resource-type {
+  font-family: var(--heading); font-size: 0.64rem; font-weight: 500;
+  text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-faint);
+  border: 1px solid var(--border-hover); border-radius: 2px; padding: 0.12rem 0.4rem;
+  white-space: nowrap;
+}
+.resource-label { font-size: 1rem; line-height: 1.4; }
+.resource-arrow { font-family: var(--heading); color: var(--accent); font-size: 0.95rem; }
+.resource-link:hover { color: var(--accent-red); }
+.resource-link:hover .resource-type { border-color: var(--accent-red); color: var(--accent-red); }
+.resource-link:hover .resource-arrow { color: var(--accent-red); }
+
 /* ===== Wind-back overrides: monochrome, mono labels, flat (no entrance motion) ===== */
 
 /* Small UI labels read as uppercase monospace stamps (2389-style). */
 .post-date, .post-read-time, .post-page-meta, .strategy-year, .pub-details, .affiliation-org {
   text-transform: uppercase; letter-spacing: 0.06em;
 }
+
+/* Topic = subject, shown next to the date in the same mono format, a hair darker. */
+.meta-topic, .hpw-topic, .post-topic { color: var(--text-dim); }
 
 /* Strip the scroll-driven entrance animations and the auto-highlight tint. */
 .profile, .post-item, .prose, .page-header, .post-page-header, .strategy-item {

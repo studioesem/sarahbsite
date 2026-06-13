@@ -32,6 +32,8 @@ function categoryClass(cat?: string) {
         <a href={`/writing/${post.id.replace(/\.md$/, '')}`} class={`post-link ${categoryClass(post.data.category)}`}>
           <div class="post-meta">
             <span class="post-date">{formatDate(post.data.pubDate)}</span>
+            {post.data.topic && <span class="post-dot"></span>}
+            {post.data.topic && <span class="post-date post-topic">{post.data.topic}</span>}
             <span class="post-dot"></span>
             <span class="post-read-time">{estimateReadTime(post.body ?? '')} min read</span>
             {post.data.category && <span class={`post-category ${categoryClass(post.data.category)}`}>{post.data.category}</span>}

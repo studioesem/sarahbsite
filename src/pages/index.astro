@@ -91,10 +91,16 @@ function categoryClass(cat?: string) {
     <ol class="hpw-list">
       {posts.map(post => (
         <li class="hpw-item">
-          <a href="#" class={`hpw-link ${categoryClass(post.data.category)}`} onclick="return false">
+          <a
+            href={(post.body ?? '').includes('This post is a placeholder') ? '#' : `/writing/${post.id.replace(/\.md$/, '')}`}
+            class={`hpw-link ${categoryClass(post.data.category)}`}
+            {...((post.body ?? '').includes('This post is a placeholder') ? { onclick: 'return false' } : {})}
+          >
             <span class="hpw-node" aria-hidden="true"></span>
             <div class="hpw-meta">
               <span class="hpw-date">{formatDate(post.data.pubDate)}</span>
+              {post.data.topic && <span class="hpw-dot"></span>}
+              {post.data.topic && <span class="hpw-date hpw-topic">{post.data.topic}</span>}
               <span class="hpw-dot"></span>
               <span class="hpw-read">{estimateReadTime(post.body ?? '')} min read</span>
               {post.data.category && <span class="hpw-cat">{post.data.category}</span>}

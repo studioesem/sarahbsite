@@ -1,8 +1,19 @@
 ---
 title: "From Platform Urbanism to Civic AI"
-description: "Tracing the arc from my 2019 monograph to the ARC Future Fellowship — what changed, what persists, and why place-based governance matters more than ever."
-pubDate: 2025-12-15
-category: "Platform Urbanism"
+description: "At a presentation at the American Association of Geography (AAG) conference in San Francisco I spoke on my pivot from platform urbanism to civic AI enablement."
+pubDate: 2026-04-15
+category: "Paper"
+topic: "Civic AI"
+resources:
+  - label: "AAG 2026 — conference paper"
+    href: "/aag-barns-2026.pdf"
+    type: "PDF"
+  - label: "AAG 2025 — conference paper"
+    href: "/aag-2025.pdf"
+    type: "PDF"
 ---
 
-This post is a placeholder. Replace this content with your actual writing.
+<figure>
+  <img src="/aag-seminar.png" alt="AAG seminar session, San Francisco, 2026" />
+  <figcaption>From the AAG seminar, San Francisco, 2026.</figcaption>
+</figure>

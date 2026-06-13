@@ -1,12 +1,20 @@
 ---
 import Base from './Base.astro';
 
+interface Resource {
+  label: string;
+  href: string;
+  type?: string;
+}
+
 interface Props {
   frontmatter: {
     title: string;
     description: string;
     pubDate: string;
     category?: string;
+    topic?: string;
+    resources?: Resource[];
   };
 }
 
@@ -17,6 +25,9 @@ const formattedDate = date.toLocaleDateString('en-AU', { day: 'numeric', month: 
 const categoryClass = frontmatter.category
   ? 'cat-' + frontmatter.category.toLowerCase().replace(/\s+/g, '-')
   : '';
+
+const resources = frontmatter.resources ?? [];
+const isExternal = (href: string) => /^https?:\/\//.test(href);
 ---
 
 <Base title={`${frontmatter.title} — Sarah Barns`} description={frontmatter.description}>
@@ -26,12 +37,36 @@ const categoryClass = frontmatter.category
       <h1>{frontmatter.title}</h1>
       <div class="post-page-meta">
         <span>{formattedDate}</span>
+        {frontmatter.topic && <span class="dot"></span>}
+        {frontmatter.topic && <span class="meta-topic">{frontmatter.topic}</span>}
       </div>
       {frontmatter.description && <p class="post-description">{frontmatter.description}</p>}
     </div>
     <div class="prose">
       <slot />
     </div>
+
+    {resources.length > 0 && (
+      <aside class="post-resources">
+        <p class="section-label">In this post</p>
+        <ul class="resource-list">
+          {resources.map(r => (
+            <li class="resource-item">
+              <a
+                class="resource-link"
+                href={r.href}
+                {...(isExternal(r.href) ? { target: '_blank', rel: 'noopener' } : {})}
+              >
+                <span class="resource-type">{r.type ?? (isExternal(r.href) ? 'LINK' : 'FILE')}</span>
+                <span class="resource-label">{r.label}</span>
+                <span class="resource-arrow" aria-hidden="true">{isExternal(r.href) ? '↗' : '↓'}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </aside>
+    )}
+
     <div class="post-footer">
       <a href="/">All writing</a>
     </div>
