@@ -17,3 +17,6 @@ dist/
 
 # os / editor
 .DS_Store
+
+# large files that exceed Cloudflare Pages 25 MiB limit — host externally instead
+_local-large-assets/

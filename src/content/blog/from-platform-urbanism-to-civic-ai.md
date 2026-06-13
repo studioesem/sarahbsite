@@ -4,13 +4,12 @@ description: "At a presentation at the American Association of Geography (AAG) c
 pubDate: 2026-04-15
 category: "Paper"
 topic: "Civic AI"
-resources:
-  - label: "AAG 2026 — conference paper"
-    href: "/aag-barns-2026.pdf"
-    type: "PDF"
-  - label: "AAG 2025 — conference paper"
-    href: "/aag-2025.pdf"
-    type: "PDF"
+# AAG papers are too large for the host (>25 MiB) — re-add here as external
+# links once hosted, e.g.:
+#   resources:
+#     - label: "AAG 2026 — conference paper"
+#       href: "https://…/aag-barns-2026.pdf"
+#       type: "PDF"
 ---
 
 <figure>
