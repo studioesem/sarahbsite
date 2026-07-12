@@ -158,6 +158,8 @@ nav { padding: 1.4rem 0; display: flex; justify-content: space-between; align-it
 .prose img { max-width: 100%; border-radius: 4px; margin: 2rem 0; }
 .prose figure { margin: 2rem 0; }
 .prose figure img { margin: 0 0 0.6rem; display: block; }
+.prose video { max-width: 100%; width: 100%; border-radius: 4px; display: block; background: #000; }
+.prose figure video { margin: 0 0 0.6rem; }
 .prose figcaption { font-family: var(--heading); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-faint); line-height: 1.5; }
 .prose .aside { font-size: 0.88rem; color: var(--text-dim); padding: 0.9rem 1.1rem; background: rgba(91,106,173,0.06); border: 1px solid rgba(91,106,173,0.15); border-radius: 3px; margin: 1.8rem 0; line-height: 1.55; }
 .prose .aside strong { color: var(--social); font-weight: 500; }
