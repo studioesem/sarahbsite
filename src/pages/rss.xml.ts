@@ -14,7 +14,7 @@ export async function GET(context: any) {
       title: post.data.title,
       pubDate: post.data.pubDate,
       description: post.data.description,
-      link: `/writing/${post.id.replace(/\.md$/, '')}/`,
+      link: `/writing/${post.id.replace(/\.mdx?$/, '')}/`,
     })),
   });
 }

@@ -93,7 +93,7 @@ This is a kind of <span class="glitch">scratch pad</span> for my research explor
       {posts.map(post => (
         <li class="hpw-item">
           <a
-            href={(post.body ?? '').includes('This post is a placeholder') ? '#' : `/writing/${post.id.replace(/\.md$/, '')}`}
+            href={(post.body ?? '').includes('This post is a placeholder') ? '#' : `/writing/${post.id.replace(/\.mdx?$/, '')}`}
             class={`hpw-link ${categoryClass(post.data.category)}`}
             {...((post.body ?? '').includes('This post is a placeholder') ? { onclick: 'return false' } : {})}
           >

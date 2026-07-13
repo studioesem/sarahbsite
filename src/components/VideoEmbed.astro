@@ -1,0 +1,206 @@
+---
+// Civic Interplay styled video embed, ported to sarahbarns.com.
+// Self-contained: uses Civic Interplay's own design values (dark border,
+// hard offset shadow, purple brand tag, Fira Sans caption) so it reads as a
+// genuine Civic Interplay artifact dropped into this site.
+//
+// Usage (in an .mdx post):
+//   import VideoEmbed from '../../components/VideoEmbed.astro';
+//   <VideoEmbed
+//     src="https://media.civicinterplay.io/clip.mp4"
+//     webm="https://media.civicinterplay.io/clip.webm"
+//     poster="/images/clip-poster.jpg"
+//     caption="Test field, August 2025"
+//     aspectRatio="16/9"
+//   />
+
+interface Props {
+  /** Primary video file URL (typically MP4/H.264 for broad compatibility). */
+  src: string;
+  /** Optional WebM source for browsers that prefer it. Served first. */
+  webm?: string;
+  /** Optional poster image shown before playback. */
+  poster?: string;
+  /** Optional caption rendered as a figcaption beneath the video. */
+  caption?: string;
+  /** CSS aspect-ratio value. Defaults to 16/9. Set to "auto" for native ratio. */
+  aspectRatio?: string;
+  /** Loop the video. Defaults to false. */
+  loop?: boolean;
+  /** Autoplay. Defaults to false. Always paired with muted + playsinline. */
+  autoplay?: boolean;
+  /** Mute by default. Defaults to false unless autoplay is true. */
+  muted?: boolean;
+  /** Hide the native controls. Useful for ambient/background loops. */
+  hideControls?: boolean;
+  /** Optional accessible title for the video. */
+  title?: string;
+  /** Constrain to a narrow, centred column. For tall phone/podcast clips that
+   *  would otherwise dominate the page. */
+  portrait?: boolean;
+}
+
+const {
+  src,
+  webm,
+  poster,
+  caption,
+  aspectRatio = '16/9',
+  loop = false,
+  autoplay = false,
+  muted = autoplay,
+  hideControls = false,
+  title,
+  portrait = false,
+} = Astro.props;
+
+const useNativeRatio = aspectRatio === 'auto';
+const ratioStyle = useNativeRatio ? '' : `--video-aspect: ${aspectRatio};`;
+---
+<figure class:list={['video-embed', { 'video-embed--portrait': portrait }]} style={ratioStyle} data-native-ratio={useNativeRatio ? 'true' : undefined}>
+  <div class="video-embed-frame">
+    <video
+      controls={!hideControls}
+      preload="metadata"
+      playsinline
+      loop={loop}
+      autoplay={autoplay}
+      muted={muted}
+      poster={poster}
+      title={title}
+    >
+      {webm && <source src={webm} type="video/webm" />}
+      <source src={src} type="video/mp4" />
+      <p class="video-embed-fallback">
+        Your browser can't play this video.
+        <a href={src} download>Download it</a> instead.
+      </p>
+    </video>
+  </div>
+  <figcaption>
+    {caption && <span class="video-embed-caption-text">{caption}</span>}
+    <span class="video-embed-brand">Civic Interplay</span>
+  </figcaption>
+</figure>
+
+<style>
+  .video-embed {
+    --ci-border: #333;
+    --ci-purple: #7D50BD;
+    --ci-pink: #E076DB;
+    --ci-radius: 12px;
+    --ci-heading: 'Fira Sans', system-ui, sans-serif;
+
+    margin: 2.5rem 0;
+    border: 2px solid var(--ci-border);
+    border-radius: var(--ci-radius);
+    box-shadow: 4px 4px 0 var(--ci-border);
+    overflow: hidden;
+    background: #000;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+
+  .video-embed:hover {
+    box-shadow: 6px 6px 0 var(--ci-border);
+    transform: translateY(-2px);
+  }
+
+  /* Tall phone/podcast clips: keep them to a narrow centred column so they
+     don't tower over the rest of the post. */
+  .video-embed--portrait {
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .video-embed-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: var(--video-aspect, 16 / 9);
+    background: #000;
+  }
+
+  .video-embed[data-native-ratio] .video-embed-frame {
+    aspect-ratio: auto;
+    height: auto;
+  }
+
+  .video-embed-frame video {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: contain;
+    background: #000;
+    border-radius: 0;
+    margin: 0;
+  }
+
+  .video-embed[data-native-ratio] .video-embed-frame video {
+    height: auto;
+  }
+
+  .video-embed figcaption {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    background: #f8f8f8;
+    padding: 0.85rem 1.25rem;
+    border-top: 2px solid var(--ci-border);
+  }
+
+  .video-embed-caption-text {
+    font-family: var(--ci-heading);
+    font-size: 0.88rem;
+    font-weight: 500;
+    line-height: 1.4;
+    color: #1c1917;
+    text-align: left;
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .video-embed-brand {
+    font-family: var(--ci-heading);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ci-purple);
+    white-space: nowrap;
+    flex: 0 0 auto;
+  }
+
+  .video-embed-fallback {
+    color: #fff;
+    padding: 2rem;
+    font-family: var(--body);
+    text-align: center;
+  }
+
+  .video-embed-fallback a {
+    color: var(--ci-pink);
+    text-decoration: underline;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .video-embed,
+    .video-embed:hover {
+      transition: none;
+      transform: none;
+    }
+  }
+</style>
+
+<script>
+  // Belt-and-braces: if a user prefers reduced motion, force-pause autoplaying videos
+  // and hide any motion that wasn't user-initiated. Native autoplay+muted is generally
+  // benign, but respecting the system pref is the right default.
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('.video-embed video[autoplay]').forEach((el) => {
+      const v = el as HTMLVideoElement;
+      v.removeAttribute('autoplay');
+      v.pause();
+    });
+  }
+</script>
