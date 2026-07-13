@@ -79,7 +79,7 @@ const ratioStyle = useNativeRatio ? '' : `--video-aspect: ${aspectRatio};`;
   </div>
   <figcaption>
     {caption && <span class="video-embed-caption-text">{caption}</span>}
-    <span class="video-embed-brand">Civic Interplay</span>
+    <a class="video-embed-brand" href="https://civicinterplay.io" target="_blank" rel="noopener">Civic Interplay</a>
   </figcaption>
 </figure>
 
@@ -169,6 +169,14 @@ const ratioStyle = useNativeRatio ? '' : `--video-aspect: ${aspectRatio};`;
     color: var(--ci-purple);
     white-space: nowrap;
     flex: 0 0 auto;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  a.video-embed-brand:hover {
+    color: var(--ci-pink);
+    text-decoration: underline;
+    text-underline-offset: 3px;
   }
 
   .video-embed-fallback {
