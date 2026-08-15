@@ -1,0 +1,125 @@
+media:
+  input: public
+  output: /
+
+content:
+  - name: projects
+    label: Projects
+    type: collection
+    path: src/content/projects
+    view:
+      fields: [title, years, strand, featured]
+      sort: [sortYear, title]
+      default:
+        sort: sortYear
+        order: desc
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: years
+        label: Years (display)
+        description: 'As shown on the card, e.g. "2011" or "2016–ongoing"'
+        type: string
+        required: true
+      - name: sortYear
+        label: Start year (for ordering)
+        type: number
+        required: true
+      - name: strand
+        label: Strand
+        type: select
+        required: true
+        options:
+          values: [Strategy, Creative, Research]
+      - name: summary
+        label: Summary (back of card)
+        description: Aim for ~40 words — longer text scrolls inside the card.
+        type: text
+        required: true
+      - name: partner
+        label: Partner / client line
+        type: string
+      - name: image
+        label: Card image
+        type: image
+      - name: imageAlt
+        label: Image alt text
+        type: string
+      - name: links
+        label: Links
+        type: object
+        list: true
+        fields:
+          - name: label
+            label: Label
+            type: string
+            required: true
+          - name: href
+            label: URL
+            type: string
+            required: true
+      - name: featured
+        label: Featured (big 2×2 tile)
+        type: boolean
+      - name: draft
+        label: Draft (hide from site)
+        type: boolean
+      - name: body
+        label: Notes (not shown on site yet)
+        type: rich-text
+
+  - name: blog
+    label: Writing
+    type: collection
+    path: src/content/blog
+    view:
+      fields: [title, pubDate, category, draft]
+      default:
+        sort: pubDate
+        order: desc
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: description
+        label: Description
+        type: text
+        required: true
+      - name: pubDate
+        label: Publication date
+        type: date
+        required: true
+      - name: updatedDate
+        label: Updated date
+        type: date
+      - name: category
+        label: Category (format — e.g. Paper, Workshop, Essay, Note)
+        type: string
+      - name: topic
+        label: Topic (subject, shown next to the date)
+        type: string
+      - name: draft
+        label: Draft
+        type: boolean
+      - name: resources
+        label: Resources (foot of post)
+        type: object
+        list: true
+        fields:
+          - name: label
+            label: Label
+            type: string
+            required: true
+          - name: href
+            label: URL
+            type: string
+            required: true
+          - name: type
+            label: Type tag (e.g. PDF, LINK)
+            type: string
+      - name: body
+        label: Body
+        type: rich-text
