@@ -19,4 +19,24 @@ const blog = defineCollection({
   }),
 });
 
-export const collections = { blog };
+const projects = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    years: z.string(),                 // display range, e.g. "2011" or "2016–ongoing"
+    sortYear: z.number(),              // start year, used to order the grid
+    strand: z.enum(['Strategy', 'Creative', 'Research']),
+    summary: z.string(),               // back-of-card text — keep to ~40 words
+    partner: z.string().optional(),    // client / collaborator line
+    image: z.string().optional(),      // e.g. /projects/unguarded-moments.jpg
+    imageAlt: z.string().optional(),
+    links: z.array(z.object({
+      label: z.string(),
+      href: z.string(),
+    })).optional(),
+    featured: z.boolean().optional(),  // featured = big 2×2 tile in the grid
+    draft: z.boolean().optional(),
+  }),
+});
+
+export const collections = { blog, projects };
