@@ -69,8 +69,12 @@ const ratioStyle = useNativeRatio ? '' : `--video-aspect: ${aspectRatio};`;
       poster={poster}
       title={title}
     >
-      {webm && <source src={webm} type="video/webm" />}
+      {/* MP4/H.264 first: the most reliable decode path everywhere (hardware
+          decoders on every device). VP9/WebM decode fails black on some
+          machines, and codecs are declared so browsers that can't decode it
+          skip it at selection time instead of committing and failing. */}
       <source src={src} type="video/mp4" />
+      {webm && <source src={webm} type='video/webm; codecs="vp9,opus"' />}
       <p class="video-embed-fallback">
         Your browser can't play this video.
         <a href={src} download>Download it</a> instead.
