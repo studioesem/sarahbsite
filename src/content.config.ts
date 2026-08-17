@@ -28,6 +28,7 @@ const projects = defineCollection({
     strand: z.enum(['Strategy', 'Creative', 'Research']),
     summary: z.string(),               // back-of-card text — keep to ~40 words
     partner: z.string().optional(),    // client / collaborator line
+    award: z.string().optional(),      // e.g. "NSW Heritage Award 2023" — shows as a badge on the card
     image: z.string().optional(),      // e.g. /projects/unguarded-moments.jpg
     imageAlt: z.string().optional(),
     links: z.array(z.object({

@@ -4,6 +4,7 @@ years: "2008"
 sortYear: 2008
 strand: Creative
 draft: true
-summary: Lead producer of the ABC's first mobile content platform — layering broadcast history onto the streets of Sydney for on-site listening, and winner of the ABC's Best Cross-Platform Content Award in 2008.
+award: ABC Best Cross-Platform Content 2008
+summary: Lead producer of the ABC's first mobile content platform — layering decades of broadcast history onto the streets of Sydney for on-site listening, years before location-aware media became commonplace.
 partner: Australian Broadcasting Corporation
 ---

@@ -41,6 +41,9 @@ content:
       - name: partner
         label: Partner / client line
         type: string
+      - name: award
+        label: Award (shown as badge on card)
+        type: string
       - name: image
         label: Card image
         type: image

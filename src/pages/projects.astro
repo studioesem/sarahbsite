@@ -45,6 +45,7 @@ const strands = ['Strategy', 'Creative', 'Research'];
                   </div>
                 )}
                 <div class="proj-front-scrim">
+                  {p.data.award && <span class="proj-award"><span aria-hidden="true">✦</span> {p.data.award}</span>}
                   <span class="proj-years">{p.data.years} · {p.data.strand}</span>
                   <span class="proj-title">{p.data.title}</span>
                 </div>
@@ -167,6 +168,19 @@ const strands = ['Strategy', 'Creative', 'Research'];
   .proj-years {
     font-family: var(--heading); font-size: 0.68rem; font-weight: 400;
     text-transform: uppercase; letter-spacing: 0.09em; color: var(--text-faint);
+  }
+  .proj-award {
+    font-family: var(--heading); font-size: 0.62rem; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.09em; color: var(--text);
+    border: 1px solid var(--border-hover); border-radius: 2px;
+    padding: 0.14rem 0.45rem; align-self: flex-start; margin-bottom: 0.3rem;
+    background: rgba(255,255,255,0.82);
+    display: inline-flex; align-items: center; gap: 0.35rem;
+  }
+  .proj-award span { color: var(--accent-red); font-size: 0.7rem; }
+  .proj-front:has(img) .proj-award {
+    background: rgba(17,17,17,0.55); color: #fff;
+    border-color: rgba(255,255,255,0.4);
   }
   .proj-title {
     font-family: var(--serif); font-weight: 400; font-size: 1.35rem;
