@@ -6,7 +6,7 @@ strand: Creative
 featured: true
 image: /projects/storybox-cube-square.jpg
 imageAlt: STORYBOX CUBE screening in a Sydney public square
-summary: A civic digital storytelling platform grown from more than 40 placemaking programs — from QR-code submission forms through to outdoor CUBE displays and community walls, deployed for councils, museums and cultural institutions.
+summary: A place-based digital engagement platform grown from Studio ESEM's placemaking practice — smart boxes with high-resolution LED, sensors and remote programming that have carried 17+ precinct activation programs, 250+ community storytellers, and $10M in leveraged place investment.
 partner: Studio ESEM · STORYBOX
 links:
   - label: storybox.co
