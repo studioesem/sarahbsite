@@ -2,8 +2,13 @@
 import Base from '../layouts/Base.astro';
 import { getCollection } from 'astro:content';
 
+// The front page shows writing, not project work — posts tagged STORYBOX, Practice or
+// Workshop are practice records and stay on /writing rather than leading the homepage.
+const WRITING_CATEGORIES = ['Essay', 'Paper', 'Note', 'Research', 'Deep Time'];
+
 const posts = (await getCollection('blog'))
   .filter(post => !post.data.draft)
+  .filter(post => !post.data.category || WRITING_CATEGORIES.includes(post.data.category))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 10);
 
