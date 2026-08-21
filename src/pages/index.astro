@@ -35,14 +35,21 @@ function categoryClass(cat?: string) {
       <p class="hp-lead">
         A scholar-practitioner navigating the emergent terrain.
       </p>
-      <details class="hp-more">
-        <summary>More about me</summary>
-        <p class="hp-bio">
-          I'm a cultural geographer, digital-maker, public artist, researcher, curator. I co-founded <a href="https://studioesem.com">Studio ESEM</a> and <a href="https://storybox.co">STORYBOX.CO</a>, and am the author of <em>Platform Urbanism</em> (Palgrave Macmillan, 2019).
-          I'm currently pursuing a <a href="https://www.rmit.edu.au">Vice Chancellor&rsquo;s Senior Research Fellowship</a> at RMIT University's Centre for Urban Research. My PhD, awarded c2011, used archival listening practices to disrupt an emerging politics of the smart city, based within the field of public history. 
-This is a kind of <span class="glitch">scratch pad</span> for my research explorations and musings, and experiments, c2025 onwards. Older 'me' is still at sarahbarns.me
-        </p>
-      </details>
+      <p class="hp-bio">
+        I'm a scholar-practitioner with a background in public history, cultural geography and urban
+        studies. I create, cultivate and reflect on digital interfaces and experiences as they shape
+        our relationship to places in transition. I write, I listen, I collaborate, I imagine.
+      </p>
+      <p class="hp-bio">
+        I'm a Co-founder of <a href="https://studioesem.com">Studio ESEM</a> and
+        <a href="https://storybox.co">STORYBOX</a>, maintain a listening practice through
+        Soundwalking, and am developing <a href="https://civicinterplay.io">Civic Interplay</a> with
+        support from <a href="https://www.rmit.edu.au/profiles/b/sarah-barns2">RMIT University</a> as
+        a Senior Vice Chancellor's Research Fellowship Scheme. I am the author of
+        <a href="https://link.springer.com/book/10.1007/978-981-32-9725-8"><em>one book</em></a> and
+        many other <a href="/research">published research</a> and
+        <a href="/strategy#reports">strategy reports</a>.
+      </p>
       <div class="hp-socials">
         <a href="/about" class="hp-pill">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
@@ -158,17 +165,8 @@ This is a kind of <span class="glitch">scratch pad</span> for my research explor
     font-family: var(--body); font-size: clamp(1.02rem, 1.6vw, 1.15rem); font-weight: 400;
     line-height: 1.65; color: var(--text); max-width: 46ch; margin-bottom: 1.1rem;
   }
-  .hp-more { margin-bottom: 1.3rem; }
-  .hp-more > summary {
-    display: inline-flex; align-items: center; gap: 0.4rem;
-    font-family: var(--heading); font-size: 0.8rem; font-weight: 500; letter-spacing: 0.02em;
-    color: var(--ember-ink); cursor: pointer; list-style: none; transition: opacity 0.2s ease;
-  }
-  .hp-more > summary::-webkit-details-marker { display: none; }
-  .hp-more > summary::after { content: '+'; font-size: 0.95rem; line-height: 1; color: var(--text-faint); }
-  .hp-more[open] > summary::after { content: '\2013'; }
-  .hp-more > summary:hover { opacity: 0.7; }
-  .hp-more[open] > summary { margin-bottom: 0.6rem; }
+  .hp-bio + .hp-bio { margin-top: 0.8rem; }
+  .hp-bio:last-of-type { margin-bottom: 1.3rem; }
   .hp-bio {
     font-family: var(--body); font-size: 0.98rem; color: var(--text-dim); line-height: 1.65;
     max-width: 52ch; animation: fadeIn 0.4s ease both;
