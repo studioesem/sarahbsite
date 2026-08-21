@@ -49,7 +49,7 @@ const publications = defineCollection({
     type: z.enum([
       'Monograph', 'Book', 'Journal Papers', 'Book Chapters', 'Essay',
       'Report', 'Working Paper', 'White Paper', 'PhD thesis',
-      'Conferences', 'Dataset', 'Creative Work',
+      'Conferences', 'Dataset', 'Creative Research',
     ]),
     venue: z.string(),                 // journal, publisher, or outlet
     authors: z.string().optional(),    // omit when sole-authored

@@ -11,6 +11,17 @@ interface Props {
   banner?: BannerSpec;
 }
 
+const NAV = [
+  { href: '/about', label: 'About' },
+  { href: '/research', label: 'Research' },
+  { href: '/projects', label: 'Projects' },
+  { href: '/strategy', label: 'Strategy' },
+  { href: '/writing', label: 'Writing' },
+];
+
+// Trailing slash stripped so /writing/ and /writing/a-post both mark Writing as current.
+const here = Astro.url.pathname.replace(/\/+$/, '') || '/';
+
 const DEFAULT_BANNER: BannerSpec = {
   src: 'https://pub-3c698ebb77b146ac884e0a95b8523934.r2.dev/digital-placemaking/girl-eating-a-sandwich-unguarded-moments-millers-point-sd.mp4',
   captionTitle: "'Girl Eating a Sandwich'",
@@ -101,6 +112,17 @@ const identityGraph = {
   <div class="container">
     <nav>
       <a href="/" class="nav-name">Sarah Barns</a>
+      <ul class="nav-links">
+        {NAV.map(item => (
+          <li>
+            <a
+              href={item.href}
+              class={`nav-link${here === item.href || here.startsWith(item.href + '/') ? ' is-here' : ''}`}
+              aria-current={here === item.href ? 'page' : undefined}
+            >{item.label}</a>
+          </li>
+        ))}
+      </ul>
     </nav>
 
     <slot />
