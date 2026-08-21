@@ -1,0 +1,194 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const pubs = (await getCollection('publications'))
+  .filter(p => !p.data.draft)
+  .sort((a, b) => b.data.year - a.data.year || a.data.title.localeCompare(b.data.title));
+
+// Research-strand projects sit alongside the publications as the applied half of the record.
+const researchProjects = (await getCollection('projects'))
+  .filter(p => !p.data.draft && p.data.strand === 'Research')
+  .sort((a, b) => b.data.sortYear - a.data.sortYear);
+
+const TYPE_ORDER = [
+  'Monograph', 'Book', 'Thesis', 'Journal', 'Chapter', 'Essay',
+  'Conference', 'Report', 'Working Paper', 'White Paper', 'Dataset', 'Creative Work',
+];
+const types = TYPE_ORDER.filter(t => pubs.some(p => p.data.type === t));
+
+function typeClass(t: string) {
+  return 'type-' + t.toLowerCase().replace(/\s+/g, '-');
+}
+---
+
+<Base title="Research — Sarah Barns">
+  <div class="page-header">
+    <p class="page-kicker"><span class="ktick"></span><em>the published record</em></p>
+    <h1>Research</h1>
+    <p class="page-intro">
+      Two decades of scholarship on how digital systems reshape place, citizenship and collective
+      governance — from archival listening and urban sound, through platform urbanism, to civic AI.
+    </p>
+  </div>
+
+  <div class="pub-filters">
+    <button class="pub-filter is-active" data-filter="all">All <span class="pub-count">{pubs.length}</span></button>
+    {types.map(t => (
+      <button class="pub-filter" data-filter={t}>
+        {t}<span class="pub-count">{pubs.filter(p => p.data.type === t).length}</span>
+      </button>
+    ))}
+  </div>
+
+  <ol class="pub-list">
+    {pubs.map(pub => (
+      <li class={`pub-row ${typeClass(pub.data.type)}`} data-type={pub.data.type}>
+        <div class="pub-year">{pub.data.yearLabel ?? pub.data.year}</div>
+        <div class="pub-body">
+          <h2 class="pub-row-title">
+            {pub.data.href
+              ? <a href={pub.data.href} rel="noopener">{pub.data.title}</a>
+              : pub.data.title}
+          </h2>
+          <div class="pub-row-details">
+            {pub.data.authors && <span>{pub.data.authors}</span>}
+            {pub.data.authors && <span class="pub-sep">·</span>}
+            <span>{pub.data.venue}</span>
+            {pub.data.citations && <span class="pub-sep">·</span>}
+            {pub.data.citations && <span>{pub.data.citations}+ citations</span>}
+          </div>
+          {pub.data.note && <p class="pub-note">{pub.data.note}</p>}
+          <div class="pub-row-foot">
+            <span class="pub-tag">{pub.data.type}</span>
+            {pub.data.doi && (
+              <a class="pub-doi" href={`https://doi.org/${pub.data.doi}`} rel="noopener">doi:{pub.data.doi}</a>
+            )}
+          </div>
+        </div>
+      </li>
+    ))}
+  </ol>
+
+  <p class="pub-empty" hidden>Nothing of that kind here yet.</p>
+
+  <div class="publications">
+    <div class="section-label">Full record</div>
+    <p class="profile-links">
+      <a href="https://orcid.org/0000-0002-0087-7166" rel="noopener">ORCID</a>
+      <span class="sep">&middot;</span>
+      <a href="https://www.researchgate.net/profile/Sarah-Barns-4" rel="noopener">ResearchGate</a>
+      <span class="sep">&middot;</span>
+      <a href="https://scholar.google.com/citations?user=cnGxyWQAAAAJ&amp;hl=en" rel="noopener">Google Scholar</a>
+    </p>
+  </div>
+
+  {researchProjects.length > 0 && (
+    <div class="publications">
+      <div class="section-label">Research projects &amp; fellowships</div>
+      {researchProjects.map(p => (
+        <div class="pub-item">
+          <div class="pub-title">{p.data.title}</div>
+          <div class="pub-details">{p.data.years}{p.data.partner ? ` · ${p.data.partner}` : ''}</div>
+        </div>
+      ))}
+      <p class="pub-more"><a href="/projects">All projects &rarr;</a></p>
+    </div>
+  )}
+</Base>
+
+<style>
+  .pub-filters {
+    display: flex; flex-wrap: wrap; gap: 0.4rem;
+    margin: 2rem 0 0.5rem; padding-bottom: 1.4rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .pub-filter {
+    font-family: var(--heading); font-size: 0.72rem; font-weight: 400;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--text-faint); background: none;
+    border: 1px solid var(--border); border-radius: 100px;
+    padding: 0.3rem 0.7rem; cursor: pointer;
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  }
+  .pub-filter:hover { color: var(--text); border-color: var(--border-hover); }
+  .pub-filter.is-active {
+    color: var(--text); border-color: var(--ember-ink); background: var(--ember-bg);
+  }
+  .pub-count { font-size: 0.66rem; opacity: 0.6; font-variant-numeric: tabular-nums; }
+
+  .pub-list { list-style: none; padding: 0; margin: 0; }
+  .pub-row {
+    display: grid; grid-template-columns: 5.5rem 1fr; gap: 1.2rem;
+    padding: 1.6rem 0; border-bottom: 1px solid var(--border);
+  }
+  .pub-row[hidden] { display: none; }
+  .pub-year {
+    font-family: var(--heading); font-size: 0.85rem; font-weight: 300;
+    color: var(--text-faint); font-variant-numeric: tabular-nums;
+    padding-top: 0.28rem; line-height: 1.4;
+  }
+  .pub-row-title {
+    font-family: var(--display); font-size: 1.22rem; font-weight: 400;
+    line-height: 1.28; letter-spacing: -0.005em; color: var(--text);
+    margin: 0 0 0.35rem;
+  }
+  .pub-row-title a {
+    color: inherit; text-decoration: underline; text-underline-offset: 3px;
+    text-decoration-color: color-mix(in srgb, var(--ember-ink) 32%, transparent);
+    transition: text-decoration-color 0.2s ease;
+  }
+  .pub-row-title a:hover { text-decoration-color: var(--ember-ink); }
+  .pub-row-details {
+    font-family: var(--heading); font-size: 0.82rem; font-weight: 300;
+    color: var(--text-dim); display: flex; flex-wrap: wrap; gap: 0.4rem;
+  }
+  .pub-sep { color: var(--text-faint); }
+  .pub-note {
+    font-size: 0.94rem; line-height: 1.55; color: var(--text-dim);
+    margin: 0.6rem 0 0; max-width: 62ch;
+  }
+  .pub-row-foot {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 0.7rem; margin-top: 0.55rem;
+  }
+  .pub-row-foot .pub-tag { margin-top: 0; }
+  .pub-doi {
+    font-family: var(--heading); font-size: 0.7rem; font-weight: 300;
+    color: var(--text-faint); text-decoration: underline; text-underline-offset: 2px;
+    text-decoration-color: transparent; transition: all 0.2s ease;
+  }
+  .pub-doi:hover { color: var(--ember-ink); text-decoration-color: var(--ember-ink); }
+
+  .pub-empty {
+    font-family: var(--heading); font-size: 0.85rem; font-weight: 300;
+    color: var(--text-faint); padding: 2rem 0;
+  }
+  .pub-more { margin-top: 1.2rem; }
+  .pub-more a { font-family: var(--heading); font-size: 0.85rem; color: var(--text-dim); }
+
+  @media (max-width: 600px) {
+    .pub-row { grid-template-columns: 1fr; gap: 0.3rem; }
+    .pub-year { padding-top: 0; }
+  }
+</style>
+
+<script>
+  const filters = document.querySelectorAll<HTMLButtonElement>('.pub-filter');
+  const rows = document.querySelectorAll<HTMLLIElement>('.pub-row');
+  const empty = document.querySelector<HTMLParagraphElement>('.pub-empty');
+
+  filters.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const want = btn.dataset.filter;
+      filters.forEach(b => b.classList.toggle('is-active', b === btn));
+      let shown = 0;
+      rows.forEach(row => {
+        const match = want === 'all' || row.dataset.type === want;
+        row.hidden = !match;
+        if (match) shown++;
+      });
+      if (empty) empty.hidden = shown > 0;
+    });
+  });
+</script>

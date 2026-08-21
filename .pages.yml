@@ -73,6 +73,67 @@ content:
         label: Notes (not shown on site yet)
         type: rich-text
 
+  - name: publications
+    label: Research
+    type: collection
+    path: src/content/publications
+    view:
+      fields: [title, year, type, venue, featured]
+      sort: [year, title]
+      default:
+        sort: year
+        order: desc
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: year
+        label: Year (for ordering)
+        type: number
+        required: true
+      - name: yearLabel
+        label: Year label (override)
+        description: 'Only if the displayed year differs, e.g. "In progress" or "c2011"'
+        type: string
+      - name: type
+        label: Type
+        type: select
+        required: true
+        options:
+          values: [Monograph, Book, Journal, Chapter, Essay, Report, Working Paper, White Paper, Thesis, Conference, Dataset, Creative Work]
+      - name: venue
+        label: Venue
+        description: Journal, publisher, or outlet
+        type: string
+        required: true
+      - name: authors
+        label: Authors
+        description: Leave blank if sole-authored
+        type: string
+      - name: href
+        label: Link (publisher / landing page)
+        type: string
+      - name: doi
+        label: DOI
+        description: 'Bare DOI, no https — e.g. 10.1177/00420980211014026'
+        type: string
+      - name: citations
+        label: Citation count
+        type: number
+      - name: note
+        label: Note (one line of context)
+        type: text
+      - name: featured
+        label: Featured (also list on About page)
+        type: boolean
+      - name: draft
+        label: Draft (hide from site)
+        type: boolean
+      - name: body
+        label: Abstract / notes (not shown on site yet)
+        type: rich-text
+
   - name: blog
     label: Writing
     type: collection

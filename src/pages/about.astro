@@ -1,5 +1,11 @@
 ---
 import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+// Selected publications are drawn from the publications collection — /research holds the full record.
+const selectedPubs = (await getCollection('publications'))
+  .filter(p => !p.data.draft && p.data.featured)
+  .sort((a, b) => b.data.year - a.data.year || a.data.title.localeCompare(b.data.title));
 ---
 
 <Base
@@ -84,51 +90,22 @@ import Base from '../layouts/Base.astro';
 
   <div class="publications">
     <div class="section-label">Selected writing &amp; publications</div>
-    <div class="pub-item">
-      <div class="pub-title"><a href="https://link.springer.com/book/10.1007/978-981-32-9725-8">Platform Urbanism: Negotiating Platform Ecosystems in Connected Cities</a></div>
-      <div class="pub-details">Palgrave Macmillan, 2019 &middot; 548+ citations</div>
-      <span class="pub-tag">Monograph</span>
-    </div>
-    <div class="pub-item">
-      <div class="pub-title"><a href="https://insidestory.org.au/if-we-care-for-country-it-will-care-for-us/">If we care for Country, it will care for us</a></div>
-      <div class="pub-details">Inside Story, 2021</div>
-      <span class="pub-tag">Essay</span>
-    </div>
-    <div class="pub-item">
-      <div class="pub-title"><a href="https://journals.sagepub.com/doi/abs/10.1177/00420980211014026">Out of the Loop? On the radical and the routine in urban big data</a></div>
-      <div class="pub-details">Urban Studies, 2021</div>
-      <span class="pub-tag">Journal</span>
-    </div>
-    <div class="pub-item">
-      <div class="pub-title"><a href="https://meatspacepress.com/how-to-run-a-company-like-amazon-and-other-fables/">So You Want to Live in a Pivot City?</a></div>
-      <div class="pub-details">In <em>How to Run a City Like Amazon, and Other Fables</em> (Meatspace Press, 2019)</div>
-      <span class="pub-tag">Chapter</span>
-    </div>
-    <div class="pub-item">
-      <div class="pub-title"><a href="https://eprints.qut.edu.au/209214/">Tools of the Trade: Urban Media and the Refashioning of Urban Space</a></div>
-      <div class="pub-details">The Routledge Companion to Urban Media and Communication, 2019</div>
-      <span class="pub-tag">Chapter</span>
-    </div>
-    <div class="pub-item">
-      <div class="pub-title"><a href="https://theconversation.com/reimagining-parramatta-a-place-to-discover-australias-many-stories-100652">Reimagining Parramatta: Negotiating the Arrival of Australia's Next Great City</a></div>
-      <div class="pub-details">Griffith Review, 2018</div>
-      <span class="pub-tag">Essay</span>
-    </div>
-    <div class="pub-item">
-      <div class="pub-title"><a href="https://journals.sagepub.com/doi/10.1177/1206331213494733">Sounds Different: Listening to the Proliferating Spaces of Technological Modernity in the City</a></div>
-      <div class="pub-details">Space and Culture, 2013</div>
-      <span class="pub-tag">Journal</span>
-    </div>
-    <div class="pub-item">
-      <div class="pub-title">Still Here</div>
-      <div class="pub-details">In progress — topographical excavation of sites through modes of encounter</div>
-      <span class="pub-tag">Book</span>
-    </div>
-    <div class="pub-item">
-      <div class="pub-title">Building Stronger Communities with Civic AI</div>
-      <div class="pub-details">Studio ESEM White Paper, 2025</div>
-      <span class="pub-tag">White Paper</span>
-    </div>
+    {selectedPubs.map(pub => (
+      <div class="pub-item">
+        <div class="pub-title">
+          {pub.data.href
+            ? <a href={pub.data.href} rel="noopener">{pub.data.title}</a>
+            : pub.data.title}
+        </div>
+        <div class="pub-details">
+          {/* Works with a yearLabel are unpublished — the venue already carries their status. */}
+          {pub.data.venue}{pub.data.yearLabel ? '' : `, ${pub.data.year}`}
+          {pub.data.citations && ` · ${pub.data.citations}+ citations`}
+        </div>
+        <span class="pub-tag">{pub.data.type}</span>
+      </div>
+    ))}
+    <p class="pub-more"><a href="/research">Full research record &rarr;</a></p>
   </div>
 
   <div class="publications">
@@ -212,4 +189,6 @@ import Base from '../layouts/Base.astro';
   .pub-title a:hover { text-decoration-color: var(--ember-ink); }
   /* Works still awaiting a URL — render as plain text, not a dead link */
   .pub-title a[data-needs-url] { color: inherit; text-decoration: none; pointer-events: none; }
+  .pub-more { margin-top: 1.2rem; }
+  .pub-more a { font-family: var(--heading); font-size: 0.85rem; color: var(--text-dim); }
 </style>

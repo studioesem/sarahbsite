@@ -40,4 +40,26 @@ const projects = defineCollection({
   }),
 });
 
-export const collections = { blog, projects };
+const publications = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    year: z.number(),                  // used to order and to group the list
+    yearLabel: z.string().optional(),  // override, e.g. "In progress" or "2019–2021"
+    type: z.enum([
+      'Monograph', 'Book', 'Journal', 'Chapter', 'Essay',
+      'Report', 'Working Paper', 'White Paper', 'Thesis',
+      'Conference', 'Dataset', 'Creative Work',
+    ]),
+    venue: z.string(),                 // journal, publisher, or outlet
+    authors: z.string().optional(),    // omit when sole-authored
+    href: z.string().optional(),       // publisher / landing page
+    doi: z.string().optional(),        // bare DOI, e.g. 10.1177/00420980211014026
+    citations: z.number().optional(),  // shown as "n citations" where known
+    note: z.string().optional(),       // one line of context under the details
+    featured: z.boolean().optional(),  // featured = also listed on the About page
+    draft: z.boolean().optional(),
+  }),
+});
+
+export const collections = { blog, projects, publications };
