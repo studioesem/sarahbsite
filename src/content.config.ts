@@ -47,9 +47,9 @@ const publications = defineCollection({
     year: z.number(),                  // used to order and to group the list
     yearLabel: z.string().optional(),  // override, e.g. "In progress" or "2019–2021"
     type: z.enum([
-      'Monograph', 'Book', 'Journal', 'Chapter', 'Essay',
-      'Report', 'Working Paper', 'White Paper', 'Thesis',
-      'Conference', 'Dataset', 'Creative Work',
+      'Monograph', 'Book', 'Journal Papers', 'Book Chapters', 'Essay',
+      'Report', 'Working Paper', 'White Paper', 'PhD thesis',
+      'Conferences', 'Dataset', 'Creative Work',
     ]),
     venue: z.string(),                 // journal, publisher, or outlet
     authors: z.string().optional(),    // omit when sole-authored

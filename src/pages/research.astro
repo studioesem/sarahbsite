@@ -12,8 +12,8 @@ const researchProjects = (await getCollection('projects'))
   .sort((a, b) => b.data.sortYear - a.data.sortYear);
 
 const TYPE_ORDER = [
-  'Monograph', 'Book', 'Thesis', 'Journal', 'Chapter', 'Essay',
-  'Conference', 'Report', 'Working Paper', 'White Paper', 'Dataset', 'Creative Work',
+  'Monograph', 'Book', 'PhD thesis', 'Journal Papers', 'Book Chapters', 'Essay',
+  'Conferences', 'Report', 'Working Paper', 'White Paper', 'Dataset', 'Creative Work',
 ];
 const types = TYPE_ORDER.filter(t => pubs.some(p => p.data.type === t));
 
@@ -33,6 +33,20 @@ function typeClass(t: string) {
       Two decades of scholarship on how digital systems reshape place, citizenship and collective
       governance — from archival listening and urban sound, through platform urbanism, to civic AI.
     </p>
+  </div>
+
+  {/* Canonical profiles — squared, not rounded, so they read as a different class
+      of control from the type filters below them. */}
+  <div class="pub-canon">
+    <a class="canon" href="https://scholar.google.com/citations?user=cnGxyWQAAAAJ&amp;hl=en" rel="noopener">
+      Google Scholar<span class="canon-out" aria-hidden="true">&#8599;</span>
+    </a>
+    <a class="canon" href="https://orcid.org/0000-0002-0087-7166" rel="noopener">
+      ORCID<span class="canon-id">0000-0002-0087-7166</span><span class="canon-out" aria-hidden="true">&#8599;</span>
+    </a>
+    <a class="canon" href="https://www.researchgate.net/profile/Sarah-Barns-4" rel="noopener">
+      ResearchGate<span class="canon-out" aria-hidden="true">&#8599;</span>
+    </a>
   </div>
 
   <div class="pub-filters">
@@ -75,17 +89,6 @@ function typeClass(t: string) {
 
   <p class="pub-empty" hidden>Nothing of that kind here yet.</p>
 
-  <div class="publications">
-    <div class="section-label">Full record</div>
-    <p class="profile-links">
-      <a href="https://orcid.org/0000-0002-0087-7166" rel="noopener">ORCID</a>
-      <span class="sep">&middot;</span>
-      <a href="https://www.researchgate.net/profile/Sarah-Barns-4" rel="noopener">ResearchGate</a>
-      <span class="sep">&middot;</span>
-      <a href="https://scholar.google.com/citations?user=cnGxyWQAAAAJ&amp;hl=en" rel="noopener">Google Scholar</a>
-    </p>
-  </div>
-
   {researchProjects.length > 0 && (
     <div class="publications">
       <div class="section-label">Research projects &amp; fellowships</div>
@@ -108,9 +111,37 @@ function typeClass(t: string) {
   }
   .page-intro-lead + .page-intro { margin-top: 0.7rem; }
 
+  /* Canonical links: squared, ember-tinted, outbound. Deliberately not the
+     rounded outline of the filters — these leave the site, they don't filter it. */
+  .pub-canon {
+    display: flex; flex-wrap: wrap; gap: 0.45rem;
+    margin-top: 1.8rem;
+  }
+  .canon {
+    display: inline-flex; align-items: baseline; gap: 0.5rem;
+    font-family: var(--heading); font-size: 0.78rem; font-weight: 400;
+    letter-spacing: 0.01em; color: var(--ember-ink); text-decoration: none;
+    background: var(--ember-bg);
+    border: 1px solid color-mix(in srgb, var(--ember-ink) 22%, transparent);
+    border-radius: 3px; padding: 0.42rem 0.7rem;
+    transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+  }
+  .canon:hover {
+    color: var(--text);
+    border-color: color-mix(in srgb, var(--ember-ink) 55%, transparent);
+    background: color-mix(in srgb, var(--ember-ink) 8%, transparent);
+  }
+  .canon:focus-visible { outline: 2px solid var(--ember-ink); outline-offset: 2px; }
+  .canon-id {
+    font-size: 0.68rem; color: var(--text-faint);
+    font-variant-numeric: tabular-nums; letter-spacing: 0.02em;
+  }
+  .canon-out { font-size: 0.72rem; opacity: 0.6; }
+  @media (max-width: 480px) { .canon-id { display: none; } }
+
   .pub-filters {
     display: flex; flex-wrap: wrap; gap: 0.4rem;
-    margin: 2rem 0 0.5rem; padding-bottom: 1.4rem;
+    margin: 1.6rem 0 0.5rem; padding-bottom: 1.4rem;
     border-bottom: 1px solid var(--border);
   }
   .pub-filter {

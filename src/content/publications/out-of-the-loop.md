@@ -1,7 +1,7 @@
 ---
 title: "Out of the Loop? On the radical and the routine in urban big data"
 year: 2021
-type: "Journal"
+type: "Journal Papers"
 venue: "Urban Studies"
 href: "https://journals.sagepub.com/doi/abs/10.1177/00420980211014026"
 doi: "10.1177/00420980211014026"
