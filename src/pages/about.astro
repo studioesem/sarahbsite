@@ -53,7 +53,7 @@ const selectedPubs = (await getCollection('publications'))
   </div>
 
   <div class="affiliations">
-    <div class="section-label">Current positions</div>
+    <h2 class="about-h2">Current positions</h2>
     <div class="affiliation">
       <div class="affiliation-role">Vice Chancellor's Senior Research Fellow</div>
       <div class="affiliation-org"><a href="https://www.rmit.edu.au/profiles/b/sarah-barns2">RMIT University</a></div>
@@ -69,7 +69,7 @@ const selectedPubs = (await getCollection('publications'))
   </div>
 
   <div class="publications">
-    <div class="section-label">Profiles</div>
+    <h2 class="about-h2">Profiles</h2>
     <p class="profile-links">
       <a href="https://orcid.org/0000-0002-0087-7166">ORCID</a>
       <span class="sep">&middot;</span>
@@ -80,16 +80,17 @@ const selectedPubs = (await getCollection('publications'))
   </div>
 
   <div class="publications">
-    <div class="section-label">My favourite personal work</div>
+    <h2 class="about-h2">My favourite personal work</h2>
     <div class="pub-item">
       <div class="pub-title"><a href="https://www.studioesem.com/projects/superorganism">Superorganism: Listening to the Anthropocene</a></div>
       <div class="pub-details">Creative Director &amp; Lead Sound Designer, 2022</div>
       <span class="pub-tag">Sound &amp; installation</span>
     </div>
+    <p class="pub-more"><a href="/projects">All projects &rarr;</a></p>
   </div>
 
   <div class="publications">
-    <div class="section-label">Selected writing &amp; publications</div>
+    <h2 class="about-h2">Selected writing &amp; publications</h2>
     {selectedPubs.map(pub => (
       <div class="pub-item">
         <div class="pub-title">
@@ -109,7 +110,7 @@ const selectedPubs = (await getCollection('publications'))
   </div>
 
   <div class="publications">
-    <div class="section-label">Selected creative production</div>
+    <h2 class="about-h2">Selected creative production</h2>
     <div class="pub-item">
       <div class="pub-title"><a href="https://www.studioesem.com/projects/wakulda">Wakulda: Weaving our Stories as One</a></div>
       <div class="pub-details">Studio ESEM &middot; Executive Producer</div>
@@ -130,6 +131,7 @@ const selectedPubs = (await getCollection('publications'))
       <div class="pub-details">Studio ESEM</div>
       <span class="pub-tag">Installation</span>
     </div>
+    <p class="pub-more"><a href="/projects">All projects &rarr;</a></p>
   </div>
 </Base>
 
@@ -160,11 +162,12 @@ const selectedPubs = (await getCollection('publications'))
     font-family: var(--display); font-weight: 400;
     font-size: clamp(1.4rem, 2.6vw, 1.75rem); letter-spacing: -0.005em;
   }
-  /* Soften the tracked labels to match the new voice */
-  .affiliations .section-label,
-  .publications .section-label {
-    font-family: var(--body); font-style: italic; font-weight: 400;
-    font-size: 0.92rem; text-transform: none; letter-spacing: 0; color: var(--ember-ink);
+  /* Section headings sit in the same display face as the prose h2s above them,
+     so the page reads as one hierarchy rather than two competing label styles. */
+  .about-h2 {
+    font-family: var(--display); font-weight: 400;
+    font-size: clamp(1.4rem, 2.6vw, 1.75rem); letter-spacing: -0.005em;
+    line-height: 1.2; color: var(--text); margin: 0 0 1.1rem;
   }
   .affiliation-org a {
     color: var(--text-dim); text-decoration: underline; text-underline-offset: 2px;

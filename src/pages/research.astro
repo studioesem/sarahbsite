@@ -26,6 +26,9 @@ function typeClass(t: string) {
   <div class="page-header">
     <p class="page-kicker"><span class="ktick"></span><em>the published record</em></p>
     <h1>Research</h1>
+    <p class="page-intro page-intro-lead">
+      Cultivating and creating public histories and strategies for digital urbanism.
+    </p>
     <p class="page-intro">
       Two decades of scholarship on how digital systems reshape place, citizenship and collective
       governance — from archival listening and urban sound, through platform urbanism, to civic AI.
@@ -98,6 +101,13 @@ function typeClass(t: string) {
 </Base>
 
 <style>
+  .page-intro-lead {
+    font-family: var(--display); font-weight: 400;
+    font-size: clamp(1.15rem, 2.1vw, 1.4rem); line-height: 1.35;
+    color: var(--text); letter-spacing: -0.005em; max-width: 34ch;
+  }
+  .page-intro-lead + .page-intro { margin-top: 0.7rem; }
+
   .pub-filters {
     display: flex; flex-wrap: wrap; gap: 0.4rem;
     margin: 2rem 0 0.5rem; padding-bottom: 1.4rem;
