@@ -6,4 +6,5 @@ venue: "Urban Studies"
 href: "https://journals.sagepub.com/doi/abs/10.1177/00420980211014026"
 doi: "10.1177/00420980211014026"
 featured: true
+openAccess: https://eprints.qut.edu.au/211295/
 ---

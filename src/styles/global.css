@@ -10,6 +10,11 @@
   --hover-bg: rgba(0, 0, 0, 0.03);
   /* Two accents only — periwinkle (structure) + crimson (links), 2389-style */
   --accent: #5b5fc7;                /* periwinkle */
+  /* Open-access marker — green reads as "open" and stays clear of the accent */
+  --oa-ink: #2f6b4f;
+  --oa-bg: rgba(47, 107, 79, 0.07);
+  --oa-bg-hover: rgba(47, 107, 79, 0.13);
+  --oa-line: rgba(47, 107, 79, 0.26);
   --accent-light: #7a7ed8;
   --accent-bg: rgba(91, 95, 199, 0.08);
   --accent-red: #d61f3a;            /* link underline / inline emphasis */

@@ -90,6 +90,11 @@ function typeClass(t: string) {
             {pub.data.doi && (
               <a class="pub-doi" href={`https://doi.org/${pub.data.doi}`} rel="noopener">doi:{pub.data.doi}</a>
             )}
+            {pub.data.openAccess && (
+              <a class="pub-oa" href={pub.data.openAccess} rel="noopener">
+                <span class="pub-oa-dot" aria-hidden="true"></span>Free to read
+              </a>
+            )}
           </div>
         </div>
       </li>
@@ -217,6 +222,20 @@ function typeClass(t: string) {
     text-decoration-color: transparent; transition: all 0.2s ease;
   }
   .pub-doi:hover { color: var(--ember-ink); text-decoration-color: var(--ember-ink); }
+
+  /* Green-OA marker: a copy exists somewhere free, wherever it is deposited. */
+  .pub-oa {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    font-family: var(--heading); font-size: 0.66rem; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.09em;
+    color: var(--oa-ink); text-decoration: none;
+    background: var(--oa-bg); border: 1px solid var(--oa-line);
+    border-radius: 2px; padding: 0.16rem 0.45rem;
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+  .pub-oa:hover { border-color: var(--oa-ink); background: var(--oa-bg-hover); }
+  .pub-oa:focus-visible { outline: 2px solid var(--oa-ink); outline-offset: 2px; }
+  .pub-oa-dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
 
   .pub-empty {
     font-family: var(--heading); font-size: 0.85rem; font-weight: 300;

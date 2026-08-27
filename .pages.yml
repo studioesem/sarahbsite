@@ -124,6 +124,10 @@ content:
       - name: note
         label: Note (one line of context)
         type: text
+      - name: openAccess
+        label: Open access copy
+        description: Repository URL, Zenodo link, or a PDF on this site — shows a "free to read" chip
+        type: string
       - name: featured
         label: Featured (also list on About page)
         type: boolean
