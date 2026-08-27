@@ -1,9 +1,15 @@
 ---
-title: "ABC Organisation-wide Digital Strategy"
+title: Planning for digital transformation at the national broadcaster
 years: "2013"
 sortYear: 2013
 strand: Strategy
-draft: true
-summary: Organisation-wide digital strategy for the national broadcaster — an early landmark in a run of strategy reports that now spans two decades, from the ABC to Sydney Metro's digital public art.
+summary: "Working with the head of Digital and the ABC's Executive Team and then
+  Managing Director Mark Scott I led the development of an organisation-wide
+  digital strategy for the national broadcaster. This work provided a framework
+  for strategic planning and consultation towards genre-based programming, in
+  response to an era increasingly defined not by media formats but by
+  platform-based experiences. "
 partner: Australian Broadcasting Corporation
+featured: false
+draft: true
 ---
