@@ -1,6 +1,6 @@
 ---
 title: An Arts of Creative Renewal with HASSELL
-years: 2021–2023
+years: "2022"
 sortYear: 2021
 strand: Strategy
 summary: Working with HASSELL's Sydney team I worked with Western Sydney
