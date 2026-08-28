@@ -6,5 +6,5 @@ venue: "Artificial Intelligence and the City Urbanistic Perspectives on Ai"
 href: "https://doi.org/10.4324/9781003365877-15"
 doi: "10.4324/9781003365877-15"
 isbn: "9781032431475"
-areas: [Arts, Technology, Place]
+areas: [Arts, Technology, Place, Sound]
 ---
