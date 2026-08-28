@@ -111,7 +111,14 @@ const reports = (await getCollection('publications'))
           </div>
           <div class="pub-details">{r.data.venue}, {r.data.yearLabel ?? r.data.year}</div>
           {r.data.note && <p class="strategy-description">{r.data.note}</p>}
-          <span class="pub-tag">{r.data.type}</span>
+          <div class="report-foot">
+            <span class="pub-tag">{r.data.type}</span>
+            {r.data.openAccess && (
+              <a class="pub-oa" href={r.data.openAccess} rel="noopener">
+                <span class="pub-oa-dot" aria-hidden="true"></span>Free to read
+              </a>
+            )}
+          </div>
         </div>
       ))}
     </div>
