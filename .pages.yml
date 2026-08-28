@@ -101,7 +101,7 @@ content:
         type: select
         required: true
         options:
-          values: [Monograph, Book, Journal Papers, Book Chapters, Essay, Report, Working Paper, White Paper, PhD thesis, Conferences, Dataset, Creative Research]
+          values: [Monograph, Book, Journal Papers, Book Chapters, Essay, Report, Working Paper, White Paper, PhD thesis, Conferences, Dataset, Creative Research, Commissioned Research Contracts, Commissioned Strategy & Advisory]
       - name: venue
         label: Venue
         description: Journal, publisher, or outlet

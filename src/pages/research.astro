@@ -3,7 +3,8 @@ import Base from '../layouts/Base.astro';
 import { getCollection } from 'astro:content';
 
 // Industry-facing outputs live on /strategy — this page is the scholarly record.
-const STRATEGY_TYPES = ['Report', 'Working Paper', 'White Paper'];
+const STRATEGY_TYPES = ['Report', 'Working Paper', 'White Paper',
+  'Commissioned Research Contracts', 'Commissioned Strategy & Advisory'];
 
 const allPubs = (await getCollection('publications')).filter(p => !p.data.draft);
 const strategyCount = allPubs.filter(p => STRATEGY_TYPES.includes(p.data.type)).length;

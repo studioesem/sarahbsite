@@ -4,10 +4,34 @@ import { getCollection } from 'astro:content';
 
 // Industry-facing outputs from the publications collection — reports, working
 // papers and white papers belong with the advisory work, not the scholarly record.
-const STRATEGY_TYPES = ['Report', 'Working Paper', 'White Paper'];
-const reports = (await getCollection('publications'))
+const STRATEGY_TYPES = ['Report', 'Working Paper', 'White Paper',
+  'Commissioned Research Contracts', 'Commissioned Strategy & Advisory'];
+const all = (await getCollection('publications'))
   .filter(p => !p.data.draft && STRATEGY_TYPES.includes(p.data.type))
   .sort((a, b) => b.data.year - a.data.year || a.data.title.localeCompare(b.data.title));
+
+// Research contracts and strategy work are kept apart — they are different kinds of
+// engagement and were reported differently.
+const GROUPS = [
+  {
+    id: 'research-contracts',
+    title: 'Commissioned Research Contracts',
+    lede: 'Research delivered under contract to government, agencies and industry bodies.',
+    items: all.filter(p => p.data.type === 'Commissioned Research Contracts'),
+  },
+  {
+    id: 'strategy-advisory',
+    title: 'Commissioned Strategy & Advisory',
+    lede: 'Strategy and advisory work for governments, universities, cultural institutions and industry.',
+    items: all.filter(p => p.data.type === 'Commissioned Strategy & Advisory'),
+  },
+  {
+    id: 'reports',
+    title: 'Reports & Papers',
+    lede: 'Working papers, white papers and published reports. Peer-reviewed work sits on Research.',
+    items: all.filter(p => ['Report', 'Working Paper', 'White Paper'].includes(p.data.type)),
+  },
+].filter(g => g.items.length > 0);
 ---
 
 <Base title="Strategy — Sarah Barns">
@@ -97,19 +121,19 @@ const reports = (await getCollection('publications'))
     <a href="mailto:sarah@studioesem.com">Get in touch</a>
   </div>
 
-  {reports.length > 0 && (
-    <div class="publications" id="reports">
-      <h2 class="strategy-h2">Strategy Reports</h2>
-      <p class="strategy-lede">
-        Reports, working papers and white papers written for institutions and government —
-        the industry-facing half of the record. Peer-reviewed work sits on <a href="/research">Research</a>.
-      </p>
-      {reports.map(r => (
+  {GROUPS.map(group => (
+    <div class="publications" id={group.id}>
+      <h2 class="strategy-h2">{group.title}</h2>
+      <p class="strategy-lede">{group.lede}</p>
+      {group.items.map(r => (
         <div class="pub-item">
           <div class="pub-title">
             {r.data.href ? <a href={r.data.href} rel="noopener">{r.data.title}</a> : r.data.title}
           </div>
-          <div class="pub-details">{r.data.venue}, {r.data.yearLabel ?? r.data.year}</div>
+          <div class="pub-details">
+            {r.data.authors && <span>{r.data.authors} &middot; </span>}
+            {r.data.venue}, {r.data.yearLabel ?? r.data.year}
+          </div>
           {r.data.note && <p class="strategy-description">{r.data.note}</p>}
           <div class="report-foot">
             <span class="pub-tag">{r.data.type}</span>
@@ -118,6 +142,12 @@ const reports = (await getCollection('publications'))
                 <span class="pub-oa-dot" aria-hidden="true"></span>Free to read
               </a>
             )}
+          </div>
+        </div>
+      ))}
+    </div>
+  ))}
+
           </div>
         </div>
       ))}
