@@ -5,4 +5,5 @@ type: "Book Chapters"
 venue: "Open Cities | Open Data: Collaborative Cities in the Information Era"
 href: "https://doi.org/10.1007/978-981-13-6605-5_13"
 doi: "10.1007/978-981-13-6605-5_13"
+isbn: "9789811366048"
 ---

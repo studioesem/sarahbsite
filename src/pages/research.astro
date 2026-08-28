@@ -90,6 +90,7 @@ function typeClass(t: string) {
             {pub.data.doi && (
               <a class="pub-doi" href={`https://doi.org/${pub.data.doi}`} rel="noopener">doi:{pub.data.doi}</a>
             )}
+            {pub.data.isbn && <span class="pub-isbn">isbn:{pub.data.isbn}</span>}
             {pub.data.openAccess && (
               <a class="pub-oa" href={pub.data.openAccess} rel="noopener">
                 <span class="pub-oa-dot" aria-hidden="true"></span>Free to read
@@ -222,6 +223,11 @@ function typeClass(t: string) {
     text-decoration-color: transparent; transition: all 0.2s ease;
   }
   .pub-doi:hover { color: var(--ember-ink); text-decoration-color: var(--ember-ink); }
+
+  .pub-isbn {
+    font-family: var(--heading); font-size: 0.7rem; font-weight: 300;
+    color: var(--text-faint); font-variant-numeric: tabular-nums;
+  }
 
   /* Green-OA marker: a copy exists somewhere free, wherever it is deposited. */
   .pub-oa {

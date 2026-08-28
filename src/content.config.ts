@@ -58,6 +58,7 @@ const publications = defineCollection({
     citations: z.number().optional(),  // shown as "n citations" where known
     note: z.string().optional(),       // one line of context under the details
     openAccess: z.string().optional(), // free-to-read copy: repository URL, Zenodo DOI link, or local PDF
+    isbn: z.string().optional(),       // for chapters and books — from ORCID
     featured: z.boolean().optional(),  // featured = also listed on the About page
     draft: z.boolean().optional(),
   }),

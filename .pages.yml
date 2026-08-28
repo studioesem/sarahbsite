@@ -124,6 +124,9 @@ content:
       - name: note
         label: Note (one line of context)
         type: text
+      - name: isbn
+        label: ISBN (books and chapters)
+        type: string
       - name: openAccess
         label: Open access copy
         description: Repository URL, Zenodo link, or a PDF on this site — shows a "free to read" chip
