@@ -6,4 +6,5 @@ venue: "Inside Story"
 href: "https://insidestory.org.au/if-we-care-for-country-it-will-care-for-us/"
 featured: true
 openAccess: https://insidestory.org.au/if-we-care-for-country-it-will-care-for-us/
+areas: [Place]
 ---

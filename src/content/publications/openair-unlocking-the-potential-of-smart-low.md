@@ -3,4 +3,5 @@ title: "OpenAIR: Unlocking the potential of smart low-cost sensing through best 
 year: 2024
 type: "Conferences"
 venue: "CASANZ 2024"
+areas: [Arts, Technology]
 ---

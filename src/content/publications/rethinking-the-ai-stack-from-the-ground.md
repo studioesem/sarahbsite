@@ -5,4 +5,5 @@ type: "Conferences"
 venue: "Data for Policy CIC - Zenodo"
 href: "https://doi.org/10.5281/zenodo.21980636"
 doi: "10.5281/zenodo.21980636"
+areas: [Technology]
 ---

@@ -5,4 +5,5 @@ type: "Journal Papers"
 venue: "Australian Journal of Environmental Education"
 href: "https://doi.org/10.1017/aee.2026.10153"
 doi: "10.1017/aee.2026.10153"
+areas: [Place]
 ---

@@ -6,4 +6,5 @@ venue: "Griffith Review"
 href: "https://theconversation.com/reimagining-parramatta-a-place-to-discover-australias-many-stories-100652"
 featured: true
 openAccess: https://theconversation.com/reimagining-parramatta-a-place-to-discover-australias-many-stories-100652
+areas: [Place]
 ---

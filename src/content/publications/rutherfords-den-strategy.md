@@ -4,4 +4,5 @@ year: 2015
 type: "Commissioned Strategy & Advisory"
 venue: "Arts Centre of Christchurch"
 authors: "Sarah Barns & Michael Killalea"
+areas: [Arts, Technology]
 ---

@@ -24,6 +24,9 @@ const TYPE_ORDER = [
 ];
 const types = TYPE_ORDER.filter(t => pubs.some(p => p.data.type === t));
 
+const AREA_ORDER = ['Arts', 'Technology', 'Place', 'History'];
+const areas = AREA_ORDER.filter(a => pubs.some(p => p.data.areas?.includes(a)));
+
 function typeClass(t: string) {
   return 'type-' + t.toLowerCase().replace(/\s+/g, '-');
 }
@@ -68,9 +71,23 @@ function typeClass(t: string) {
     </a>
   </div>
 
+  <div class="pub-filters pub-areas">
+    <span class="filter-label">Area</span>
+    <button class="pub-filter area-filter is-active" data-area="all">All</button>
+    {areas.map(a => (
+      <button class="pub-filter area-filter" data-area={a}>
+        {a}<span class="pub-count">{pubs.filter(p => p.data.areas?.includes(a)).length}</span>
+      </button>
+    ))}
+  </div>
+
   <ol class="pub-list">
     {pubs.map(pub => (
-      <li class={`pub-row ${typeClass(pub.data.type)}`} data-type={pub.data.type}>
+      <li
+        class={`pub-row ${typeClass(pub.data.type)}`}
+        data-type={pub.data.type}
+        data-areas={(pub.data.areas ?? []).join('|')}
+      >
         <div class="pub-year">{pub.data.yearLabel ?? pub.data.year}</div>
         <div class="pub-body">
           <h2 class="pub-row-title">
@@ -156,9 +173,18 @@ function typeClass(t: string) {
   @media (max-width: 480px) { .canon-id { display: none; } }
 
   .pub-filters {
-    display: flex; flex-wrap: wrap; gap: 0.4rem;
+    display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem;
     margin: 1.6rem 0 0.5rem; padding-bottom: 1.4rem;
     border-bottom: 1px solid var(--border);
+  }
+  .pub-areas { margin-top: 0.9rem; padding-bottom: 1.2rem; }
+  .filter-label {
+    font-family: var(--heading); font-size: 0.66rem; font-weight: 400;
+    text-transform: uppercase; letter-spacing: 0.14em; color: var(--text-faint);
+    margin-right: 0.35rem;
+  }
+  .area-filter.is-active {
+    color: var(--oa-ink); border-color: var(--oa-line); background: var(--oa-bg);
   }
   .pub-filter {
     font-family: var(--heading); font-size: 0.72rem; font-weight: 400;
@@ -258,21 +284,35 @@ function typeClass(t: string) {
 </style>
 
 <script>
-  const filters = document.querySelectorAll<HTMLButtonElement>('.pub-filter');
+  const typeBtns = document.querySelectorAll<HTMLButtonElement>('.pub-filter[data-filter]');
+  const areaBtns = document.querySelectorAll<HTMLButtonElement>('.area-filter');
   const rows = document.querySelectorAll<HTMLLIElement>('.pub-row');
   const empty = document.querySelector<HTMLParagraphElement>('.pub-empty');
 
-  filters.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const want = btn.dataset.filter;
-      filters.forEach(b => b.classList.toggle('is-active', b === btn));
-      let shown = 0;
-      rows.forEach(row => {
-        const match = want === 'all' || row.dataset.type === want;
-        row.hidden = !match;
-        if (match) shown++;
-      });
-      if (empty) empty.hidden = shown > 0;
+  let wantType = 'all';
+  let wantArea = 'all';
+
+  function apply() {
+    let shown = 0;
+    rows.forEach(row => {
+      const okType = wantType === 'all' || row.dataset.type === wantType;
+      const okArea = wantArea === 'all' || (row.dataset.areas ?? '').split('|').includes(wantArea);
+      const match = okType && okArea;
+      row.hidden = !match;
+      if (match) shown++;
     });
-  });
+    if (empty) empty.hidden = shown > 0;
+  }
+
+  typeBtns.forEach(btn => btn.addEventListener('click', () => {
+    wantType = btn.dataset.filter ?? 'all';
+    typeBtns.forEach(b => b.classList.toggle('is-active', b === btn));
+    apply();
+  }));
+
+  areaBtns.forEach(btn => btn.addEventListener('click', () => {
+    wantArea = btn.dataset.area ?? 'all';
+    areaBtns.forEach(b => b.classList.toggle('is-active', b === btn));
+    apply();
+  }));
 </script>

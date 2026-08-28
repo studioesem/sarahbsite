@@ -127,6 +127,14 @@ content:
       - name: isbn
         label: ISBN (books and chapters)
         type: string
+      - name: areas
+        label: Content areas
+        description: Arts, Technology, Place, History — pick any that apply
+        type: select
+        list: true
+        options:
+          multiple: true
+          values: [Arts, Technology, Place, History]
       - name: openAccess
         label: Open access copy
         description: Repository URL, Zenodo link, or a PDF on this site — shows a "free to read" chip

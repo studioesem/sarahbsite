@@ -5,4 +5,5 @@ type: "Journal Papers"
 venue: "Environment and Planning D: Society and Space"
 href: "https://doi.org/10.1177/02637758251383619"
 doi: "10.1177/02637758251383619"
+areas: [Place]
 ---

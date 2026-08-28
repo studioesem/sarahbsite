@@ -4,4 +4,5 @@ year: 2025
 type: "White Paper"
 venue: "Studio ESEM"
 featured: true
+areas: [Technology]
 ---

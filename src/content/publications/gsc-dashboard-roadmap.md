@@ -4,4 +4,5 @@ year: 2015
 type: "Commissioned Research Contracts"
 venue: "Data61 / CSIRO"
 authors: "Sarah Barns & Colin Griffith"
+areas: [Technology, Place]
 ---

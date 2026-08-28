@@ -6,4 +6,5 @@ venue: "Trauma Informed Placemaking"
 href: "https://doi.org/10.4324/9781003371533-12"
 doi: "10.4324/9781003371533-12"
 isbn: "9781032443096"
+areas: [Arts, Place, History]
 ---

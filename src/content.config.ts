@@ -60,6 +60,8 @@ const publications = defineCollection({
     note: z.string().optional(),       // one line of context under the details
     openAccess: z.string().optional(), // free-to-read copy: repository URL, Zenodo DOI link, or local PDF
     isbn: z.string().optional(),       // for chapters and books — from ORCID
+    // Content areas — cross-cutting, so a work can sit in more than one.
+    areas: z.array(z.enum(['Arts', 'Technology', 'Place', 'History'])).optional(),
     featured: z.boolean().optional(),  // featured = also listed on the About page
     draft: z.boolean().optional(),
   }),

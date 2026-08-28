@@ -6,4 +6,5 @@ venue: "Transdisciplinary Theory Practice and Education the Art of Collaborative
 href: "https://doi.org/10.1007/978-3-319-93743-4_17"
 doi: "10.1007/978-3-319-93743-4_17"
 isbn: "9783319937427"
+areas: [Arts, Place]
 ---

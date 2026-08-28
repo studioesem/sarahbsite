@@ -4,4 +4,5 @@ year: 2017
 type: "Commissioned Strategy & Advisory"
 venue: "Celestino"
 authors: "Sarah Barns"
+areas: [Technology, Place]
 ---

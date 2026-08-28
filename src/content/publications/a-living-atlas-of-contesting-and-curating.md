@@ -5,4 +5,5 @@ type: "Dataset"
 venue: "Zenodo"
 href: "https://doi.org/10.5281/zenodo.21026430"
 doi: "10.5281/zenodo.21026430"
+areas: [Arts, Technology]
 ---
