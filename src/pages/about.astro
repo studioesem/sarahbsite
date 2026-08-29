@@ -270,9 +270,7 @@ const FELLOWSHIPS = [
     max-width: 48ch;
   }
   /* Lead paragraph */
-  .prose > p:first-of-type {
-    font-size: clamp(1.12rem, 1.8vw, 1.3rem); line-height: 1.6; color: var(--text);
-  }
+  .prose > p:first-of-type { color: var(--text); }
   .prose > p:first-of-type strong { font-weight: 500; }
   /* Section headings in the display face */
   .prose h2 {
@@ -312,19 +310,18 @@ const FELLOWSHIPS = [
   .practice > p { margin-bottom: 1rem; }
   .practice-lead {
     font-family: var(--display); font-weight: 400;
-    font-size: clamp(1.16rem, 2.1vw, 1.42rem); line-height: 1.4;
-    color: var(--text); max-width: 46ch;
+    line-height: 1.62; color: var(--text); max-width: 52ch;
     margin: 1.5rem 0 1.6rem; padding-left: 1rem;
     border-left: 2px solid var(--ember-ink);
   }
   .practice-intent {
-    font-family: var(--display); font-size: clamp(1.05rem, 2vw, 1.25rem);
-    line-height: 1.4; color: var(--text); max-width: 44ch; margin-top: 1.4rem;
+    font-family: var(--display); line-height: 1.62;
+    color: var(--text); max-width: 48ch; margin-top: 1.4rem;
   }
   .longer { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); }
   .longer-head { margin-bottom: 1.4rem; }
   .prev-roles {
-    font-size: 1rem; line-height: 1.62; color: var(--text-dim);
+    line-height: 1.62; color: var(--text-dim);
     max-width: 66ch; margin: 0 0 1rem;
   }
   .honour {
