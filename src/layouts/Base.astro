@@ -113,7 +113,10 @@ const identityGraph = {
   <div class="container">
     <nav>
       <a href="/" class="nav-name">Sarah Barns</a>
-      <ul class="nav-links">
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Menu">
+        <span class="nav-bar"></span><span class="nav-bar"></span><span class="nav-bar"></span>
+      </button>
+      <ul class="nav-links" id="nav-links">
         {NAV.map(item => (
           <li>
             <a
@@ -125,6 +128,19 @@ const identityGraph = {
         ))}
       </ul>
     </nav>
+
+    <script is:inline>
+      (() => {
+        const btn = document.querySelector('.nav-toggle');
+        const list = document.getElementById('nav-links');
+        if (!btn || !list) return;
+        btn.addEventListener('click', () => {
+          const open = btn.getAttribute('aria-expanded') === 'true';
+          btn.setAttribute('aria-expanded', String(!open));
+          list.classList.toggle('is-open', !open);
+        });
+      })();
+    </script>
 
     <slot />
 

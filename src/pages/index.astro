@@ -61,8 +61,8 @@ function categoryClass(cat?: string) {
       <h1 class="hp-name">Hi, I&rsquo;m Sarah Barns.</h1>
       <p class="hp-bio">
         I'm a scholar-practitioner practising public history and curatorial design for digital
-        cities and place-based communities in transition. I write, I listen, I collaborate,
-        I imagine.
+        cities and places in transition. My work spans cultural heritage, digital strategy, and
+        urban technology. You can <a href="/about">read more about me here</a>.
       </p>
       <p class="hp-bio">
         I'm a Co-founder of <a href="https://studioesem.com">Studio ESEM</a> and
@@ -75,10 +75,6 @@ function categoryClass(cat?: string) {
         <a href="/strategy">strategy and advisory work</a>.
       </p>
       <div class="hp-socials">
-        <a href="/about" class="hp-pill">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
-          About
-        </a>
         <a href="https://studioesem.com" class="hp-pill">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
           Studio ESEM
@@ -90,22 +86,6 @@ function categoryClass(cat?: string) {
         <a href="https://storybox.co" class="hp-pill">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
           STORYBOX
-        </a>
-        <a href="/highlights" class="hp-pill">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-          Highlights
-        </a>
-        <a href="/creative" class="hp-pill">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M19.1 4.9l-2.8 2.8M7.7 16.3l-2.8 2.8"/></svg>
-          Creative
-        </a>
-        <a href="/strategy" class="hp-pill">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-          Strategy
-        </a>
-        <a href="/research" class="hp-pill">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/><path d="M8 7h8M8 11h5"/></svg>
-          Research
         </a>
         <a href="https://scholar.google.com/citations?user=cnGxyWQAAAAJ&amp;hl=en" class="hp-pill">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
@@ -129,7 +109,7 @@ function categoryClass(cat?: string) {
 
   <!-- Threshold into the manifesto: a warm-dark window into the dark room -->
   <a class="hp-door" href="/manifesto">
-    <span class="hp-door-label"><em>the manifesto</em></span>
+    <span class="hp-door-label"><span class="hp-door-dot" aria-hidden="true"></span><em>the manifesto</em></span>
     <span class="hp-door-title">From enlightenment to <span class="hp-enliven">enlivenment</span></span>
     <span class="hp-door-arrow" aria-hidden="true">&#8594;</span>
   </a>
@@ -224,6 +204,18 @@ function categoryClass(cat?: string) {
     position: relative; isolation: isolate;
     transition: background 0.25s ease;
   }
+  .hp-door-dot {
+    display: inline-block; width: 7px; height: 7px; border-radius: 50%;
+    background: var(--ember-ink); margin-right: 0.55rem; vertical-align: middle;
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--ember-ink) 40%, transparent);
+    animation: doorGlow 3.4s ease-in-out infinite;
+  }
+  @keyframes doorGlow {
+    0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--ember-ink) 34%, transparent); opacity: 0.75; }
+    50%      { box-shadow: 0 0 0 5px color-mix(in srgb, var(--ember-ink) 0%, transparent); opacity: 1; }
+  }
+  .hp-door:hover .hp-door-dot { background: #fff; box-shadow: 0 0 0 5px rgba(255,255,255,0.18); }
+  @media (prefers-reduced-motion: reduce) { .hp-door-dot { animation: none; } }
   .hp-door:hover { background: #000; color: #fff; }
   .hp-door-label {
     grid-column: 1; font-family: var(--heading); font-style: normal; font-weight: 500;

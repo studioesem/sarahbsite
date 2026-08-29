@@ -6,7 +6,7 @@ import { getCollection } from 'astro:content';
 // and a way through to the full record on /research.
 const all = (await getCollection('work')).filter(p => !p.data.draft);
 const pick = (type: string) => all
-  .filter(p => p.data.type === type)
+  .filter(p => p.data.domain === 'Strategy & Delivery' && p.data.type === type)
   .sort((a, b) => b.data.year - a.data.year);
 
 const GROUPS = [
@@ -15,12 +15,6 @@ const GROUPS = [
     title: 'Commissioned Strategy & Advisory',
     lede: 'Selected engagements.',
     type: 'Commissioned Strategy & Advisory',
-  },
-  {
-    id: 'research-projects',
-    title: 'Research Projects',
-    lede: 'An independent and trusted research partner for a range of industry and government agencies, focusing on building long-term public value frameworks for organisations and communities in transition.',
-    type: 'Commissioned Research Contracts',
   },
 ].map(g => {
   const items = pick(g.type);
@@ -32,7 +26,7 @@ const GROUPS = [
   <div class="page-header">
     <p class="page-kicker"><span class="ktick"></span><em>practice &amp; advisory</em></p>
     <h1>Strategy &amp; Delivery</h1>
-    <p class="page-intro">A highly experienced strategic advisor for a range of public and private organisations, spanning technology, urban transformation, placemaking, heritage and the arts.</p>
+    <p class="page-intro">Trusted strategic advisor for public and private organisations, spanning technology, urban transformation, placemaking, heritage and the arts.</p>
   </div>
 
   {GROUPS.map(group => (
@@ -77,7 +71,7 @@ const GROUPS = [
     max-width: 62ch; margin: 0 0 1.2rem;
   }
   .strategy-description { font-size: 0.95rem; color: var(--text-dim); line-height: 1.6; margin: 0.4rem 0 0; max-width: 68ch; }
-  #research-projects, #strategy-advisory { scroll-margin-top: 1.5rem; }
+  #strategy-advisory { scroll-margin-top: 1.5rem; }
   .pub-oa {
     display: inline-flex; align-items: center; gap: 0.4rem;
     font-family: var(--heading); font-size: 0.66rem; font-weight: 500;
