@@ -1,7 +1,6 @@
 ---
 title: "The Rowboat: Swimmable Birrarung"
-year: 2025
-yearLabel: "date to confirm"
+year: 2024
 domain: "Creative"
 type: "Creative Research"
 venue: "The Rowboat, supported by Regen Melbourne and the RMIT Planetary Civics Initiative"
