@@ -20,7 +20,7 @@ const researchProjects = (await getCollection('projects'))
 
 const TYPE_ORDER = [
   'Monograph', 'Book', 'PhD thesis', 'Journal Papers', 'Book Chapters', 'Essay',
-  'Conferences', 'Keynotes & Invited Talks', 'Dataset', 'Creative Research', 'Voices',
+  'Conferences', 'Keynotes & Invited Talks', 'Interviews', 'Dataset', 'Creative Research', 'Voices',
 ];
 const types = TYPE_ORDER.filter(t => pubs.some(p => p.data.type === t));
 
@@ -113,7 +113,7 @@ function typeClass(t: string) {
             {pub.data.openAccess && (
               <a class="pub-oa" href={pub.data.openAccess} rel="noopener">
                 <span class="pub-oa-dot" aria-hidden="true"></span>
-                {pub.data.openAccess.includes('soundcloud.com') ? 'Listen' : 'Free to read'}
+                {pub.data.audio || pub.data.openAccess.includes('soundcloud.com') ? 'Listen' : 'Free to read'}
               </a>
             )}
           </div>

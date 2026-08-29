@@ -50,7 +50,7 @@ const publications = defineCollection({
       'Monograph', 'Book', 'Journal Papers', 'Book Chapters', 'Essay',
       'Report', 'Working Paper', 'White Paper', 'PhD thesis',
       'Commissioned Research Contracts', 'Commissioned Strategy & Advisory',
-      'Conferences', 'Keynotes & Invited Talks', 'Dataset', 'Creative Research', 'Voices',
+      'Conferences', 'Keynotes & Invited Talks', 'Interviews', 'Dataset', 'Creative Research', 'Voices',
     ]),
     venue: z.string(),                 // journal, publisher, or outlet
     authors: z.string().optional(),    // omit when sole-authored
@@ -60,6 +60,7 @@ const publications = defineCollection({
     note: z.string().optional(),       // one line of context under the details
     openAccess: z.string().optional(), // free-to-read copy: repository URL, Zenodo DOI link, or local PDF
     isbn: z.string().optional(),       // for chapters and books — from ORCID
+    audio: z.boolean().optional(),     // true when the open copy is listened to, not read
     licence: z.string().optional(),    // e.g. "CC BY 2.0" — shown as a chip
     // Content areas — cross-cutting, so a work can sit in more than one.
     areas: z.array(z.enum(['Arts', 'Listening & Composition', 'Technology', 'Place', 'History'])).optional(),

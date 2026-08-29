@@ -101,7 +101,7 @@ content:
         type: select
         required: true
         options:
-          values: [Monograph, Book, Journal Papers, Book Chapters, Essay, Report, Working Paper, White Paper, PhD thesis, Conferences, Keynotes & Invited Talks, Dataset, Creative Research, Voices, Commissioned Research Contracts, Commissioned Strategy & Advisory]
+          values: [Monograph, Book, Journal Papers, Book Chapters, Essay, Report, Working Paper, White Paper, PhD thesis, Conferences, Keynotes & Invited Talks, Interviews, Dataset, Creative Research, Voices, Commissioned Research Contracts, Commissioned Strategy & Advisory]
       - name: venue
         label: Venue
         description: Journal, publisher, or outlet
@@ -127,6 +127,9 @@ content:
       - name: isbn
         label: ISBN (books and chapters)
         type: string
+      - name: audio
+        label: Audio (chip reads "Listen" rather than "Free to read")
+        type: boolean
       - name: licence
         label: Licence (e.g. CC BY 2.0)
         type: string
