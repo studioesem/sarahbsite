@@ -2,62 +2,41 @@
 import Base from '../layouts/Base.astro';
 import { getCollection } from 'astro:content';
 
-// Client-facing page: a short account of the offer, a handful of engagements,
-// and a way through to the full record on /research.
-const all = (await getCollection('work')).filter(p => !p.data.draft);
-const pick = (type: string) => all
-  .filter(p => p.data.domain === 'Strategy & Delivery' && p.data.type === type)
-  .sort((a, b) => b.data.year - a.data.year);
-
-const GROUPS = [
-  {
-    id: 'strategy-advisory',
-    title: 'Commissioned Strategy & Advisory',
-    lede: 'Commissioned strategy, advisory and policy work.',
-    type: 'Commissioned Strategy & Advisory',
-  },
-  {
-    id: 'strategy-projects',
-    title: 'Strategy Projects',
-    lede: 'Delivered programs and place strategies.',
-    type: 'Strategy Project',
-  },
-].map(g => {
-  const items = pick(g.type);
-  return { ...g, total: items.length, items };
-}).filter(g => g.total > 0);
+const items = (await getCollection('work'))
+  .filter(p => !p.data.draft && p.data.domain === 'Strategy & Delivery')
+  .sort((a, b) => b.data.year - a.data.year || a.data.title.localeCompare(b.data.title));
 ---
 
-<Base title="Strategy & Delivery — Sarah Barns">
+<Base title="Strategy & Program Delivery — Sarah Barns">
   <div class="page-header">
     <p class="page-kicker"><span class="ktick"></span><em>practice &amp; advisory</em></p>
-    <h1>Strategy &amp; Delivery</h1>
-    <p class="page-intro">Trusted strategic advisor for public and private organisations, spanning technology, urban transformation, placemaking, heritage and the arts.</p>
+    <h1>Strategy &amp; Program Delivery</h1>
+    <p class="page-intro">
+      My strategic advisory and delivery work supports organisations to lead future-focused digital
+      transformation programs that cultivate shared value. Clients and partners span public and
+      private sector organisations in cultural heritage, media, design and urban governance.
+    </p>
   </div>
 
-  {GROUPS.map(group => (
-    <section class="publications" id={group.id}>
-      <h2 class="strategy-h2">{group.title}</h2>
-      <p class="strategy-lede">{group.lede}</p>
-      {group.items.map(r => (
-        <div class="pub-item">
-          <div class="pub-title">
-            {r.data.href ? <a href={r.data.href} rel="noopener">{r.data.title}</a> : r.data.title}
-          </div>
-          <div class="pub-details">
-            {r.data.authors && <span>{r.data.authors}, </span>}
-            {r.data.venue}, {r.data.yearLabel ?? r.data.year}
-          </div>
-          {r.data.note && <p class="strategy-description">{r.data.note}</p>}
-          {r.data.openAccess && (
-            <a class="pub-oa" href={r.data.openAccess} rel="noopener">
-              <span class="pub-oa-dot" aria-hidden="true"></span>Free to read
-            </a>
-          )}
+  <div class="publications">
+    {items.map(r => (
+      <div class="pub-item">
+        <div class="pub-title">
+          {r.data.href ? <a href={r.data.href} rel="noopener">{r.data.title}</a> : r.data.title}
         </div>
-      ))}
-    </section>
-  ))}
+        <div class="pub-details">
+          {r.data.authors && <span>{r.data.authors}, </span>}
+          {r.data.venue}, {r.data.yearLabel ?? r.data.year}
+        </div>
+        {r.data.note && <p class="strategy-description">{r.data.note}</p>}
+        {r.data.openAccess && (
+          <a class="pub-oa" href={r.data.openAccess} rel="noopener">
+            <span class="pub-oa-dot" aria-hidden="true"></span>Free to read
+          </a>
+        )}
+      </div>
+    ))}
+  </div>
 
   <section class="strategy-cta">
     <p>Enquiries about strategy, advisory or research partnerships:
@@ -66,18 +45,7 @@ const GROUPS = [
 </Base>
 
 <style>
-  .strategy-h2 {
-    font-family: var(--display); font-weight: 400;
-    font-size: clamp(1.4rem, 2.6vw, 1.75rem); letter-spacing: -0.005em;
-    line-height: 1.2; color: var(--text); margin: 0 0 0.6rem;
-    scroll-margin-top: 1.5rem;
-  }
-  .strategy-lede {
-    font-size: 1.02rem; color: var(--text-dim); line-height: 1.55;
-    max-width: 62ch; margin: 0 0 1.2rem;
-  }
   .strategy-description { font-size: 0.95rem; color: var(--text-dim); line-height: 1.6; margin: 0.4rem 0 0; max-width: 68ch; }
-  #strategy-advisory, #strategy-projects { scroll-margin-top: 1.5rem; }
   .pub-oa {
     display: inline-flex; align-items: center; gap: 0.4rem;
     font-family: var(--heading); font-size: 0.66rem; font-weight: 500;
