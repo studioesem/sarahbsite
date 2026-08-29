@@ -1,6 +1,7 @@
 ---
 title: "Bea Miles"
 year: 2009
+yearLabel: ""
 domain: "Voices"
 type: "Voices"
 venue: "ABC archive"

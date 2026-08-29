@@ -1,6 +1,7 @@
 ---
 title: "Wendy Bacon’s Speech"
 year: 2009
+yearLabel: ""
 domain: "Voices"
 type: "Voices"
 venue: "ABC archive"

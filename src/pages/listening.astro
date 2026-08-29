@@ -1,0 +1,45 @@
+---
+import Base from '../layouts/Base.astro';
+import WorkList from '../components/WorkList.astro';
+import { getCollection } from 'astro:content';
+
+// Listening runs across every domain, so this page draws by area rather than
+// by domain: the thesis, the essays, the soundscapes and the commissions together.
+const all = (await getCollection('work')).filter(p => !p.data.draft);
+
+const items = all
+  .filter(p => p.data.areas?.includes('Listening & Composition') && p.data.domain !== 'Voices')
+  .sort((a, b) => b.data.year - a.data.year || a.data.title.localeCompare(b.data.title));
+
+const voicesCount = all.filter(p => p.data.domain === 'Voices').length;
+---
+
+<Base title="Listening & Composition — Sarah Barns">
+  <div class="page-header">
+    <p class="page-kicker"><span class="ktick"></span><em>a listening practice</em></p>
+    <h1>Listening &amp; Composition</h1>
+    <p class="page-intro">
+      Sound work and writing about sound, running from the doctoral research on archival listening
+      through soundscapes for public space to recent ecological and river compositions. It cuts
+      across research, creative commissions and strategy, so it is gathered here.
+    </p>
+  </div>
+
+  <div class="listen-origin">
+    <p>
+      The untreated archival recordings sit separately under
+      <a href="/voices">Voices</a>, {voicesCount} in all.
+    </p>
+  </div>
+
+  <WorkList items={items} />
+</Base>
+
+<style>
+  .listen-origin {
+    margin-top: 1.8rem; padding: 1.1rem 1.2rem;
+    background: var(--ember-bg); border: 1px solid var(--border);
+    border-left: 3px solid var(--oa-ink); border-radius: 3px;
+  }
+  .listen-origin p { margin: 0; font-size: 0.98rem; line-height: 1.6; color: var(--text-dim); max-width: 62ch; }
+</style>
