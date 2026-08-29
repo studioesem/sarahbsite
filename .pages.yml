@@ -107,7 +107,7 @@ content:
         type: select
         required: true
         options:
-          values: [Monograph, Book, Journal Papers, Book Chapters, Essay, Working Paper, PhD thesis, Conferences, Keynotes & Invited Talks, Interviews, Dataset, Creative Research, Voices, Commissioned Research Contracts, Commissioned Strategy & Advisory, Creative Project, Exhibitions, Strategy Project, Research Project]
+          values: [Monograph, Book, Journal Papers, Book Chapters, Essay, Working Paper, PhD thesis, Conferences, Keynotes & Invited Talks, Interviews, Dataset, Creative Research, Voices, Commissioned Research Contracts, Commissioned Strategy & Advisory, Fellowships, Creative Project, Exhibitions, Strategy Project, Research Project]
       - name: venue
         label: Venue
         description: Journal, publisher, or outlet

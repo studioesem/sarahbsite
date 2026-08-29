@@ -51,7 +51,7 @@ const work = defineCollection({
     type: z.enum([
       'Monograph', 'Book', 'Journal Papers', 'Book Chapters', 'Essay',
       'Working Paper', 'PhD thesis',
-      'Commissioned Research Contracts', 'Commissioned Strategy & Advisory',
+      'Commissioned Research Contracts', 'Commissioned Strategy & Advisory', 'Fellowships',
       'Conferences', 'Keynotes & Invited Talks', 'Interviews', 'Dataset',
       'Creative Research', 'Voices',
       'Creative Project', 'Exhibitions', 'Strategy Project', 'Research Project',
