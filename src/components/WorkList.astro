@@ -92,7 +92,9 @@ function typeClass(t: string) {
     ))}
   </ol>
 
-  <p class="pub-empty" hidden>Nothing of that kind here yet.</p>
+  <p class="pub-empty" hidden>
+    Nothing matches both filters. <button type="button" class="pub-clear-inline">Clear filters</button>
+  </p>
 
 <style>
   .page-intro-lead {
@@ -254,6 +256,13 @@ function typeClass(t: string) {
   .pub-oa:focus-visible { outline: 2px solid var(--oa-ink); outline-offset: 2px; }
   .pub-oa-dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
 
+  .pub-filter.is-empty { opacity: 0.32; }
+  .pub-filter.is-empty:not(.is-active) { pointer-events: none; }
+  .pub-clear-inline {
+    font-family: var(--heading); font-size: 0.8rem; color: var(--ember-ink);
+    background: none; border: none; border-bottom: 1px solid var(--ember-ink);
+    padding: 0; cursor: pointer;
+  }
   .pub-empty {
     font-family: var(--heading); font-size: 0.85rem; font-weight: 300;
     color: var(--text-faint); padding: 2rem 0;
@@ -272,32 +281,64 @@ function typeClass(t: string) {
   const areaBtns = document.querySelectorAll<HTMLButtonElement>('.area-filter');
   const rows = document.querySelectorAll<HTMLLIElement>('.pub-row');
   const empty = document.querySelector<HTMLParagraphElement>('.pub-empty');
+  const clearBtn = document.querySelector<HTMLButtonElement>('.pub-clear-inline');
 
   let wantType = 'all';
   let wantArea = 'all';
 
+  const areasOf = (row: HTMLLIElement) => (row.dataset.areas ?? '').split('|').filter(Boolean);
+  const matchesType = (row: HTMLLIElement, t: string) => t === 'all' || row.dataset.type === t;
+  const matchesArea = (row: HTMLLIElement, a: string) => a === 'all' || areasOf(row).includes(a);
+
+  // Counts always reflect what the other filter allows, so a pill never promises
+  // results it cannot deliver.
+  function recount() {
+    typeBtns.forEach(btn => {
+      const key = btn.dataset.filter ?? 'all';
+      let n = 0;
+      rows.forEach(r => { if (matchesType(r, key) && matchesArea(r, wantArea)) n++; });
+      const span = btn.querySelector('.pub-count');
+      if (span) span.textContent = String(n);
+      btn.classList.toggle('is-empty', n === 0 && key !== 'all');
+    });
+    areaBtns.forEach(btn => {
+      const key = btn.dataset.area ?? 'all';
+      let n = 0;
+      rows.forEach(r => { if (matchesArea(r, key) && matchesType(r, wantType)) n++; });
+      const span = btn.querySelector('.pub-count');
+      if (span) span.textContent = String(n);
+      btn.classList.toggle('is-empty', n === 0 && key !== 'all');
+    });
+  }
+
   function apply() {
     let shown = 0;
     rows.forEach(row => {
-      const okType = wantType === 'all' || row.dataset.type === wantType;
-      const okArea = wantArea === 'all' || (row.dataset.areas ?? '').split('|').includes(wantArea);
-      const match = okType && okArea;
+      const match = matchesType(row, wantType) && matchesArea(row, wantArea);
       row.hidden = !match;
       if (match) shown++;
     });
     if (empty) empty.hidden = shown > 0;
+    recount();
   }
 
-  // /research?type=... lands pre-filtered, so links from /strategy arrive in context
+  function reset() {
+    wantType = 'all';
+    wantArea = 'all';
+    typeBtns.forEach(b => b.classList.toggle('is-active', b.dataset.filter === 'all'));
+    areaBtns.forEach(b => b.classList.toggle('is-active', b.dataset.area === 'all'));
+    apply();
+  }
+
   const wanted = new URLSearchParams(location.search).get('type');
   if (wanted) {
     const match = Array.from(typeBtns).find(b => b.dataset.filter === wanted);
     if (match) {
       wantType = wanted;
       typeBtns.forEach(b => b.classList.toggle('is-active', b === match));
-      apply();
     }
   }
+  apply();
 
   typeBtns.forEach(btn => btn.addEventListener('click', () => {
     wantType = btn.dataset.filter ?? 'all';
@@ -310,4 +351,6 @@ function typeClass(t: string) {
     areaBtns.forEach(b => b.classList.toggle('is-active', b === btn));
     apply();
   }));
+
+  clearBtn?.addEventListener('click', reset);
 </script>
