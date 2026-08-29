@@ -2,7 +2,7 @@
 import Base from '../layouts/Base.astro';
 import { getCollection } from 'astro:content';
 
-// Cards drawn from every domain — the visual front door to the work.
+// Cards drawn from every domain: the visual front door to the work.
 const items = (await getCollection('work'))
   .filter(p => !p.data.draft && p.data.highlight)
   .sort((a, b) => b.data.year - a.data.year || a.data.title.localeCompare(b.data.title));
@@ -20,7 +20,7 @@ const DOMAIN_HREF: Record<string, string> = {
     <p class="page-kicker"><span class="ktick"></span><em>selected work</em></p>
     <h1>Highlights</h1>
     <p class="page-intro">
-      A cross-section of the practice — research, creative commissions, strategy and writing.
+      A cross-section of the practice: research, creative commissions, strategy and writing.
     </p>
   </div>
 

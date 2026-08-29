@@ -5,7 +5,7 @@ domain: "Creative"
 type: "Creative Research"
 venue: "Barangaroo Delivery Authority"
 authors: "Sarah Barns & Michael Killalea (Esem Projects)"
-note: "Major public art commission reflecting on the maritime history of East Darling Harbour, now the Barangaroo Headland. Non-traditional research output, Western Sydney University; also written up as a book chapter in Creative Placemaking and Beyond."
+note: "Major public art commission reflecting on the maritime history of East Darling Harbour, now the Barangaroo Headland. Also written up as a book chapter in Creative Placemaking and Beyond."
 areas: [Arts, Place, History]
 ntro: true
 ---

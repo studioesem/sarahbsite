@@ -1,7 +1,7 @@
 ---
 title: "Bea Miles"
 year: 2020
-yearLabel: "ABC — date to confirm"
+yearLabel: "ABC, date to confirm"
 domain: "Research"
 type: "Voices"
 venue: "ABC archive"

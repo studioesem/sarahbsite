@@ -5,7 +5,7 @@ yearLabel: "2023–ongoing"
 domain: "Research"
 type: "Research Project"
 venue: "RMIT Centre for Urban Research"
-note: "RMIT research fellowship on culture-based regeneration — studying urban transformation sites through ecological regeneration and decolonisation, including evaluation frameworks for Miyawaki forest programs linking ecological and social custodianship."
+note: "RMIT research fellowship on culture-based regeneration, studying urban transformation sites through ecological regeneration and decolonisation, including evaluation frameworks for Miyawaki forest programs linking ecological and social custodianship."
 draft: true
 areas: [Place, Technology]
 links:
