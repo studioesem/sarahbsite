@@ -3,8 +3,8 @@ import Base from '../layouts/Base.astro';
 import { getCollection } from 'astro:content';
 
 // Industry-facing outputs live on /strategy — this page is the scholarly record.
-const STRATEGY_TYPES = ['Report', 'Working Paper', 'White Paper',
-  'Commissioned Research Contracts', 'Commissioned Strategy & Advisory'];
+// Commissioned work lives on /strategy; everything else is the research record.
+const STRATEGY_TYPES = ['Commissioned Research Contracts', 'Commissioned Strategy & Advisory'];
 
 const allPubs = (await getCollection('publications')).filter(p => !p.data.draft);
 const strategyCount = allPubs.filter(p => STRATEGY_TYPES.includes(p.data.type)).length;
@@ -20,7 +20,8 @@ const researchProjects = (await getCollection('projects'))
 
 const TYPE_ORDER = [
   'Monograph', 'Book', 'PhD thesis', 'Journal Papers', 'Book Chapters', 'Essay',
-  'Conferences', 'Keynotes & Invited Talks', 'Interviews', 'Dataset', 'Creative Research', 'Voices',
+  'Conferences', 'Keynotes & Invited Talks', 'Interviews',
+  'Report', 'Working Paper', 'White Paper', 'Dataset', 'Creative Research', 'Voices',
 ];
 const types = TYPE_ORDER.filter(t => pubs.some(p => p.data.type === t));
 
@@ -66,8 +67,8 @@ function typeClass(t: string) {
         {t}<span class="pub-count">{pubs.filter(p => p.data.type === t).length}</span>
       </button>
     ))}
-    <a class="pub-filter pub-filter-out" href="/strategy#reports">
-      Strategy Reports<span class="pub-count">{strategyCount}</span><span class="canon-out" aria-hidden="true">&#8594;</span>
+    <a class="pub-filter pub-filter-out" href="/strategy">
+      Commissioned work<span class="pub-count">{strategyCount}</span><span class="canon-out" aria-hidden="true">&#8594;</span>
     </a>
   </div>
 
@@ -203,7 +204,20 @@ function typeClass(t: string) {
   }
   .pub-filter:hover { color: var(--text); border-color: var(--border-hover); }
   .pub-filter.is-active {
-    color: var(--text); border-color: var(--ember-ink); background: var(--ember-bg);
+    color: var(--accent); border-color: var(--accent);
+    background: var(--accent-bg); font-weight: 500;
+  }
+  /* Each content area carries its own hue once selected. The rest of the site is
+     deliberately monochrome, so the colour is reserved for the active filter. */
+  .area-filter[data-area="Arts"].is-active                    { --area: #A8443A; }
+  .area-filter[data-area="Listening & Composition"].is-active { --area: #6E56A8; }
+  .area-filter[data-area="Technology"].is-active              { --area: #2E6B8A; }
+  .area-filter[data-area="Place"].is-active                   { --area: #35706B; }
+  .area-filter[data-area="History"].is-active                 { --area: #8A6114; }
+  .area-filter[data-area="all"].is-active                     { --area: var(--accent); }
+  .area-filter.is-active {
+    color: var(--area); border-color: var(--area); font-weight: 500;
+    background: color-mix(in srgb, var(--area) 10%, transparent);
   }
   .pub-count { font-size: 0.66rem; opacity: 0.6; font-variant-numeric: tabular-nums; }
   /* Sits in the filter row but navigates away, so it carries the ember tint

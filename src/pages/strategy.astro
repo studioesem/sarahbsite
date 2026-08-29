@@ -4,8 +4,7 @@ import { getCollection } from 'astro:content';
 
 // Industry-facing outputs from the publications collection — reports, working
 // papers and white papers belong with the advisory work, not the scholarly record.
-const STRATEGY_TYPES = ['Report', 'Working Paper', 'White Paper',
-  'Commissioned Research Contracts', 'Commissioned Strategy & Advisory'];
+const STRATEGY_TYPES = ['Commissioned Research Contracts', 'Commissioned Strategy & Advisory'];
 const all = (await getCollection('publications'))
   .filter(p => !p.data.draft && STRATEGY_TYPES.includes(p.data.type))
   .sort((a, b) => b.data.year - a.data.year || a.data.title.localeCompare(b.data.title));
@@ -14,22 +13,16 @@ const all = (await getCollection('publications'))
 // engagement and were reported differently.
 const GROUPS = [
   {
-    id: 'research-contracts',
-    title: 'Commissioned Research Contracts',
-    lede: 'Research delivered under contract to government, agencies and industry bodies.',
-    items: all.filter(p => p.data.type === 'Commissioned Research Contracts'),
-  },
-  {
     id: 'strategy-advisory',
     title: 'Commissioned Strategy & Advisory',
-    lede: 'Strategy and advisory work for governments, universities, cultural institutions and industry.',
+    lede: 'A highly experienced strategic advisor for a range of public and private organisations, spanning technology, urban transformation, placemaking, heritage and the arts.',
     items: all.filter(p => p.data.type === 'Commissioned Strategy & Advisory'),
   },
   {
-    id: 'reports',
-    title: 'Reports & Papers',
-    lede: 'Working papers, white papers and published reports. Peer-reviewed work sits on Research.',
-    items: all.filter(p => ['Report', 'Working Paper', 'White Paper'].includes(p.data.type)),
+    id: 'research-projects',
+    title: 'Research Projects',
+    lede: 'An independent and trusted research partner for a range of industry and government agencies, focusing on building long-term public value frameworks for organisations and communities in transition.',
+    items: all.filter(p => p.data.type === 'Commissioned Research Contracts'),
   },
 ].filter(g => g.items.length > 0);
 ---
@@ -41,80 +34,6 @@ const GROUPS = [
     <p class="page-intro">Civic AI governance, participatory design, and place-based strategy work delivered through Studio ESEM — for cultural institutions, councils, and communities.</p>
   </div>
 
-  <ul class="strategy-list">
-    <li class="strategy-item">
-      <div class="strategy-inner">
-        <div class="strategy-meta">
-          <span class="strategy-year">2025–ongoing</span>
-          <span class="post-dot"></span>
-          <span class="post-category cat-civic-ai">Civic AI</span>
-        </div>
-        <div class="strategy-title">Civic AI Diagnostic Toolkit</div>
-        <p class="strategy-description">A standalone consulting offering for local governments and institutions assessing their readiness for AI adoption — starting with place, participation, and governance rather than procurement and technology.</p>
-        <p class="strategy-partner">Studio ESEM</p>
-      </div>
-    </li>
-    <li class="strategy-item">
-      <div class="strategy-inner">
-        <div class="strategy-meta">
-          <span class="strategy-year">2025–2026</span>
-          <span class="post-dot"></span>
-          <span class="post-category cat-storybox">Storytelling</span>
-        </div>
-        <div class="strategy-title">STORYBOX Community Storytelling System</div>
-        <p class="strategy-description">Full-stack deployment of STORYBOX for the Inner West Museum of Rugby League — from QR-code submission forms through Cloudflare Workers and Webflow CMS to outdoor CUBE displays and community walls.</p>
-        <p class="strategy-partner">Inner West Council &middot; Museum of Rugby League</p>
-      </div>
-    </li>
-    <li class="strategy-item">
-      <div class="strategy-inner">
-        <div class="strategy-meta">
-          <span class="strategy-year">2025–2026</span>
-          <span class="post-dot"></span>
-          <span class="post-category cat-civic-ai">Civic AI</span>
-        </div>
-        <div class="strategy-title">Gathering Intelligences Workshop Program</div>
-        <p class="strategy-description">A six-movement half-day workshop exploring human, ecological, and multi-species intelligences — grounded in Indigenous data sovereignty and Country-centred methods. Includes a custom pre-workshop AI agent and React/Next.js interface.</p>
-        <p class="strategy-partner">Co-designed with Irina Panovich &middot; aiio studio</p>
-      </div>
-    </li>
-    <li class="strategy-item">
-      <div class="strategy-inner">
-        <div class="strategy-meta">
-          <span class="strategy-year">2025</span>
-          <span class="post-dot"></span>
-          <span class="post-category cat-environment">Circular Economy</span>
-        </div>
-        <div class="strategy-title">The Long Goodbye Studio</div>
-        <p class="strategy-description">Workshop concept exploring AI's material footprint through circular economy storytelling — energy, water, e-waste. Includes a digital footprint calculator deployed on Civic Interplay.</p>
-        <p class="strategy-partner">Studio ESEM</p>
-      </div>
-    </li>
-    <li class="strategy-item">
-      <div class="strategy-inner">
-        <div class="strategy-meta">
-          <span class="strategy-year">2024–2025</span>
-          <span class="post-dot"></span>
-          <span class="post-category cat-governance">Governance</span>
-        </div>
-        <div class="strategy-title">Future Now: A Pattern Language for Climate Resilience</div>
-        <p class="strategy-description">A project for the Australian Museum's Bicentennial Commission — Flourish network visualisations and community changemaker interviews mapping patterns of climate resilience across Australian communities.</p>
-        <p class="strategy-partner">Australian Museum</p>
-      </div>
-    </li>
-    <li class="strategy-item">
-      <div class="strategy-inner">
-        <div class="strategy-meta">
-          <span class="strategy-year">2013–ongoing</span>
-          <span class="post-dot"></span>
-          <span class="post-category cat-placemaking">Placemaking</span>
-        </div>
-        <div class="strategy-title">40+ Placemaking Programs</div>
-        <p class="strategy-description">Over a decade of participatory placemaking programs delivered for cultural institutions, councils, and communities — forming the foundation of the STORYBOX platform and Studio ESEM's practice-led methodology.</p>
-        <p class="strategy-partner">ABC &middot; Australian Museum &middot; NGA &middot; UNSW &middot; Canterbury Bankstown Council &middot; and others</p>
-      </div>
-    </li>
-  </ul>
 
   <div class="cta">
     <p>Interested in working together? I take on a small number of strategy and advisory engagements each year.</p>
