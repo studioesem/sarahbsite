@@ -7,18 +7,6 @@ const essays = (await getCollection('work'))
   .filter(p => !p.data.draft && p.data.domain === 'Writing & Essays')
   .sort((a, b) => b.data.year - a.data.year || a.data.title.localeCompare(b.data.title));
 
-const posts = (await getCollection('blog'))
-  .filter(post => !post.data.draft)
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-
-function formatDate(date: Date) {
-  return date.toLocaleDateString('en-AU', { day: 'numeric', month: 'short', year: 'numeric' });
-}
-
-function estimateReadTime(body: string) {
-  return Math.max(1, Math.round(body.split(/\s+/).length / 250));
-}
-
 function categoryClass(cat?: string) {
   return cat ? 'cat-' + cat.toLowerCase().replace(/\s+/g, '-') : '';
 }
@@ -36,47 +24,8 @@ function categoryClass(cat?: string) {
 
   <WorkList items={essays} />
 
-  <div class="wr-divider"><span>Notes and posts from this site</span></div>
-
-  <ul class="post-list">
-    {posts.map(post => (
-      <li class="post-item">
-        <a href={`/writing/${post.id.replace(/\.mdx?$/, '')}`} class={`post-link ${categoryClass(post.data.category)}`}>
-          <div class="post-meta">
-            <span class="post-date">{formatDate(post.data.pubDate)}</span>
-            {post.data.topic && <span class="post-dot"></span>}
-            {post.data.topic && <span class="post-date post-topic">{post.data.topic}</span>}
-            <span class="post-dot"></span>
-            <span class="post-read-time">{estimateReadTime(post.body ?? '')} min read</span>
-            {post.data.category && <span class={`post-category ${categoryClass(post.data.category)}`}>{post.data.category}</span>}
-          </div>
-          <div class="post-title">{post.data.title}</div>
-          <p class="post-excerpt">{post.data.description}</p>
-        </a>
-      </li>
-    ))}
-  </ul>
-
 </Base>
 
 <style>
-  .wr-divider {
-    margin-top: 3.4rem; padding-top: 1.6rem; border-top: 2px solid var(--ember-ink);
-  }
-  .wr-divider span {
-    font-family: var(--heading); font-size: 0.72rem; font-weight: 500;
-    text-transform: uppercase; letter-spacing: 0.14em; color: var(--ember-ink);
-  }
 </style>
 
-<script>
-  // Scroll-driven highlight: the row passing through the viewport centre lights up in its category colour.
-  const items = document.querySelectorAll('.post-link');
-  if (items.length && 'IntersectionObserver' in window) {
-    const obs = new IntersectionObserver(
-      (entries) => entries.forEach((e) => e.target.classList.toggle('is-active', e.isIntersecting)),
-      { rootMargin: '-45% 0px -45% 0px', threshold: 0 }
-    );
-    items.forEach((el) => obs.observe(el));
-  }
-</script>
