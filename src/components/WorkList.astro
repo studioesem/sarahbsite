@@ -13,13 +13,13 @@ const TYPE_ORDER = typeOrder ?? [
   'Conferences', 'Keynotes & Invited Talks', 'Interviews',
   'Report', 'Working Paper', 'White Paper',
   'Commissioned Strategy & Advisory', 'Commissioned Research Contracts',
-  'Strategy Project', 'Research Project', 'Creative Project',
+  'Strategy Project', 'Research Project', 'Creative Project', 'Exhibitions',
   'Dataset', 'Creative Research', 'Voices',
 ];
 const pubs = items;
 const types = TYPE_ORDER.filter(t => pubs.some(p => p.data.type === t));
 
-const AREA_ORDER = ['Arts', 'Listening & Composition', 'Technology', 'Place', 'History'];
+const AREA_ORDER = ['Arts', 'Listening & Composition', 'Heritage', 'Technology', 'Place', 'History'];
 const areas = AREA_ORDER.filter(a => pubs.some(p => p.data.areas?.includes(a)));
 
 function typeClass(t: string) {
@@ -165,6 +165,7 @@ function typeClass(t: string) {
   .area-filter[data-area="Technology"].is-active              { --area: #2E6B8A; }
   .area-filter[data-area="Place"].is-active                   { --area: #35706B; }
   .area-filter[data-area="History"].is-active                 { --area: #8A6114; }
+  .area-filter[data-area="Heritage"].is-active                { --area: #8A5A3C; }
   .area-filter[data-area="all"].is-active                     { --area: var(--accent); }
   .area-filter.is-active {
     color: var(--area); border-color: var(--area); font-weight: 500;

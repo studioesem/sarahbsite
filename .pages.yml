@@ -107,7 +107,7 @@ content:
         type: select
         required: true
         options:
-          values: [Monograph, Book, Journal Papers, Book Chapters, Essay, Report, Working Paper, White Paper, PhD thesis, Conferences, Keynotes & Invited Talks, Interviews, Dataset, Creative Research, Voices, Commissioned Research Contracts, Commissioned Strategy & Advisory, Creative Project, Strategy Project, Research Project]
+          values: [Monograph, Book, Journal Papers, Book Chapters, Essay, Report, Working Paper, White Paper, PhD thesis, Conferences, Keynotes & Invited Talks, Interviews, Dataset, Creative Research, Voices, Commissioned Research Contracts, Commissioned Strategy & Advisory, Creative Project, Exhibitions, Strategy Project, Research Project]
       - name: venue
         label: Venue
         description: Journal, publisher, or outlet
@@ -161,7 +161,7 @@ content:
         list: true
         options:
           multiple: true
-          values: [Arts, Listening & Composition, Technology, Place, History]
+          values: [Arts, Listening & Composition, Technology, Place, History, Heritage]
       - name: openAccess
         label: Open access copy
         description: Repository URL, Zenodo link, or a PDF on this site — shows a "free to read" chip

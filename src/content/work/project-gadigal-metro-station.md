@@ -10,7 +10,7 @@ imageAlt: "Projection at Gadigal Metro Station reading 'A city stands on ancestr
 note: "An interpretive artwork for Sydney's new Gadigal Metro Station, made with Gadigal poet Joel Davison, artist Travis de Vries and motion designer Andy Noonan — a visual and poetic meditation on connection to the city, past, present and future."
 highlight: true
 draft: true
-areas: [Arts, Place]
+areas: [Arts, Place, Heritage]
 links:
   - label: Studio ESEM
     href: https://www.studioesem.com/projects/gadigal-metro-station-interpretation

@@ -7,7 +7,7 @@ type: "Strategy Project"
 venue: "GML Heritage · Maitland City Council"
 note: "Digital interpretation strategy for one of Australia's oldest convict gaols, with GML Heritage — 150 years of incarceration history told through immersive, sensory experiences that humanise individual stories and confront colonial spatial justice without moralising."
 draft: true
-areas: [Place, Technology]
+areas: [Place, Technology, Heritage]
 links:
   - label: Studio ESEM
     href: https://www.studioesem.com/projects/maitland-gaol

@@ -54,7 +54,7 @@ const work = defineCollection({
       'Commissioned Research Contracts', 'Commissioned Strategy & Advisory',
       'Conferences', 'Keynotes & Invited Talks', 'Interviews', 'Dataset',
       'Creative Research', 'Voices',
-      'Creative Project', 'Strategy Project', 'Research Project',
+      'Creative Project', 'Exhibitions', 'Strategy Project', 'Research Project',
     ]),
     ntro: z.boolean().optional(),      // counted as a non-traditional research output
     image: z.string().optional(),
@@ -73,7 +73,7 @@ const work = defineCollection({
     highlight: z.boolean().optional(), // show on the client-facing /strategy page
     licence: z.string().optional(),    // e.g. "CC BY 2.0" — shown as a chip
     // Content areas — cross-cutting, so a work can sit in more than one.
-    areas: z.array(z.enum(['Arts', 'Listening & Composition', 'Technology', 'Place', 'History'])).optional(),
+    areas: z.array(z.enum(['Arts', 'Listening & Composition', 'Technology', 'Place', 'History', 'Heritage'])).optional(),
     featured: z.boolean().optional(),  // featured = also listed on the About page
     draft: z.boolean().optional(),
   }),
