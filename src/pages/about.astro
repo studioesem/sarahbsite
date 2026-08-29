@@ -1,5 +1,15 @@
 ---
 import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const all = await getCollection('work');
+const FAVOURITES = [
+  'project-superorganism', 'out-of-the-loop', 'project-birds-of-australia',
+  'platform-urbanism', 'project-we-dream-the-city',
+];
+const favourites = FAVOURITES
+  .map(slug => all.find(w => w.id.replace(/\.md$/, '') === slug))
+  .filter(Boolean);
 
 const COMMITTEES = [
   { year: '2023–2025', name: 'Digital Advisory Committee', detail: 'State Library of Victoria' },
@@ -80,49 +90,60 @@ const FELLOWSHIPS = [
   <div class="prose longer">
     <h2 class="about-h2 longer-head">The longer story</h2>
 
-    <p>I came to this through sound, and I have never really left. My PhD used ambient sound archives
-      to build mobile listening experiences that surfaced contested spatial histories, reimagining
-      real-time city technologies as connection points to the real times of space. In 2008 that became
-      <em>Sydney Sidetracks</em>, the ABC's first location-based service, which let people stand in
-      Martin Place and hear it in 1945. Everything since has carried the same method: soundscapes for
-      Kings Cross and Kate Leigh, essays on sirens and sensors, an immersive ecological work under a
-      tree canopy, interviews recorded on the water with people fighting for a river. Listening is not
-      a phase of the work. It is how I do the work.</p>
+    <p>I have come to an interest in digital cities out of a concern for what a 'data driven'
+      approach leaves out. This is why I've so often chosen sound as a medium for practice in
+      responding to the possibilities of place. I come to an interest in archives in recognition that
+      technology futures too often like to forget the past. So I try to make a habit of digging,
+      retrieving and re-assembling.</p>
+
+    <p>My PhD used ambient sound archives to build mobile listening experiences that surfaced
+      contested spatial histories, reimagining real-time city technologies as connection points to
+      the real times of space. In 2008 that became <em>Sydney Sidetracks</em>, the ABC's first
+      location-based service, which let people stand in Martin Place and hear it in 1945. I've
+      continued to evolve my <a href="/listening">sound and listening practice</a> for the past
+      fifteen years.</p>
 
     <p>In 2012 I negotiated the release of ABC television and radio archive material under Creative
       Commons, through a partnership with ABC Pool called Past Forward. Talbot Duckmanton reporting
       the end of the war, Juanita Nielsen on why she loved the Cross the year before she disappeared,
-      Bea Miles, Chow Hayes, Wendy Bacon marking an eviction on Victoria Street. Those recordings are
-      publicly listenable because that agreement exists. It changed what was possible for other people
-      rather than only for me.</p>
+      Bea Miles, Chow Hayes, Wendy Bacon marking an eviction on Victoria Street.</p>
 
     <hr>
 
     <h2>Strategy and advisory</h2>
 
-    <p>Alongside this I have been a strategic advisor for over twenty years. I wrote the ABC's
-      organisation-wide digital strategy and the Australia Council's first national creative industries
-      strategy, and have delivered research and strategy for the Department of the Prime Minister and
-      Cabinet through Data61, UCL's Institute for Innovation and Public Purpose, Create NSW, the NSW
-      Government Architect and the Australian Museum. This is not separate from the research. Working
-      inside institutions is how you learn what actually governs them.</p>
+    <p>Building on my public policy experience in Federal and State Governments, I continue to work as
+      a strategy adviser for selected organisations. I wrote the ABC's organisation-wide digital
+      strategy and the Australia Council's first national creative industries strategy, and have
+      delivered research and strategy for the Department of the Prime Minister and Cabinet through
+      Data61, UCL's Institute for Innovation and Public Purpose, Create NSW, the NSW Government
+      Architect and the Australian Museum.</p>
 
     <hr>
 
     <h2>Studio ESEM and STORYBOX Places</h2>
 
-    <p>I co-founded Esem Projects in 2013, now <a href="https://studioesem.com">Studio ESEM</a>,
-      working with cultural institutions, councils and communities to build participatory digital
-      infrastructure. Its signature platform is <a href="https://storybox.co">STORYBOX Places</a>,
-      which since 2020 has put outdoor exhibition infrastructure into public space for community
-      voice, with the ABC, the Australian Museum, the National Gallery of Australia, UNSW and
-      Canterbury Bankstown Council, building on more than forty placemaking programs. I also publish
-      <a href="https://civicinterplay.io">Civic Interplay</a>.</p>
+    <p>With my creative and life partner Michael Killalea I founded Esem Projects in 2013. This began
+      as a creative idea, and turned into a studio practice running for over a decade. We rebranded as
+      <a href="https://studioesem.com">Studio ESEM</a> in 2023, using creative and experiential design
+      methods to bring to life the stories that shape places through time. Partners and clients
+      include the Australian Museum, the ABC, HASSELL, the NSW Government Architect and many local
+      government agencies.</p>
+
+    <p>In 2020 we developed <a href="https://storybox.co">STORYBOX Places</a> as participatory digital
+      infrastructure, and have since delivered over forty digital placemaking programs through this
+      initiative.</p>
+
+    <hr>
+
+    <h2>Civic AI research</h2>
 
     <p>My current enquiry is the collision of AI sovereignties with citizen-AI activism in cities, and
-      the governance protocols that underpin them. It follows from <em>Platform Urbanism</em>
-      (Palgrave Macmillan, 2019), which asked what alternative platform models look like when designed
-      for public value rather than private extraction, and has since been cited over 700 times.</p>
+      the governance protocols that underpin them. It follows on from my book
+      <a href="https://link.springer.com/book/10.1007/978-981-32-9725-8"><em>Platform Urbanism</em></a>
+      (Palgrave Macmillan, 2019), which examined the rise of platform business models as an emergent
+      governance infrastructure for cities, and helped to shape a lively field of digital geography
+      (Google Scholar citations c2026, 700+).</p>
 
     <hr>
 
@@ -169,11 +190,14 @@ const FELLOWSHIPS = [
 
   <div class="publications">
     <h2 class="about-h2">My favourite personal work</h2>
-    <div class="pub-item">
-      <div class="pub-title"><a href="https://www.studioesem.com/projects/superorganism">Superorganism: Listening to the Anthropocene</a></div>
-      <div class="pub-details">Creative Director &amp; Lead Sound Designer, 2022</div>
-      <span class="pub-tag">Sound &amp; installation</span>
-    </div>
+    {favourites.map(w => (
+      <div class="pub-item">
+        <div class="pub-title">
+          {w.data.href ? <a href={w.data.href} rel="noopener">{w.data.title}</a> : w.data.title}
+        </div>
+        <div class="pub-details">{w.data.venue}, {w.data.yearLabel ?? w.data.year}</div>
+      </div>
+    ))}
   </div>
 
   <div class="publications">
