@@ -101,7 +101,7 @@ content:
         type: select
         required: true
         options:
-          values: [Monograph, Book, Journal Papers, Book Chapters, Essay, Report, Working Paper, White Paper, PhD thesis, Conferences, Dataset, Creative Research, Commissioned Research Contracts, Commissioned Strategy & Advisory]
+          values: [Monograph, Book, Journal Papers, Book Chapters, Essay, Report, Working Paper, White Paper, PhD thesis, Conferences, Dataset, Creative Research, Voices, Commissioned Research Contracts, Commissioned Strategy & Advisory]
       - name: venue
         label: Venue
         description: Journal, publisher, or outlet
@@ -126,6 +126,9 @@ content:
         type: text
       - name: isbn
         label: ISBN (books and chapters)
+        type: string
+      - name: licence
+        label: Licence (e.g. CC BY 2.0)
         type: string
       - name: areas
         label: Content areas
