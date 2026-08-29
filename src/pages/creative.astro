@@ -1,0 +1,23 @@
+---
+import Base from '../layouts/Base.astro';
+import WorkList from '../components/WorkList.astro';
+import { getCollection } from 'astro:content';
+
+const items = (await getCollection('work'))
+  .filter(p => !p.data.draft && p.data.domain === 'Creative')
+  .sort((a, b) => b.data.year - a.data.year || a.data.title.localeCompare(b.data.title));
+---
+
+<Base title="Creative — Sarah Barns">
+  <div class="page-header">
+    <p class="page-kicker"><span class="ktick"></span><em>works &amp; commissions</em></p>
+    <h1>Creative</h1>
+    <p class="page-intro">
+      Public art, sound installations and digital placemaking, made with communities and cultural
+      institutions — much of it delivered through Studio ESEM, and some of it counted as
+      non-traditional research output.
+    </p>
+  </div>
+
+  <WorkList items={items} />
+</Base>

@@ -40,18 +40,27 @@ const projects = defineCollection({
   }),
 });
 
-const publications = defineCollection({
+const work = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
     year: z.number(),                  // used to order and to group the list
     yearLabel: z.string().optional(),  // override, e.g. "In progress" or "2019–2021"
+    // What kind of output this is.
+    domain: z.enum(['Research', 'Creative', 'Strategy & Delivery', 'Writing & Essays']),
     type: z.enum([
       'Monograph', 'Book', 'Journal Papers', 'Book Chapters', 'Essay',
       'Report', 'Working Paper', 'White Paper', 'PhD thesis',
       'Commissioned Research Contracts', 'Commissioned Strategy & Advisory',
-      'Conferences', 'Keynotes & Invited Talks', 'Interviews', 'Dataset', 'Creative Research', 'Voices',
+      'Conferences', 'Keynotes & Invited Talks', 'Interviews', 'Dataset',
+      'Creative Research', 'Voices',
+      'Creative Project', 'Strategy Project', 'Research Project',
     ]),
+    ntro: z.boolean().optional(),      // counted as a non-traditional research output
+    image: z.string().optional(),
+    imageAlt: z.string().optional(),
+    award: z.string().optional(),
+    links: z.array(z.object({ label: z.string(), href: z.string() })).optional(),
     venue: z.string(),                 // journal, publisher, or outlet
     authors: z.string().optional(),    // omit when sole-authored
     href: z.string().optional(),       // publisher / landing page
@@ -70,4 +79,4 @@ const publications = defineCollection({
   }),
 });
 
-export const collections = { blog, projects, publications };
+export const collections = { blog, projects, work };

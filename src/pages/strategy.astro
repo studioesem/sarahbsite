@@ -1,13 +1,18 @@
 ---
 import Base from '../layouts/Base.astro';
 import { getCollection } from 'astro:content';
+import WorkList from '../components/WorkList.astro';
 
 // Client-facing page: a short account of the offer, a handful of engagements,
 // and a way through to the full record on /research.
-const all = (await getCollection('publications')).filter(p => !p.data.draft);
+const all = (await getCollection('work')).filter(p => !p.data.draft);
 const pick = (type: string) => all
   .filter(p => p.data.type === type)
   .sort((a, b) => b.data.year - a.data.year);
+
+const domainItems = all
+  .filter(p => p.data.domain === 'Strategy & Delivery')
+  .sort((a, b) => b.data.year - a.data.year || a.data.title.localeCompare(b.data.title));
 
 const GROUPS = [
   {
@@ -65,6 +70,9 @@ const GROUPS = [
       </p>
     </section>
   ))}
+
+  <div class="wr-divider"><span>The full record</span></div>
+  <WorkList items={domainItems} />
 
   <section class="strategy-cta">
     <p>Enquiries about strategy, advisory or research partnerships:

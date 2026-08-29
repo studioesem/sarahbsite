@@ -73,12 +73,12 @@ content:
         label: Notes (not shown on site yet)
         type: rich-text
 
-  - name: publications
-    label: Research
+  - name: work
+    label: Work (all domains)
     type: collection
-    path: src/content/publications
+    path: src/content/work
     view:
-      fields: [title, year, type, venue, featured]
+      fields: [title, year, domain, type, venue, highlight]
       sort: [year, title]
       default:
         sort: year
@@ -96,12 +96,18 @@ content:
         label: Year label (override)
         description: 'Only if the displayed year differs, e.g. "In progress" or "c2011"'
         type: string
+      - name: domain
+        label: Domain
+        type: select
+        required: true
+        options:
+          values: [Research, Creative, Strategy & Delivery, Writing & Essays]
       - name: type
         label: Type
         type: select
         required: true
         options:
-          values: [Monograph, Book, Journal Papers, Book Chapters, Essay, Report, Working Paper, White Paper, PhD thesis, Conferences, Keynotes & Invited Talks, Interviews, Dataset, Creative Research, Voices, Commissioned Research Contracts, Commissioned Strategy & Advisory]
+          values: [Monograph, Book, Journal Papers, Book Chapters, Essay, Report, Working Paper, White Paper, PhD thesis, Conferences, Keynotes & Invited Talks, Interviews, Dataset, Creative Research, Voices, Commissioned Research Contracts, Commissioned Strategy & Advisory, Creative Project, Strategy Project, Research Project]
       - name: venue
         label: Venue
         description: Journal, publisher, or outlet
@@ -131,8 +137,20 @@ content:
         label: Audio (chip reads "Listen" rather than "Free to read")
         type: boolean
       - name: highlight
-        label: Highlight on the Strategy page
+        label: Highlight (shows as a card on /highlights)
         type: boolean
+      - name: ntro
+        label: Counted as a non-traditional research output (NTRO)
+        type: boolean
+      - name: image
+        label: Card image
+        type: image
+      - name: imageAlt
+        label: Image alt text
+        type: string
+      - name: award
+        label: Award
+        type: string
       - name: licence
         label: Licence (e.g. CC BY 2.0)
         type: string

@@ -1,0 +1,71 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+// Cards drawn from every domain — the visual front door to the work.
+const items = (await getCollection('work'))
+  .filter(p => !p.data.draft && p.data.highlight)
+  .sort((a, b) => b.data.year - a.data.year || a.data.title.localeCompare(b.data.title));
+
+const DOMAIN_HREF: Record<string, string> = {
+  'Research': '/research',
+  'Creative': '/creative',
+  'Strategy & Delivery': '/strategy',
+  'Writing & Essays': '/writing',
+};
+---
+
+<Base title="Highlights — Sarah Barns">
+  <div class="page-header">
+    <p class="page-kicker"><span class="ktick"></span><em>selected work</em></p>
+    <h1>Highlights</h1>
+    <p class="page-intro">
+      A cross-section of the practice — research, creative commissions, strategy and writing.
+    </p>
+  </div>
+
+  <ul class="hl-grid">
+    {items.map(item => (
+      <li class={`hl-card ${item.data.image ? 'has-image' : ''}`}>
+        <a href={item.data.href ?? item.data.openAccess ?? DOMAIN_HREF[item.data.domain]} class="hl-link">
+          {item.data.image && (
+            <div class="hl-media">
+              <img src={item.data.image} alt={item.data.imageAlt ?? ''} loading="lazy" />
+            </div>
+          )}
+          <div class="hl-body">
+            <div class="hl-meta">
+              <span class="hl-domain">{item.data.domain}</span>
+              <span class="hl-dot"></span>
+              <span class="hl-year">{item.data.yearLabel ?? item.data.year}</span>
+            </div>
+            <h2 class="hl-title">{item.data.title}</h2>
+            {item.data.note && <p class="hl-note">{item.data.note}</p>}
+            {item.data.award && <span class="hl-award">{item.data.award}</span>}
+          </div>
+        </a>
+      </li>
+    ))}
+  </ul>
+</Base>
+
+<style>
+  .hl-grid {
+    list-style: none; padding: 0; margin: 2.2rem 0 0;
+    display: grid; gap: 1.1rem;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  }
+  .hl-card { border: 1px solid var(--border); border-radius: 3px; overflow: hidden; background: var(--surface, transparent); }
+  .hl-link { display: flex; flex-direction: column; height: 100%; text-decoration: none; color: inherit; }
+  .hl-media { aspect-ratio: 4 / 3; overflow: hidden; background: var(--ember-bg); }
+  .hl-media img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
+  .hl-link:hover .hl-media img { transform: scale(1.04); }
+  .hl-body { padding: 1rem 1.1rem 1.2rem; display: flex; flex-direction: column; gap: 0.35rem; flex: 1; }
+  .hl-meta { display: flex; align-items: center; gap: 0.5rem; font-family: var(--heading); font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-faint); }
+  .hl-dot { width: 2px; height: 2px; border-radius: 50%; background: currentColor; }
+  .hl-title { font-family: var(--display); font-weight: 400; font-size: 1.14rem; line-height: 1.25; margin: 0.1rem 0 0; color: var(--text); }
+  .hl-note { font-size: 0.9rem; line-height: 1.5; color: var(--text-dim); margin: 0.25rem 0 0; }
+  .hl-award { font-family: var(--heading); font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.09em; color: var(--ember-ink); border: 1px solid color-mix(in srgb, var(--ember-ink) 28%, transparent); border-radius: 2px; padding: 0.14rem 0.42rem; align-self: flex-start; margin-top: 0.55rem; }
+  .hl-card:hover { border-color: var(--border-hover); }
+  .hl-link:focus-visible { outline: 2px solid var(--ember-ink); outline-offset: 2px; }
+</style>

@@ -1,32 +1,11 @@
 ---
 import Base from '../layouts/Base.astro';
+import WorkList from '../components/WorkList.astro';
 import { getCollection } from 'astro:content';
 
-// Industry-facing outputs live on /strategy — this page is the scholarly record.
-// /research is the whole record. /strategy is a client-facing page that points back here.
-const pubs = (await getCollection('publications'))
-  .filter(p => !p.data.draft)
+const items = (await getCollection('work'))
+  .filter(p => !p.data.draft && p.data.domain === 'Research')
   .sort((a, b) => b.data.year - a.data.year || a.data.title.localeCompare(b.data.title));
-
-// Research-strand projects sit alongside the publications as the applied half of the record.
-const researchProjects = (await getCollection('projects'))
-  .filter(p => !p.data.draft && p.data.strand === 'Research')
-  .sort((a, b) => b.data.sortYear - a.data.sortYear);
-
-const TYPE_ORDER = [
-  'Monograph', 'Book', 'PhD thesis', 'Journal Papers', 'Book Chapters', 'Essay',
-  'Conferences', 'Keynotes & Invited Talks', 'Interviews',
-  'Report', 'Working Paper', 'White Paper', 'Commissioned Strategy & Advisory',
-  'Commissioned Research Contracts', 'Dataset', 'Creative Research', 'Voices',
-];
-const types = TYPE_ORDER.filter(t => pubs.some(p => p.data.type === t));
-
-const AREA_ORDER = ['Arts', 'Listening & Composition', 'Technology', 'Place', 'History'];
-const areas = AREA_ORDER.filter(a => pubs.some(p => p.data.areas?.includes(a)));
-
-function typeClass(t: string) {
-  return 'type-' + t.toLowerCase().replace(/\s+/g, '-');
-}
 ---
 
 <Base title="Research — Sarah Barns">
@@ -42,8 +21,6 @@ function typeClass(t: string) {
     </p>
   </div>
 
-  {/* Canonical profiles — squared, not rounded, so they read as a different class
-      of control from the type filters below them. */}
   <div class="pub-canon">
     <a class="canon" href="https://scholar.google.com/citations?user=cnGxyWQAAAAJ&amp;hl=en" rel="noopener">
       Google Scholar<span class="canon-out" aria-hidden="true">&#8599;</span>
@@ -56,84 +33,7 @@ function typeClass(t: string) {
     </a>
   </div>
 
-  <div class="pub-filters">
-    <button class="pub-filter is-active" data-filter="all">All <span class="pub-count">{pubs.length}</span></button>
-    {types.map(t => (
-      <button class="pub-filter" data-filter={t}>
-        {t}<span class="pub-count">{pubs.filter(p => p.data.type === t).length}</span>
-      </button>
-    ))}
-  </div>
-
-  <div class="pub-filters pub-areas">
-    <span class="filter-label">Area</span>
-    <button class="pub-filter area-filter is-active" data-area="all">All</button>
-    {areas.map(a => (
-      <button class="pub-filter area-filter" data-area={a}>
-        {a}<span class="pub-count">{pubs.filter(p => p.data.areas?.includes(a)).length}</span>
-      </button>
-    ))}
-  </div>
-
-  <ol class="pub-list">
-    {pubs.map(pub => (
-      <li
-        class={`pub-row ${typeClass(pub.data.type)}`}
-        data-type={pub.data.type}
-        data-areas={(pub.data.areas ?? []).join('|')}
-      >
-        <div class="pub-year">{pub.data.yearLabel ?? pub.data.year}</div>
-        <div class="pub-body">
-          <h2 class="pub-row-title">
-            {pub.data.href
-              ? <a href={pub.data.href} rel="noopener">{pub.data.title}</a>
-              : pub.data.title}
-          </h2>
-          <div class="pub-row-details">
-            {pub.data.authors && <span>{pub.data.authors}</span>}
-            {pub.data.authors && <span class="pub-sep">·</span>}
-            <span>{pub.data.venue}</span>
-            {pub.data.citations && <span class="pub-sep">·</span>}
-            {pub.data.citations && <span>{pub.data.citations}+ citations</span>}
-          </div>
-          {pub.data.note && <p class="pub-note">{pub.data.note}</p>}
-          <div class="pub-row-foot">
-            <span class="pub-tag">{pub.data.type}</span>
-            {pub.data.doi && (
-              <a class="pub-doi" href={`https://doi.org/${pub.data.doi}`} rel="noopener">doi:{pub.data.doi}</a>
-            )}
-            {pub.data.isbn && <span class="pub-isbn">isbn:{pub.data.isbn}</span>}
-            {pub.data.licence && <span class="pub-licence">{pub.data.licence}</span>}
-            {pub.data.openAccess && (
-              <a class="pub-oa" href={pub.data.openAccess} rel="noopener">
-                <span class="pub-oa-dot" aria-hidden="true"></span>
-                {/youtube\.com|youtu\.be|vimeo/.test(pub.data.openAccess)
-                  ? 'Watch'
-                  : pub.data.audio || pub.data.openAccess.includes('soundcloud.com')
-                    ? 'Listen'
-                    : 'Free to read'}
-              </a>
-            )}
-          </div>
-        </div>
-      </li>
-    ))}
-  </ol>
-
-  <p class="pub-empty" hidden>Nothing of that kind here yet.</p>
-
-  {researchProjects.length > 0 && (
-    <div class="publications">
-      <div class="section-label">Research projects &amp; fellowships</div>
-      {researchProjects.map(p => (
-        <div class="pub-item">
-          <div class="pub-title">{p.data.title}</div>
-          <div class="pub-details">{p.data.years}{p.data.partner ? ` · ${p.data.partner}` : ''}</div>
-        </div>
-      ))}
-      <p class="pub-more"><a href="/projects">All projects &rarr;</a></p>
-    </div>
-  )}
+  <WorkList items={items} />
 </Base>
 
 <style>
@@ -143,205 +43,17 @@ function typeClass(t: string) {
     color: var(--text); letter-spacing: -0.005em; max-width: 34ch;
   }
   .page-intro-lead + .page-intro { margin-top: 0.7rem; }
-
-  /* Canonical links: squared, ember-tinted, outbound. Deliberately not the
-     rounded outline of the filters — these leave the site, they don't filter it. */
-  .pub-canon {
-    display: flex; flex-wrap: wrap; gap: 0.45rem;
-    margin-top: 1.8rem;
-  }
+  .pub-canon { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 1.8rem; }
   .canon {
     display: inline-flex; align-items: baseline; gap: 0.5rem;
-    font-family: var(--heading); font-size: 0.78rem; font-weight: 400;
-    letter-spacing: 0.01em; color: var(--ember-ink); text-decoration: none;
-    background: var(--ember-bg);
+    font-family: var(--heading); font-size: 0.78rem; color: var(--ember-ink);
+    text-decoration: none; background: var(--ember-bg);
     border: 1px solid color-mix(in srgb, var(--ember-ink) 22%, transparent);
     border-radius: 3px; padding: 0.42rem 0.7rem;
     transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
   }
-  .canon:hover {
-    color: var(--text);
-    border-color: color-mix(in srgb, var(--ember-ink) 55%, transparent);
-    background: color-mix(in srgb, var(--ember-ink) 8%, transparent);
-  }
-  .canon:focus-visible { outline: 2px solid var(--ember-ink); outline-offset: 2px; }
-  .canon-id {
-    font-size: 0.68rem; color: var(--text-faint);
-    font-variant-numeric: tabular-nums; letter-spacing: 0.02em;
-  }
+  .canon:hover { color: var(--text); border-color: color-mix(in srgb, var(--ember-ink) 55%, transparent); }
+  .canon-id { font-size: 0.68rem; color: var(--text-faint); font-variant-numeric: tabular-nums; }
   .canon-out { font-size: 0.72rem; opacity: 0.6; }
   @media (max-width: 480px) { .canon-id { display: none; } }
-
-  .pub-filters {
-    display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem;
-    margin: 1.6rem 0 0.5rem; padding-bottom: 1.4rem;
-    border-bottom: 1px solid var(--border);
-  }
-  .pub-areas { margin-top: 0.9rem; padding-bottom: 1.2rem; }
-  .filter-label {
-    font-family: var(--heading); font-size: 0.66rem; font-weight: 400;
-    text-transform: uppercase; letter-spacing: 0.14em; color: var(--text-faint);
-    margin-right: 0.35rem;
-  }
-  .area-filter.is-active {
-    color: var(--oa-ink); border-color: var(--oa-line); background: var(--oa-bg);
-  }
-  .pub-filter {
-    font-family: var(--heading); font-size: 0.72rem; font-weight: 400;
-    text-transform: uppercase; letter-spacing: 0.08em;
-    color: var(--text-faint); background: none;
-    border: 1px solid var(--border); border-radius: 100px;
-    padding: 0.3rem 0.7rem; cursor: pointer;
-    display: inline-flex; align-items: center; gap: 0.4rem;
-    transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
-  }
-  .pub-filter:hover { color: var(--text); border-color: var(--border-hover); }
-  .pub-filter.is-active {
-    color: var(--accent); border-color: var(--accent);
-    background: var(--accent-bg); font-weight: 500;
-  }
-  /* Each content area carries its own hue once selected. The rest of the site is
-     deliberately monochrome, so the colour is reserved for the active filter. */
-  .area-filter[data-area="Arts"].is-active                    { --area: #A8443A; }
-  .area-filter[data-area="Listening & Composition"].is-active { --area: #6E56A8; }
-  .area-filter[data-area="Technology"].is-active              { --area: #2E6B8A; }
-  .area-filter[data-area="Place"].is-active                   { --area: #35706B; }
-  .area-filter[data-area="History"].is-active                 { --area: #8A6114; }
-  .area-filter[data-area="all"].is-active                     { --area: var(--accent); }
-  .area-filter.is-active {
-    color: var(--area); border-color: var(--area); font-weight: 500;
-    background: color-mix(in srgb, var(--area) 10%, transparent);
-  }
-  .pub-count { font-size: 0.66rem; opacity: 0.6; font-variant-numeric: tabular-nums; }
-  /* Sits in the filter row but navigates away, so it carries the ember tint
-     of the canonical links rather than the neutral outline of a filter. */
-  .pub-filter-out {
-    text-decoration: none; color: var(--ember-ink);
-    border-color: color-mix(in srgb, var(--ember-ink) 30%, transparent);
-    background: var(--ember-bg); cursor: pointer;
-  }
-  .pub-filter-out:hover { color: var(--text); border-color: var(--ember-ink); }
-
-  .pub-list { list-style: none; padding: 0; margin: 0; }
-  .pub-row {
-    display: grid; grid-template-columns: 5.5rem 1fr; gap: 1.2rem;
-    padding: 1.6rem 0; border-bottom: 1px solid var(--border);
-  }
-  .pub-row[hidden] { display: none; }
-  .pub-year {
-    font-family: var(--heading); font-size: 0.85rem; font-weight: 300;
-    color: var(--text-faint); font-variant-numeric: tabular-nums;
-    padding-top: 0.28rem; line-height: 1.4;
-  }
-  .pub-row-title {
-    font-family: var(--display); font-size: 1.22rem; font-weight: 400;
-    line-height: 1.28; letter-spacing: -0.005em; color: var(--text);
-    margin: 0 0 0.35rem;
-  }
-  .pub-row-title a {
-    color: inherit; text-decoration: underline; text-underline-offset: 3px;
-    text-decoration-color: color-mix(in srgb, var(--ember-ink) 32%, transparent);
-    transition: text-decoration-color 0.2s ease;
-  }
-  .pub-row-title a:hover { text-decoration-color: var(--ember-ink); }
-  .pub-row-details {
-    font-family: var(--heading); font-size: 0.82rem; font-weight: 300;
-    color: var(--text-dim); display: flex; flex-wrap: wrap; gap: 0.4rem;
-  }
-  .pub-sep { color: var(--text-faint); }
-  .pub-note {
-    font-size: 0.94rem; line-height: 1.55; color: var(--text-dim);
-    margin: 0.6rem 0 0; max-width: 62ch;
-  }
-  .pub-row-foot {
-    display: flex; flex-wrap: wrap; align-items: center; gap: 0.7rem; margin-top: 0.55rem;
-  }
-  .pub-row-foot .pub-tag { margin-top: 0; }
-  .pub-doi {
-    font-family: var(--heading); font-size: 0.7rem; font-weight: 300;
-    color: var(--text-faint); text-decoration: underline; text-underline-offset: 2px;
-    text-decoration-color: transparent; transition: all 0.2s ease;
-  }
-  .pub-doi:hover { color: var(--ember-ink); text-decoration-color: var(--ember-ink); }
-
-  .pub-licence {
-    font-family: var(--heading); font-size: 0.62rem; font-weight: 500;
-    text-transform: uppercase; letter-spacing: 0.09em; color: var(--text-faint);
-    border: 1px solid var(--border); border-radius: 2px; padding: 0.14rem 0.42rem;
-  }
-  .pub-isbn {
-    font-family: var(--heading); font-size: 0.7rem; font-weight: 300;
-    color: var(--text-faint); font-variant-numeric: tabular-nums;
-  }
-
-  /* Green-OA marker: a copy exists somewhere free, wherever it is deposited. */
-  .pub-oa {
-    display: inline-flex; align-items: center; gap: 0.4rem;
-    font-family: var(--heading); font-size: 0.66rem; font-weight: 500;
-    text-transform: uppercase; letter-spacing: 0.09em;
-    color: var(--oa-ink); text-decoration: none;
-    background: var(--oa-bg); border: 1px solid var(--oa-line);
-    border-radius: 2px; padding: 0.16rem 0.45rem;
-    transition: border-color 0.2s ease, background 0.2s ease;
-  }
-  .pub-oa:hover { border-color: var(--oa-ink); background: var(--oa-bg-hover); }
-  .pub-oa:focus-visible { outline: 2px solid var(--oa-ink); outline-offset: 2px; }
-  .pub-oa-dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
-
-  .pub-empty {
-    font-family: var(--heading); font-size: 0.85rem; font-weight: 300;
-    color: var(--text-faint); padding: 2rem 0;
-  }
-  .pub-more { margin-top: 1.2rem; }
-  .pub-more a { font-family: var(--heading); font-size: 0.85rem; color: var(--text-dim); }
-
-  @media (max-width: 600px) {
-    .pub-row { grid-template-columns: 1fr; gap: 0.3rem; }
-    .pub-year { padding-top: 0; }
-  }
 </style>
-
-<script>
-  const typeBtns = document.querySelectorAll<HTMLButtonElement>('.pub-filter[data-filter]');
-  const areaBtns = document.querySelectorAll<HTMLButtonElement>('.area-filter');
-  const rows = document.querySelectorAll<HTMLLIElement>('.pub-row');
-  const empty = document.querySelector<HTMLParagraphElement>('.pub-empty');
-
-  let wantType = 'all';
-  let wantArea = 'all';
-
-  function apply() {
-    let shown = 0;
-    rows.forEach(row => {
-      const okType = wantType === 'all' || row.dataset.type === wantType;
-      const okArea = wantArea === 'all' || (row.dataset.areas ?? '').split('|').includes(wantArea);
-      const match = okType && okArea;
-      row.hidden = !match;
-      if (match) shown++;
-    });
-    if (empty) empty.hidden = shown > 0;
-  }
-
-  // /research?type=... lands pre-filtered, so links from /strategy arrive in context
-  const wanted = new URLSearchParams(location.search).get('type');
-  if (wanted) {
-    const match = Array.from(typeBtns).find(b => b.dataset.filter === wanted);
-    if (match) {
-      wantType = wanted;
-      typeBtns.forEach(b => b.classList.toggle('is-active', b === match));
-      apply();
-    }
-  }
-
-  typeBtns.forEach(btn => btn.addEventListener('click', () => {
-    wantType = btn.dataset.filter ?? 'all';
-    typeBtns.forEach(b => b.classList.toggle('is-active', b === btn));
-    apply();
-  }));
-
-  areaBtns.forEach(btn => btn.addEventListener('click', () => {
-    wantArea = btn.dataset.area ?? 'all';
-    areaBtns.forEach(b => b.classList.toggle('is-active', b === btn));
-    apply();
-  }));
-</script>
