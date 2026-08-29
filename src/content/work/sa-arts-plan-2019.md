@@ -4,7 +4,7 @@ year: 2019
 domain: "Strategy & Delivery"
 type: "Commissioned Strategy & Advisory"
 venue: "Government of South Australia"
-authors: "Sarah Barns, Tony Grybowski & Gerashe"
+authors: "Sarah Barns, Tony Grybowski & Graham Gerashe, with Kath Deyell and Claire Scobie"
 areas: [Arts]
 highlight: true
 ---

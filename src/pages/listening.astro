@@ -11,7 +11,9 @@ const items = all
   .filter(p => p.data.areas?.includes('Listening & Composition') && p.data.domain !== 'Voices')
   .sort((a, b) => b.data.year - a.data.year || a.data.title.localeCompare(b.data.title));
 
-const voicesCount = all.filter(p => p.data.domain === 'Voices').length;
+const voices = all
+  .filter(p => !p.data.draft && p.data.domain === 'Voices')
+  .sort((a, b) => b.data.year - a.data.year || a.data.title.localeCompare(b.data.title));
 ---
 
 <Base title="Listening & Composition — Sarah Barns">
@@ -24,21 +26,56 @@ const voicesCount = all.filter(p => p.data.domain === 'Voices').length;
     </p>
   </div>
 
-  <div class="listen-origin">
-    <p>
-      The untreated archival recordings sit separately under
-      <a href="/voices">Voices</a>, {voicesCount} in all.
-    </p>
-  </div>
-
   <WorkList items={items} />
+
+  {voices.length > 0 && (
+    <section class="voices-block">
+      <h2 class="voices-head">Voices</h2>
+      <p class="voices-intro">
+        Archival recordings carried out of closed collections and into public circulation. Not my
+        compositions: other people's voices, surfaced so they can be listened to and built on. Most
+        are public because of Past Forward, a partnership with ABC Pool negotiated in 2012 that
+        released ABC television and radio archive material under CC BY 2.0.
+      </p>
+      <ol class="voices-list">
+        {voices.map(v => (
+          <li class="voices-item">
+            <span class="voices-year">{v.data.yearLabel ?? v.data.year}</span>
+            <span class="voices-body">
+              <span class="voices-title">
+                {v.data.openAccess
+                  ? <a href={v.data.openAccess} rel="noopener">{v.data.title}</a>
+                  : v.data.title}
+              </span>
+              <span class="voices-venue">{v.data.venue}</span>
+            </span>
+          </li>
+        ))}
+      </ol>
+    </section>
+  )}
 </Base>
 
 <style>
-  .listen-origin {
-    margin-top: 1.8rem; padding: 1.1rem 1.2rem;
-    background: var(--ember-bg); border: 1px solid var(--border);
-    border-left: 3px solid var(--oa-ink); border-radius: 3px;
+  .voices-block { margin-top: 3.4rem; padding-top: 2rem; border-top: 2px solid var(--ember-ink); }
+  .voices-head {
+    font-family: var(--display); font-weight: 400;
+    font-size: clamp(1.3rem, 2.5vw, 1.6rem); margin: 0 0 0.6rem; color: var(--text);
   }
-  .listen-origin p { margin: 0; font-size: 0.98rem; line-height: 1.6; color: var(--text-dim); max-width: 62ch; }
+  .voices-intro { font-size: 0.97rem; line-height: 1.6; color: var(--text-dim); max-width: 66ch; margin: 0 0 1.4rem; }
+  .voices-list { list-style: none; padding: 0; margin: 0; }
+  .voices-item {
+    display: grid; grid-template-columns: 5.5rem 1fr; gap: 0.2rem 1.2rem;
+    padding: 0.85rem 0; border-bottom: 1px solid var(--border);
+  }
+  .voices-year {
+    font-family: var(--heading); font-size: 0.82rem; font-weight: 500;
+    color: var(--text-dim); font-variant-numeric: tabular-nums;
+  }
+  .voices-body { display: flex; flex-direction: column; gap: 0.12rem; }
+  .voices-title { font-size: 1rem; line-height: 1.35; color: var(--text); }
+  .voices-title a { color: inherit; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: color-mix(in srgb, var(--oa-ink) 45%, transparent); }
+  .voices-title a:hover { text-decoration-color: var(--oa-ink); }
+  .voices-venue { font-family: var(--heading); font-size: 0.78rem; color: var(--text-faint); }
+  @media (max-width: 520px) { .voices-item { grid-template-columns: 1fr; } }
 </style>
