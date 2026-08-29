@@ -1,6 +1,14 @@
 ---
 import Base from '../layouts/Base.astro';
 
+const COMMITTEES = [
+  { year: '2023–2025', name: 'Digital Advisory Committee', detail: 'State Library of Victoria' },
+  { year: '2022–2024', name: 'Smart Cities Advisory Council', detail: 'City of Parramatta' },
+  { year: '2021–2023', name: 'Product Council Asia Pacific, Co-Lead, Resilient Cities', detail: 'Urban Land Institute' },
+  { year: '2021–2022', name: 'CEO Digital Advisor', detail: 'Australia Council / ACMI' },
+  { year: '2013–2015', name: 'Board Member', detail: 'Dictionary of Sydney' },
+];
+
 const AWARDS = [
   { year: '2025', name: 'Interpretation Australia Award', detail: 'Birds of Australia, STORYBOX with the Australian Museum' },
   { year: '2025', name: 'Media Architecture Biennale Award', detail: 'STORYBOX' },
@@ -37,7 +45,29 @@ const FELLOWSHIPS = [
     <p class="page-subtitle">I create, cultivate and reflect on digital interfaces and experiences as they shape our relationship to places in transition. I write, I listen, I collaborate, I imagine.</p>
   </div>
 
-  <div class="prose">
+  <div class="prose practice">
+    <p>With a background in public history and urbanism, today I specialise in digital curation
+      practices for places in transition. This lands me somewhere at the intersection of platform
+      urbanism, data civics, creative media and digital environmentalism. I love the connections.</p>
+
+    <p>Practice-wise I work with teams to build and prototype helpful interfaces and story-lines that
+      connect us to the places we live in and that sustain us. This work is funded through a range of
+      partnerships and collaborations: research fellowships, start-up grants, project commissions,
+      and self-funded and government R&amp;D.</p>
+
+    <p>My key platforms are <a href="https://storybox.co">STORYBOX Places</a>,
+      <a href="https://civicinterplay.io">Civic Interplay</a> and
+      <a href="https://studioesem.com">Studio ESEM</a>. My current research enquiry is the collisions
+      of AI sovereignties and citizen-AI activism in cities, and the governance protocols and pathways
+      that underpin them. My disciplinary home is urban digital geography, specifically the historical
+      and political geography of digital cities.</p>
+
+    <p class="practice-intent">Primary intention: creating spaces and places of care, creativity and
+      everyday enlivenment.</p>
+  </div>
+
+  <div class="prose longer">
+    <h2 class="about-h2 longer-head">The longer story</h2>
     <p>For over twenty years, my work has been guided by a single question: <strong>who gets to decide what value technological systems create?</strong></p>
 
     <p>I came to this question through sound. My PhD examined real-time city technologies reimagined as connection points to the "real times of space" — using ambient sound archives to create mobile listening experiences that reveal contested spatial histories. That early work in experimental public history and speculative archival practice set the coordinates for everything that followed.</p>
@@ -58,7 +88,7 @@ const FELLOWSHIPS = [
 
     <hr>
 
-    <h2>The longer thread</h2>
+    <h2>Golden threads</h2>
 
     <p>Across all of this work — the scholarship, the studio practice, the writing — runs what I think of as a long-form narrative inquiry into how digital systems reshape place, citizenship, and collective governance. I have described this elsewhere as "golden threads structuring space through time," resisting what I call the actuarial colonisation of the unknown.</p>
 
@@ -164,6 +194,19 @@ const FELLOWSHIPS = [
     ))}
   </div>
 
+  <div class="publications">
+    <h2 class="about-h2">Committees &amp; memberships</h2>
+    {COMMITTEES.map(c => (
+      <div class="honour">
+        <span class="honour-year">{c.year}</span>
+        <span class="honour-body">
+          <span class="honour-name">{c.name}</span>
+          {c.detail && <span class="honour-detail">{c.detail}</span>}
+        </span>
+      </div>
+    ))}
+  </div>
+
 </Base>
 
 <style>
@@ -223,6 +266,13 @@ const FELLOWSHIPS = [
   .pub-title a:hover { text-decoration-color: var(--ember-ink); }
   /* Works still awaiting a URL — render as plain text, not a dead link */
   .pub-title a[data-needs-url] { color: inherit; text-decoration: none; pointer-events: none; }
+  .practice > p { margin-bottom: 1rem; }
+  .practice-intent {
+    font-family: var(--display); font-size: clamp(1.05rem, 2vw, 1.25rem);
+    line-height: 1.4; color: var(--text); max-width: 44ch; margin-top: 1.4rem;
+  }
+  .longer { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+  .longer-head { margin-bottom: 1.4rem; }
   .prev-roles {
     font-size: 1rem; line-height: 1.62; color: var(--text-dim);
     max-width: 66ch; margin: 0 0 1rem;
