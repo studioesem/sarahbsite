@@ -8,7 +8,9 @@ import { getCollection } from 'astro:content';
 const all = (await getCollection('work')).filter(p => !p.data.draft);
 
 const items = all
-  .filter(p => p.data.areas?.includes('Listening & Composition') && p.data.domain !== 'Voices')
+  .filter(p => p.data.areas?.includes('Listening & Composition')
+    && p.data.domain !== 'Voices'
+    && p.data.type !== 'Keynotes & Invited Talks')
   .sort((a, b) => b.data.year - a.data.year || a.data.title.localeCompare(b.data.title));
 
 const voices = all
