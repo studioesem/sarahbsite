@@ -19,8 +19,6 @@ const TYPE_ORDER = typeOrder ?? [
 const pubs = items;
 const types = TYPE_ORDER.filter(t => pubs.some(p => p.data.type === t));
 
-const AREA_ORDER = ['Arts', 'Listening & Composition', 'Heritage', 'Technology', 'Place', 'History'];
-const areas = AREA_ORDER.filter(a => pubs.some(p => p.data.areas?.includes(a)));
 
 function typeClass(t: string) {
   return 'type-' + t.toLowerCase().replace(/\s+/g, '-');
@@ -32,16 +30,6 @@ function typeClass(t: string) {
     {types.map(t => (
       <button class="pub-filter" data-filter={t}>
         {t}<span class="pub-count">{pubs.filter(p => p.data.type === t).length}</span>
-      </button>
-    ))}
-  </div>
-
-  <div class="pub-filters pub-areas">
-    <span class="filter-label">Area</span>
-    <button class="pub-filter area-filter is-active" data-area="all">All</button>
-    {areas.map(a => (
-      <button class="pub-filter area-filter" data-area={a}>
-        {a}<span class="pub-count">{pubs.filter(p => p.data.areas?.includes(a)).length}</span>
       </button>
     ))}
   </div>
@@ -93,7 +81,7 @@ function typeClass(t: string) {
   </ol>
 
   <p class="pub-empty" hidden>
-    Nothing matches both filters. <button type="button" class="pub-clear-inline">Clear filters</button>
+    Nothing of that kind here yet. <button type="button" class="pub-clear-inline">Clear filters</button>
   </p>
 
 <style>
@@ -137,15 +125,6 @@ function typeClass(t: string) {
     margin: 1.6rem 0 0.5rem; padding-bottom: 1.4rem;
     border-bottom: 1px solid var(--border);
   }
-  .pub-areas { margin-top: 0.9rem; padding-bottom: 1.2rem; }
-  .filter-label {
-    font-family: var(--heading); font-size: 0.68rem; font-weight: 500;
-    text-transform: uppercase; letter-spacing: 0.13em; color: var(--text-dim);
-    margin-right: 0.35rem;
-  }
-  .area-filter.is-active {
-    color: var(--oa-ink); border-color: var(--oa-line); background: var(--oa-bg);
-  }
   .pub-filter {
     font-family: var(--heading); font-size: 0.75rem; font-weight: 500;
     text-transform: uppercase; letter-spacing: 0.07em;
@@ -159,19 +138,6 @@ function typeClass(t: string) {
   .pub-filter.is-active {
     color: var(--accent); border-color: var(--accent);
     background: var(--accent-bg); font-weight: 500;
-  }
-  /* Each content area carries its own hue once selected. The rest of the site is
-     deliberately monochrome, so the colour is reserved for the active filter. */
-  .area-filter[data-area="Arts"].is-active                    { --area: #A8443A; }
-  .area-filter[data-area="Listening & Composition"].is-active { --area: #6E56A8; }
-  .area-filter[data-area="Technology"].is-active              { --area: #2E6B8A; }
-  .area-filter[data-area="Place"].is-active                   { --area: #35706B; }
-  .area-filter[data-area="History"].is-active                 { --area: #8A6114; }
-  .area-filter[data-area="Heritage"].is-active                { --area: #8A5A3C; }
-  .area-filter[data-area="all"].is-active                     { --area: var(--accent); }
-  .area-filter.is-active {
-    color: var(--area); border-color: var(--area); font-weight: 500;
-    background: color-mix(in srgb, var(--area) 10%, transparent);
   }
   .pub-count { font-size: 0.68rem; opacity: 0.72; font-variant-numeric: tabular-nums; }
   /* Sits in the filter row but navigates away, so it carries the ember tint
@@ -278,58 +244,23 @@ function typeClass(t: string) {
 
 <script>
   const typeBtns = document.querySelectorAll<HTMLButtonElement>('.pub-filter[data-filter]');
-  const areaBtns = document.querySelectorAll<HTMLButtonElement>('.area-filter');
   const rows = document.querySelectorAll<HTMLLIElement>('.pub-row');
   const empty = document.querySelector<HTMLParagraphElement>('.pub-empty');
   const clearBtn = document.querySelector<HTMLButtonElement>('.pub-clear-inline');
 
   let wantType = 'all';
-  let wantArea = 'all';
-
-  const areasOf = (row: HTMLLIElement) => (row.dataset.areas ?? '').split('|').filter(Boolean);
-  const matchesType = (row: HTMLLIElement, t: string) => t === 'all' || row.dataset.type === t;
-  const matchesArea = (row: HTMLLIElement, a: string) => a === 'all' || areasOf(row).includes(a);
-
-  // Counts always reflect what the other filter allows, so a pill never promises
-  // results it cannot deliver.
-  function recount() {
-    typeBtns.forEach(btn => {
-      const key = btn.dataset.filter ?? 'all';
-      let n = 0;
-      rows.forEach(r => { if (matchesType(r, key) && matchesArea(r, wantArea)) n++; });
-      const span = btn.querySelector('.pub-count');
-      if (span) span.textContent = String(n);
-      btn.classList.toggle('is-empty', n === 0 && key !== 'all');
-    });
-    areaBtns.forEach(btn => {
-      const key = btn.dataset.area ?? 'all';
-      let n = 0;
-      rows.forEach(r => { if (matchesArea(r, key) && matchesType(r, wantType)) n++; });
-      const span = btn.querySelector('.pub-count');
-      if (span) span.textContent = String(n);
-      btn.classList.toggle('is-empty', n === 0 && key !== 'all');
-    });
-  }
 
   function apply() {
     let shown = 0;
     rows.forEach(row => {
-      const match = matchesType(row, wantType) && matchesArea(row, wantArea);
+      const match = wantType === 'all' || row.dataset.type === wantType;
       row.hidden = !match;
       if (match) shown++;
     });
     if (empty) empty.hidden = shown > 0;
-    recount();
   }
 
-  function reset() {
-    wantType = 'all';
-    wantArea = 'all';
-    typeBtns.forEach(b => b.classList.toggle('is-active', b.dataset.filter === 'all'));
-    areaBtns.forEach(b => b.classList.toggle('is-active', b.dataset.area === 'all'));
-    apply();
-  }
-
+  // /research?type=... lands pre-filtered
   const wanted = new URLSearchParams(location.search).get('type');
   if (wanted) {
     const match = Array.from(typeBtns).find(b => b.dataset.filter === wanted);
@@ -346,11 +277,9 @@ function typeClass(t: string) {
     apply();
   }));
 
-  areaBtns.forEach(btn => btn.addEventListener('click', () => {
-    wantArea = btn.dataset.area ?? 'all';
-    areaBtns.forEach(b => b.classList.toggle('is-active', b === btn));
+  clearBtn?.addEventListener('click', () => {
+    wantType = 'all';
+    typeBtns.forEach(b => b.classList.toggle('is-active', b.dataset.filter === 'all'));
     apply();
-  }));
-
-  clearBtn?.addEventListener('click', reset);
+  });
 </script>
