@@ -3,6 +3,20 @@ import Base from '../layouts/Base.astro';
 import WorkList from '../components/WorkList.astro';
 import { getCollection } from 'astro:content';
 
+// Sarah's order: book, journal articles, chapters, commissioned reports,
+// then the archive and recordings.
+const GROUPS = [
+  { title: 'Book',                    types: ['Monograph', 'Book'] },
+  { title: 'Journal papers',          types: ['Journal Papers'] },
+  { title: 'Book chapters',           types: ['Book Chapters'] },
+  { title: 'Commissioned reports',    types: ['Commissioned Research Contracts', 'Report', 'Working Paper', 'White Paper'] },
+  { title: 'Keynotes & invited talks', types: ['Keynotes & Invited Talks'] },
+  { title: 'Conference papers',       types: ['Conferences'] },
+  { title: 'Research projects',       types: ['Research Project'] },
+  { title: 'Doctoral research',       types: ['PhD thesis'] },
+  { title: 'Open archives & recordings', types: ['Voices', 'Dataset'] },
+];
+
 const items = (await getCollection('work'))
   .filter(p => !p.data.draft && p.data.domain === 'Research')
   .sort((a, b) => b.data.year - a.data.year || a.data.title.localeCompare(b.data.title));
@@ -33,7 +47,7 @@ const items = (await getCollection('work'))
     </a>
   </div>
 
-  <WorkList items={items} />
+  <WorkList items={items} groups={GROUPS} />
 </Base>
 
 <style>

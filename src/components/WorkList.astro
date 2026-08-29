@@ -5,19 +5,28 @@ import type { CollectionEntry } from 'astro:content';
 interface Props {
   items: CollectionEntry<'work'>[];
   typeOrder?: string[];
+  groups?: { title: string; types: string[] }[];
 }
-const { items, typeOrder } = Astro.props;
+const { items, typeOrder, groups } = Astro.props;
 
+// Pills follow the same sequence as the sections below them.
 const TYPE_ORDER = typeOrder ?? [
-  'Monograph', 'Book', 'PhD thesis', 'Journal Papers', 'Book Chapters', 'Essay',
-  'Conferences', 'Keynotes & Invited Talks', 'Interviews',
-  'Report', 'Working Paper', 'White Paper',
-  'Commissioned Strategy & Advisory', 'Commissioned Research Contracts',
-  'Strategy Project', 'Research Project', 'Creative Project', 'Exhibitions',
-  'Dataset', 'Creative Research', 'Voices',
+  'Monograph', 'Book', 'Journal Papers', 'Book Chapters',
+  'Commissioned Research Contracts', 'Report', 'Working Paper', 'White Paper',
+  'Keynotes & Invited Talks', 'Conferences',
+  'Research Project', 'PhD thesis', 'Voices', 'Dataset',
+  'Essay', 'Interviews',
+  'Commissioned Strategy & Advisory', 'Strategy Project',
+  'Exhibitions', 'Creative Project', 'Creative Research',
 ];
 const pubs = items;
 const types = TYPE_ORDER.filter(t => pubs.some(p => p.data.type === t));
+
+// When groups are given the list is sectioned rather than a single date-sorted run.
+const sections = (groups ?? [])
+  .map(g => ({ ...g, items: pubs.filter(p => g.types.includes(p.data.type)) }))
+  .filter(g => g.items.length > 0);
+const grouped = sections.length > 0;
 
 
 function typeClass(t: string) {
@@ -34,8 +43,11 @@ function typeClass(t: string) {
     ))}
   </div>
 
-  <ol class="pub-list">
-    {pubs.map(pub => (
+  {grouped ? sections.map(section => (
+    <section class="pub-section" data-section={section.title}>
+      <h2 class="pub-section-head">{section.title}<span class="pub-section-n">{section.items.length}</span></h2>
+      <ol class="pub-list">
+        {section.items.map(pub => (
       <li
         class={`pub-row ${typeClass(pub.data.type)}`}
         data-type={pub.data.type}
@@ -77,8 +89,56 @@ function typeClass(t: string) {
           </div>
         </div>
       </li>
-    ))}
-  </ol>
+        ))}
+      </ol>
+    </section>
+  )) : (
+    <ol class="pub-list">
+      {pubs.map(pub => (
+      <li
+        class={`pub-row ${typeClass(pub.data.type)}`}
+        data-type={pub.data.type}
+        data-areas={(pub.data.areas ?? []).join('|')}
+      >
+        <div class="pub-year">{pub.data.yearLabel ?? pub.data.year}</div>
+        <div class="pub-body">
+          <h2 class="pub-row-title">
+            {pub.data.href
+              ? <a href={pub.data.href} rel="noopener">{pub.data.title}</a>
+              : pub.data.title}
+          </h2>
+          <div class="pub-row-details">
+            {pub.data.authors && <span>{pub.data.authors}</span>}
+            {pub.data.authors && <span class="pub-sep">·</span>}
+            <span>{pub.data.venue}</span>
+            {pub.data.citations && <span class="pub-sep">·</span>}
+            {pub.data.citations && <span>{pub.data.citations}+ citations</span>}
+          </div>
+          {pub.data.note && <p class="pub-note">{pub.data.note}</p>}
+          <div class="pub-row-foot">
+            <span class="pub-tag">{pub.data.type}</span>
+            {pub.data.doi && (
+              <a class="pub-doi" href={`https://doi.org/${pub.data.doi}`} rel="noopener">doi:{pub.data.doi}</a>
+            )}
+            {pub.data.isbn && <span class="pub-isbn">isbn:{pub.data.isbn}</span>}
+            {pub.data.ntro && <span class="pub-ntro">NTRO</span>}
+            {pub.data.licence && <span class="pub-licence">{pub.data.licence}</span>}
+            {pub.data.openAccess && (
+              <a class="pub-oa" href={pub.data.openAccess} rel="noopener">
+                <span class="pub-oa-dot" aria-hidden="true"></span>
+                {/youtube\.com|youtu\.be|vimeo/.test(pub.data.openAccess)
+                  ? 'Watch'
+                  : pub.data.audio || pub.data.openAccess.includes('soundcloud.com')
+                    ? 'Listen'
+                    : 'Free to read'}
+              </a>
+            )}
+          </div>
+        </div>
+      </li>
+      ))}
+    </ol>
+  )}
 
   <p class="pub-empty" hidden>
     Nothing of that kind here yet. <button type="button" class="pub-clear-inline">Clear filters</button>
@@ -150,6 +210,18 @@ function typeClass(t: string) {
   .pub-filter-out:hover { color: var(--text); border-color: var(--ember-ink); }
 
   .pub-list { list-style: none; padding: 0; margin: 0; }
+  .pub-section[hidden] { display: none; }
+  .pub-section-head {
+    font-family: var(--display); font-weight: 400;
+    font-size: clamp(1.15rem, 2.2vw, 1.45rem); line-height: 1.2;
+    color: var(--text); margin: 2.6rem 0 0.2rem;
+    display: flex; align-items: baseline; gap: 0.6rem;
+  }
+  .pub-section:first-of-type .pub-section-head { margin-top: 1.4rem; }
+  .pub-section-n {
+    font-family: var(--heading); font-size: 0.72rem; font-weight: 500;
+    color: var(--text-faint); font-variant-numeric: tabular-nums;
+  }
   .pub-row {
     display: grid; grid-template-columns: 5.5rem 1fr; gap: 1.2rem;
     padding: 1.6rem 0; border-bottom: 1px solid var(--border);
@@ -256,6 +328,10 @@ function typeClass(t: string) {
       const match = wantType === 'all' || row.dataset.type === wantType;
       row.hidden = !match;
       if (match) shown++;
+    });
+    document.querySelectorAll<HTMLElement>('.pub-section').forEach(sec => {
+      const any = Array.from(sec.querySelectorAll<HTMLLIElement>('.pub-row')).some(r => !r.hidden);
+      sec.hidden = !any;
     });
     if (empty) empty.hidden = shown > 0;
   }
