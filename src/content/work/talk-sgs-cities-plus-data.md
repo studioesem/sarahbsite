@@ -1,5 +1,5 @@
 ---
-title: "Cities Plus Data"
+title: "Keynote: Cities Plus Data"
 year: 2017
 domain: "Research"
 type: "Keynotes & Invited Talks"

@@ -1,5 +1,5 @@
 ---
-title: "What Kind of Smart City Do You Want to Build?"
+title: "Keynote: What Kind of Smart City Do You Want to Build?"
 year: 2019
 domain: "Research"
 type: "Keynotes & Invited Talks"

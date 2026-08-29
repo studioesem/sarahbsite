@@ -1,5 +1,5 @@
 ---
-title: "Cities Plus Data: New Vocabularies for Living Cities"
+title: "Keynote: Cities Plus Data: New Vocabularies for Living Cities"
 year: 2016
 domain: "Research"
 type: "Keynotes & Invited Talks"

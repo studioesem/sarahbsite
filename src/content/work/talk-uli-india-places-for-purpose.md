@@ -1,5 +1,5 @@
 ---
-title: "Creating Places for Purpose"
+title: "Keynote: Creating Places for Purpose"
 year: 2023
 domain: "Research"
 type: "Keynotes & Invited Talks"

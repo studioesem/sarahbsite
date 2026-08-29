@@ -1,5 +1,5 @@
 ---
-title: "Cities in the Age of the Platform: A new deal on city data"
+title: "Keynote: Cities in the Age of the Platform: A new deal on city data"
 year: 2016
 domain: "Research"
 type: "Keynotes & Invited Talks"
