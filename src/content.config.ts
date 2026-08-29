@@ -50,7 +50,7 @@ const work = defineCollection({
     domain: z.enum(['Research', 'Creative', 'Strategy & Delivery', 'Writing & Essays', 'Voices']),
     type: z.enum([
       'Monograph', 'Book', 'Journal Papers', 'Book Chapters', 'Essay',
-      'Report', 'Working Paper', 'White Paper', 'PhD thesis',
+      'Working Paper', 'PhD thesis',
       'Commissioned Research Contracts', 'Commissioned Strategy & Advisory',
       'Conferences', 'Keynotes & Invited Talks', 'Interviews', 'Dataset',
       'Creative Research', 'Voices',
