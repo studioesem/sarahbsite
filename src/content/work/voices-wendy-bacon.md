@@ -1,7 +1,6 @@
 ---
 title: "Wendy Bacon’s Speech"
-year: 2014
-yearLabel: "Victoria St, date to confirm"
+year: 2009
 domain: "Research"
 type: "Voices"
 venue: "ABC archive"
