@@ -1,7 +1,7 @@
 ---
 title: "Shirley Abicair interviews L. J. Hooker in Martin Place"
 year: 1965
-domain: "Research"
+domain: "Voices"
 type: "Voices"
 venue: "ABC TV, Shirley Abicair in Sydney"
 note: "Boom-town Sydney interviewed on the street in 1965. Released under CC BY 2.0 through the Past Forward partnership with ABC Pool, negotiated by Sarah Barns in 2012."

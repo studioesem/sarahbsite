@@ -101,7 +101,7 @@ content:
         type: select
         required: true
         options:
-          values: [Research, Creative, Strategy & Delivery, Writing & Essays]
+          values: [Research, Creative, Strategy & Delivery, Writing & Essays, Voices]
       - name: type
         label: Type
         type: select

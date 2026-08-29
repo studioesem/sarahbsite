@@ -1,7 +1,7 @@
 ---
 title: "Wendy Bacon’s Speech"
 year: 2009
-domain: "Research"
+domain: "Voices"
 type: "Voices"
 venue: "ABC archive"
 note: "Bacon marks the eviction of Mick Fowler from Victoria Street, Potts Point. Released under CC BY 2.0 through the Past Forward partnership with ABC Pool, negotiated by Sarah Barns in 2012."

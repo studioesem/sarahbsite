@@ -47,7 +47,7 @@ const work = defineCollection({
     year: z.number(),                  // used to order and to group the list
     yearLabel: z.string().optional(),  // override, e.g. "In progress" or "2019–2021"
     // What kind of output this is.
-    domain: z.enum(['Research', 'Creative', 'Strategy & Delivery', 'Writing & Essays']),
+    domain: z.enum(['Research', 'Creative', 'Strategy & Delivery', 'Writing & Essays', 'Voices']),
     type: z.enum([
       'Monograph', 'Book', 'Journal Papers', 'Book Chapters', 'Essay',
       'Report', 'Working Paper', 'White Paper', 'PhD thesis',

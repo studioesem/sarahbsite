@@ -1,7 +1,7 @@
 ---
 title: "Mick Fowler"
 year: 2009
-domain: "Research"
+domain: "Voices"
 type: "Voices"
 venue: "ABC archive"
 note: "Fowler led the residents’ protest against Victoria Heights, one of the more bitter of the Green Bans disputes in Potts Point. Released under CC BY 2.0 through the Past Forward partnership with ABC Pool, negotiated by Sarah Barns in 2012."
