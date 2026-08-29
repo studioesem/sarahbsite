@@ -1,8 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import { getCollection } from 'astro:content';
 
-// Selected publications are drawn from the publications collection — /research holds the full record.
 const AWARDS = [
   { year: '2025', name: 'Interpretation Australia Award', detail: 'Birds of Australia, STORYBOX with the Australian Museum' },
   { year: '2025', name: 'Media Architecture Biennale Award', detail: 'STORYBOX' },
@@ -23,9 +21,6 @@ const FELLOWSHIPS = [
   { year: '2005–2009', name: 'Australian Postgraduate Award', detail: '' },
 ];
 
-const selectedPubs = (await getCollection('work'))
-  .filter(p => !p.data.draft && p.data.featured)
-  .sort((a, b) => b.data.year - a.data.year || a.data.title.localeCompare(b.data.title));
 ---
 
 <Base
@@ -106,7 +101,6 @@ const selectedPubs = (await getCollection('work'))
       <div class="pub-details">Creative Director &amp; Lead Sound Designer, 2022</div>
       <span class="pub-tag">Sound &amp; installation</span>
     </div>
-    <p class="pub-more"><a href="/projects">All projects &rarr;</a></p>
   </div>
 
   <div class="publications">
@@ -246,6 +240,4 @@ const selectedPubs = (await getCollection('work'))
   .honour-detail { font-family: var(--heading); font-size: 0.8rem; font-weight: 300; color: var(--text-dim); }
   @media (max-width: 520px) { .honour { grid-template-columns: 1fr; } }
 
-  .pub-more { margin-top: 1.2rem; }
-  .pub-more a { font-family: var(--heading); font-size: 0.85rem; color: var(--text-dim); }
 </style>
