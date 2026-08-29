@@ -1,7 +1,6 @@
 ---
 title: "Planetary Civics: In Conversation with Rosi Braidotti"
 year: 2024
-yearLabel: "2023–24, date to confirm"
 domain: "Research"
 type: "Keynotes & Invited Talks"
 venue: "Planetary Civics In Conversation series, RMIT University"
