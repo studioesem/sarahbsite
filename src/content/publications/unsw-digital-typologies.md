@@ -5,4 +5,5 @@ type: "Commissioned Strategy & Advisory"
 venue: "University of New South Wales"
 authors: "Sarah Barns & Michael Killalea"
 areas: [Arts, Technology, Place]
+highlight: true
 ---

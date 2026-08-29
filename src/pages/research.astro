@@ -3,14 +3,9 @@ import Base from '../layouts/Base.astro';
 import { getCollection } from 'astro:content';
 
 // Industry-facing outputs live on /strategy — this page is the scholarly record.
-// Commissioned work lives on /strategy; everything else is the research record.
-const STRATEGY_TYPES = ['Commissioned Research Contracts', 'Commissioned Strategy & Advisory'];
-
-const allPubs = (await getCollection('publications')).filter(p => !p.data.draft);
-const strategyCount = allPubs.filter(p => STRATEGY_TYPES.includes(p.data.type)).length;
-
-const pubs = allPubs
-  .filter(p => !STRATEGY_TYPES.includes(p.data.type))
+// /research is the whole record. /strategy is a client-facing page that points back here.
+const pubs = (await getCollection('publications'))
+  .filter(p => !p.data.draft)
   .sort((a, b) => b.data.year - a.data.year || a.data.title.localeCompare(b.data.title));
 
 // Research-strand projects sit alongside the publications as the applied half of the record.
@@ -21,7 +16,8 @@ const researchProjects = (await getCollection('projects'))
 const TYPE_ORDER = [
   'Monograph', 'Book', 'PhD thesis', 'Journal Papers', 'Book Chapters', 'Essay',
   'Conferences', 'Keynotes & Invited Talks', 'Interviews',
-  'Report', 'Working Paper', 'White Paper', 'Dataset', 'Creative Research', 'Voices',
+  'Report', 'Working Paper', 'White Paper', 'Commissioned Strategy & Advisory',
+  'Commissioned Research Contracts', 'Dataset', 'Creative Research', 'Voices',
 ];
 const types = TYPE_ORDER.filter(t => pubs.some(p => p.data.type === t));
 
@@ -67,9 +63,6 @@ function typeClass(t: string) {
         {t}<span class="pub-count">{pubs.filter(p => p.data.type === t).length}</span>
       </button>
     ))}
-    <a class="pub-filter pub-filter-out" href="/strategy">
-      Commissioned work<span class="pub-count">{strategyCount}</span><span class="canon-out" aria-hidden="true">&#8594;</span>
-    </a>
   </div>
 
   <div class="pub-filters pub-areas">
@@ -327,6 +320,17 @@ function typeClass(t: string) {
       if (match) shown++;
     });
     if (empty) empty.hidden = shown > 0;
+  }
+
+  // /research?type=... lands pre-filtered, so links from /strategy arrive in context
+  const wanted = new URLSearchParams(location.search).get('type');
+  if (wanted) {
+    const match = Array.from(typeBtns).find(b => b.dataset.filter === wanted);
+    if (match) {
+      wantType = wanted;
+      typeBtns.forEach(b => b.classList.toggle('is-active', b === match));
+      apply();
+    }
   }
 
   typeBtns.forEach(btn => btn.addEventListener('click', () => {

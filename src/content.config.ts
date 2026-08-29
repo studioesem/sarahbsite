@@ -61,6 +61,7 @@ const publications = defineCollection({
     openAccess: z.string().optional(), // free-to-read copy: repository URL, Zenodo DOI link, or local PDF
     isbn: z.string().optional(),       // for chapters and books — from ORCID
     audio: z.boolean().optional(),     // true when the open copy is listened to, not read
+    highlight: z.boolean().optional(), // show on the client-facing /strategy page
     licence: z.string().optional(),    // e.g. "CC BY 2.0" — shown as a chip
     // Content areas — cross-cutting, so a work can sit in more than one.
     areas: z.array(z.enum(['Arts', 'Listening & Composition', 'Technology', 'Place', 'History'])).optional(),

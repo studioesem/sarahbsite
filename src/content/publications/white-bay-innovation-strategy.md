@@ -5,4 +5,5 @@ type: "Commissioned Strategy & Advisory"
 venue: "Urban Growth NSW, with SGS Economics and Terroir Architecture"
 authors: "Sarah Barns"
 areas: [Technology, Place]
+highlight: true
 ---

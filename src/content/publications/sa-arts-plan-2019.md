@@ -5,4 +5,5 @@ type: "Commissioned Strategy & Advisory"
 venue: "Government of South Australia"
 authors: "Sarah Barns, Tony Grybowski & Gerashe"
 areas: [Arts]
+highlight: true
 ---

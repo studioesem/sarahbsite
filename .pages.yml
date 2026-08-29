@@ -130,6 +130,9 @@ content:
       - name: audio
         label: Audio (chip reads "Listen" rather than "Free to read")
         type: boolean
+      - name: highlight
+        label: Highlight on the Strategy page
+        type: boolean
       - name: licence
         label: Licence (e.g. CC BY 2.0)
         type: string

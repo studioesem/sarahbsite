@@ -5,4 +5,5 @@ type: "Commissioned Strategy & Advisory"
 venue: "ABC Online Executive"
 authors: "Sarah Barns"
 areas: [Technology, Arts]
+highlight: true
 ---

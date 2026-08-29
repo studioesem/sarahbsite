@@ -2,29 +2,30 @@
 import Base from '../layouts/Base.astro';
 import { getCollection } from 'astro:content';
 
-// Industry-facing outputs from the publications collection — reports, working
-// papers and white papers belong with the advisory work, not the scholarly record.
-const STRATEGY_TYPES = ['Commissioned Research Contracts', 'Commissioned Strategy & Advisory'];
-const all = (await getCollection('publications'))
-  .filter(p => !p.data.draft && STRATEGY_TYPES.includes(p.data.type))
-  .sort((a, b) => b.data.year - a.data.year || a.data.title.localeCompare(b.data.title));
+// Client-facing page: a short account of the offer, a handful of engagements,
+// and a way through to the full record on /research.
+const all = (await getCollection('publications')).filter(p => !p.data.draft);
+const pick = (type: string) => all
+  .filter(p => p.data.type === type)
+  .sort((a, b) => b.data.year - a.data.year);
 
-// Research contracts and strategy work are kept apart — they are different kinds of
-// engagement and were reported differently.
 const GROUPS = [
   {
     id: 'strategy-advisory',
     title: 'Commissioned Strategy & Advisory',
     lede: 'A highly experienced strategic advisor for a range of public and private organisations, spanning technology, urban transformation, placemaking, heritage and the arts.',
-    items: all.filter(p => p.data.type === 'Commissioned Strategy & Advisory'),
+    type: 'Commissioned Strategy & Advisory',
   },
   {
     id: 'research-projects',
     title: 'Research Projects',
     lede: 'An independent and trusted research partner for a range of industry and government agencies, focusing on building long-term public value frameworks for organisations and communities in transition.',
-    items: all.filter(p => p.data.type === 'Commissioned Research Contracts'),
+    type: 'Commissioned Research Contracts',
   },
-].filter(g => g.items.length > 0);
+].map(g => {
+  const items = pick(g.type);
+  return { ...g, total: items.length, items: items.filter(p => p.data.highlight) };
+}).filter(g => g.total > 0);
 ---
 
 <Base title="Strategy — Sarah Barns">
@@ -41,7 +42,7 @@ const GROUPS = [
   </div>
 
   {GROUPS.map(group => (
-    <div class="publications" id={group.id}>
+    <section class="publications" id={group.id}>
       <h2 class="strategy-h2">{group.title}</h2>
       <p class="strategy-lede">{group.lede}</p>
       {group.items.map(r => (
@@ -49,21 +50,26 @@ const GROUPS = [
           <div class="pub-title">
             {r.data.href ? <a href={r.data.href} rel="noopener">{r.data.title}</a> : r.data.title}
           </div>
-          <div class="pub-details">
-            {r.data.authors && <span>{r.data.authors} &middot; </span>}
-            {r.data.venue}, {r.data.yearLabel ?? r.data.year}
-          </div>
-          {r.data.note && <p class="strategy-description">{r.data.note}</p>}
-          <div class="report-foot">
-            <span class="pub-tag">{r.data.type}</span>
-            {r.data.openAccess && (
-              <a class="pub-oa" href={r.data.openAccess} rel="noopener">
-                <span class="pub-oa-dot" aria-hidden="true"></span>Free to read
-              </a>
-            )}
-          </div>
+          <div class="pub-details">{r.data.venue}, {r.data.yearLabel ?? r.data.year}</div>
+          {r.data.openAccess && (
+            <a class="pub-oa" href={r.data.openAccess} rel="noopener">
+              <span class="pub-oa-dot" aria-hidden="true"></span>Free to read
+            </a>
+          )}
         </div>
       ))}
+      <p class="pub-more">
+        <a href={`/research?type=${encodeURIComponent(group.type)}`}>
+          All {group.total} &rarr;
+        </a>
+      </p>
+    </section>
+  ))}
+
+  <section class="strategy-cta">
+    <p>Enquiries about strategy, advisory or research partnerships:
+      <a href="mailto:sarah@studioesem.com">sarah@studioesem.com</a></p>
+  </section>
     </div>
   ))}
 
