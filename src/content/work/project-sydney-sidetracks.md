@@ -6,7 +6,6 @@ type: "Creative Project"
 venue: "Australian Broadcasting Corporation"
 award: "ABC Best Cross-Platform Content 2008"
 note: "Lead producer of the ABC's first mobile content platform — layering decades of broadcast history onto the streets of Sydney for on-site listening, years before location-aware media became commonplace."
-draft: true
 areas: [Arts, Place]
 links:
   - label: ABC Sidetracks (Internet Archive, 2011)

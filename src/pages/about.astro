@@ -3,6 +3,26 @@ import Base from '../layouts/Base.astro';
 import { getCollection } from 'astro:content';
 
 // Selected publications are drawn from the publications collection — /research holds the full record.
+const AWARDS = [
+  { year: '2025', name: 'Interpretation Australia Award', detail: 'Birds of Australia, STORYBOX with the Australian Museum' },
+  { year: '2025', name: 'Media Architecture Biennale Award', detail: 'STORYBOX' },
+  { year: '2023', name: 'NSW Heritage Award', detail: 'Building Bridges' },
+  { year: '2021', name: 'Digital Placemaking Award, Commendation', detail: 'STORYBOX, Asia Pacific Place Leaders Awards' },
+  { year: '2020', name: 'Smart Cities Future of Place, Finalist', detail: 'Australia and NZ Smart Cities Council Awards' },
+  { year: '2016', name: 'Digital Interpretation Award, Winner', detail: 'A Keeping Place, Blacktown Native Institute. Museums and Galleries Australia' },
+  { year: '2015', name: 'Outstanding Heritage Award, Winner', detail: "Mt Stromlo Director's Residence. National Trust ACT" },
+  { year: '2008', name: 'Best Cross-Platform Content, Winner', detail: 'Sydney Sidetracks, ABC' },
+];
+
+const FELLOWSHIPS = [
+  { year: '2023–2027', name: "Vice Chancellor's Senior Research Fellowship", detail: 'RMIT University' },
+  { year: '2017', name: 'Museum of Arts and Science Research Fellowship', detail: '' },
+  { year: '2015', name: 'Fellowship', detail: 'NYU Centre for Urban Science and Progress' },
+  { year: '2014–2017', name: 'Postdoctoral Research Fellowship', detail: 'Urban Studies Foundation' },
+  { year: '2006', name: 'Centre for Archival and Scholarly Research Fellowship', detail: 'National Film and Sound Archive' },
+  { year: '2005–2009', name: 'Australian Postgraduate Award', detail: '' },
+];
+
 const selectedPubs = (await getCollection('work'))
   .filter(p => !p.data.draft && p.data.featured)
   .sort((a, b) => b.data.year - a.data.year || a.data.title.localeCompare(b.data.title));
@@ -87,6 +107,32 @@ const selectedPubs = (await getCollection('work'))
       <span class="pub-tag">Sound &amp; installation</span>
     </div>
     <p class="pub-more"><a href="/projects">All projects &rarr;</a></p>
+  </div>
+
+  <div class="publications">
+    <h2 class="about-h2">Awards</h2>
+    {AWARDS.map(a => (
+      <div class="honour">
+        <span class="honour-year">{a.year}</span>
+        <span class="honour-body">
+          <span class="honour-name">{a.name}</span>
+          {a.detail && <span class="honour-detail">{a.detail}</span>}
+        </span>
+      </div>
+    ))}
+  </div>
+
+  <div class="publications">
+    <h2 class="about-h2">Fellowships</h2>
+    {FELLOWSHIPS.map(a => (
+      <div class="honour">
+        <span class="honour-year">{a.year}</span>
+        <span class="honour-body">
+          <span class="honour-name">{a.name}</span>
+          {a.detail && <span class="honour-detail">{a.detail}</span>}
+        </span>
+      </div>
+    ))}
   </div>
 
   <div class="publications">
@@ -192,6 +238,19 @@ const selectedPubs = (await getCollection('work'))
   .pub-title a:hover { text-decoration-color: var(--ember-ink); }
   /* Works still awaiting a URL — render as plain text, not a dead link */
   .pub-title a[data-needs-url] { color: inherit; text-decoration: none; pointer-events: none; }
+  .honour {
+    display: grid; grid-template-columns: 6.5rem 1fr; gap: 0.4rem 1rem;
+    padding: 0.7rem 0; border-bottom: 1px solid var(--border);
+  }
+  .honour-year {
+    font-family: var(--heading); font-size: 0.8rem; font-weight: 300;
+    color: var(--text-faint); font-variant-numeric: tabular-nums;
+  }
+  .honour-body { display: flex; flex-direction: column; gap: 0.12rem; }
+  .honour-name { font-size: 1rem; color: var(--text); line-height: 1.35; }
+  .honour-detail { font-family: var(--heading); font-size: 0.8rem; font-weight: 300; color: var(--text-dim); }
+  @media (max-width: 520px) { .honour { grid-template-columns: 1fr; } }
+
   .pub-more { margin-top: 1.2rem; }
   .pub-more a { font-family: var(--heading); font-size: 0.85rem; color: var(--text-dim); }
 </style>

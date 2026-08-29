@@ -7,4 +7,5 @@ venue: "See ORCID record"
 href: "https://doi.org/10.1145/3802974.3807998"
 doi: "10.1145/3802974.3807998"
 areas: [Arts, Technology]
+note: "Human\u2013Computer Interaction (HCI) and its surrounding areas, such as Human-Building Interaction (HBI), and Media Architecture have long been shaped by narratives of progress, innovation, and problem-solving, often following the \u201cheroic arc\u201d of Joseph Campbell\u2019s monomyth. While productive, these narratives tend to marginalize practices of maintenance, repair, and care, as well as the more-than-human relations through which sociotechnical systems persist. This full-day workshop invites participants to explore alternative narrative forms for HCI through Ursula K."
 ---
