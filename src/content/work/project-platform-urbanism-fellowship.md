@@ -5,7 +5,7 @@ yearLabel: "2014–2017"
 domain: "Research"
 type: "Fellowships"
 venue: "Urban Studies Foundation Postdoctoral Fellowship, Institute for Culture and Society, Western Sydney University"
-note: "Postdoctoral research fellowship awarded by the UK-based Urban Studies Foundation, with residencies at NYU's Centre for Urban Science and Progress and UCL's City Leadership Lab, and data governance collaboration with Data61 and state and federal agencies. The research became the book."
+note: "Postdoctoral research fellowship awarded by the UK-based Urban Studies Foundation, with residencies at NYU's Centre for Urban Science and Progress and UCL's City Leadership Lab, and data governance collaboration with Data61 and state and federal agencies."
 areas: [Technology, Place]
 links:
   - label: Urban Studies Foundation
