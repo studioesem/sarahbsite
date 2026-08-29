@@ -110,6 +110,41 @@ const selectedPubs = (await getCollection('work'))
   </div>
 
   <div class="publications">
+    <h2 class="about-h2">Previous positions</h2>
+    <p class="prev-roles">
+      Before RMIT I held an Industry Fellowship at the QUT Design Lab and a Visiting Fellowship at the
+      Melbourne Centre for Cities (2021&ndash;22), and before that was Engaged Research Fellow
+      (2018&ndash;19) and Urban Studies Foundation Postdoctoral Research Fellow (2014&ndash;17) at the
+      Institute for Culture and Society, Western Sydney University. From 2015 to 2017 I was Future
+      Cities Advisor at CSIRO&rsquo;s Data61, on secondment from Western Sydney University, leading
+      strategic advisory work on smart cities, data governance and urban living labs.
+    </p>
+    <p class="prev-roles">
+      I co-directed Esem Projects from 2013 to 2022 and ran Sitelines Media Research Consulting from
+      2019 to 2022. Earlier roles include Digital and Organisational Strategy Lead at the ABC
+      (2011&ndash;12), Senior Consultant in Urban Informatics at Arup (2011&ndash;13), and Manager of
+      Strategic Initiatives at the UTS Creative Industries Innovation Centre (2008&ndash;11). My career
+      began in public policy in 2000, with roles across the Department of Communications, the media
+      and telecommunications think-tank Network Insight, the Australian Communications and Media
+      Authority, the Australia Council for the Arts and the ABC.
+    </p>
+    <div class="honour">
+      <span class="honour-year">2005&ndash;2010</span>
+      <span class="honour-body">
+        <span class="honour-name">Doctor of Philosophy</span>
+        <span class="honour-detail">University of Technology Sydney</span>
+      </span>
+    </div>
+    <div class="honour">
+      <span class="honour-year">1993&ndash;1998</span>
+      <span class="honour-body">
+        <span class="honour-name">Bachelor of Arts (First Class Honours), Politics &amp; International Relations</span>
+        <span class="honour-detail">Murdoch University</span>
+      </span>
+    </div>
+  </div>
+
+  <div class="publications">
     <h2 class="about-h2">Awards</h2>
     {AWARDS.map(a => (
       <div class="honour">
@@ -135,50 +170,6 @@ const selectedPubs = (await getCollection('work'))
     ))}
   </div>
 
-  <div class="publications">
-    <h2 class="about-h2">Selected writing &amp; publications</h2>
-    {selectedPubs.map(pub => (
-      <div class="pub-item">
-        <div class="pub-title">
-          {pub.data.href
-            ? <a href={pub.data.href} rel="noopener">{pub.data.title}</a>
-            : pub.data.title}
-        </div>
-        <div class="pub-details">
-          {/* Works with a yearLabel are unpublished — the venue already carries their status. */}
-          {pub.data.venue}{pub.data.yearLabel ? '' : `, ${pub.data.year}`}
-          {pub.data.citations && ` · ${pub.data.citations}+ citations`}
-        </div>
-        <span class="pub-tag">{pub.data.type}</span>
-      </div>
-    ))}
-    <p class="pub-more"><a href="/research">Full research record &rarr;</a></p>
-  </div>
-
-  <div class="publications">
-    <h2 class="about-h2">Selected creative production</h2>
-    <div class="pub-item">
-      <div class="pub-title"><a href="https://www.studioesem.com/projects/wakulda">Wakulda: Weaving our Stories as One</a></div>
-      <div class="pub-details">Studio ESEM &middot; Executive Producer</div>
-      <span class="pub-tag">Production</span>
-    </div>
-    <div class="pub-item">
-      <div class="pub-title"><a href="https://www.storybox.co/birds-of-australia">Birds of Australia</a></div>
-      <div class="pub-details">STORYBOX &middot; Lead Curator, Researcher &amp; Program Lead (Studio ESEM / STORYBOX)</div>
-      <span class="pub-tag">STORYBOX</span>
-    </div>
-    <div class="pub-item">
-      <div class="pub-title"><a href="https://www.storybox.co/case-study-parramatta">STORYBOX Parramatta</a></div>
-      <div class="pub-details">STORYBOX &middot; City of Parramatta</div>
-      <span class="pub-tag">STORYBOX</span>
-    </div>
-    <div class="pub-item">
-      <div class="pub-title"><a href="https://www.studioesem.com/projects/arrivals-and-departures">Arrivals and Departures: Memory Palaces at Barangaroo Headland</a></div>
-      <div class="pub-details">Studio ESEM</div>
-      <span class="pub-tag">Installation</span>
-    </div>
-    <p class="pub-more"><a href="/projects">All projects &rarr;</a></p>
-  </div>
 </Base>
 
 <style>
@@ -238,6 +229,10 @@ const selectedPubs = (await getCollection('work'))
   .pub-title a:hover { text-decoration-color: var(--ember-ink); }
   /* Works still awaiting a URL — render as plain text, not a dead link */
   .pub-title a[data-needs-url] { color: inherit; text-decoration: none; pointer-events: none; }
+  .prev-roles {
+    font-size: 1rem; line-height: 1.62; color: var(--text-dim);
+    max-width: 66ch; margin: 0 0 1rem;
+  }
   .honour {
     display: grid; grid-template-columns: 6.5rem 1fr; gap: 0.4rem 1rem;
     padding: 0.7rem 0; border-bottom: 1px solid var(--border);
