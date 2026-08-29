@@ -2,15 +2,42 @@
 import Base from '../layouts/Base.astro';
 import { getCollection } from 'astro:content';
 
-// The front page shows writing, not project work — posts tagged STORYBOX, Practice or
-// Workshop are practice records and stay on /writing rather than leading the homepage.
-const WRITING_CATEGORIES = ['Essay', 'Paper', 'Note', 'Research', 'Deep Time'];
-
+// Recent Activity: the newest things across the whole practice, not just posts.
 const posts = (await getCollection('blog'))
   .filter(post => !post.data.draft)
-  .filter(post => !post.data.category || WRITING_CATEGORIES.includes(post.data.category))
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .slice(0, 10);
+  .map(post => ({
+    date: post.data.pubDate,
+    year: post.data.pubDate.getFullYear(),
+    kind: post.data.category ?? 'Note',
+    domain: 'Writing & Essays',
+    title: post.data.title,
+    blurb: post.data.description,
+    href: `/writing/${post.id.replace(/\.mdx?$/, '')}`,
+  }));
+
+const DOMAIN_HREF: Record<string, string> = {
+  'Research': '/research',
+  'Creative': '/creative',
+  'Strategy & Delivery': '/strategy',
+  'Writing & Essays': '/writing',
+};
+
+const works = (await getCollection('work'))
+  .filter(w => !w.data.draft)
+  .map(w => ({
+    // Work entries carry a year, not a date; sort them within the year they appeared.
+    date: new Date(w.data.year, 6, 1),
+    year: w.data.year,
+    kind: w.data.type,
+    domain: w.data.domain,
+    title: w.data.title,
+    blurb: w.data.note ?? '',
+    href: w.data.href ?? w.data.openAccess ?? DOMAIN_HREF[w.data.domain],
+  }));
+
+const activity = [...posts, ...works]
+  .sort((a, b) => b.date.valueOf() - a.date.valueOf())
+  .slice(0, 12);
 
 function formatDate(date: Date) {
   return date.toLocaleDateString('en-AU', { day: 'numeric', month: 'short', year: 'numeric' });
@@ -45,7 +72,7 @@ function categoryClass(cat?: string) {
         a Senior Vice Chancellor's Research Fellowship Scheme. I am the author of
         <a href="https://link.springer.com/book/10.1007/978-981-32-9725-8"><em>one book</em></a> and
         many other <a href="/research">published research</a> and
-        <a href="/strategy#reports">strategy reports</a>.
+        <a href="/strategy">strategy and advisory work</a>.
       </p>
       <div class="hp-socials">
         <a href="/about" class="hp-pill">
@@ -64,9 +91,13 @@ function categoryClass(cat?: string) {
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
           STORYBOX
         </a>
-        <a href="/projects" class="hp-pill">
+        <a href="/highlights" class="hp-pill">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-          Projects
+          Highlights
+        </a>
+        <a href="/creative" class="hp-pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M19.1 4.9l-2.8 2.8M7.7 16.3l-2.8 2.8"/></svg>
+          Creative
         </a>
         <a href="/strategy" class="hp-pill">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
@@ -105,31 +136,25 @@ function categoryClass(cat?: string) {
 
   <!-- Writing -->
   <section class="hp-writing">
-    <h2 class="hp-h2"><span class="hp-tick"></span>Recent writing</h2>
+    <h2 class="hp-h2"><span class="hp-tick"></span>Recent activity</h2>
     <ol class="hpw-list">
-      {posts.map(post => (
+      {activity.map(item => (
         <li class="hpw-item">
-          <a
-            href={(post.body ?? '').includes('This post is a placeholder') ? '#' : `/writing/${post.id.replace(/\.mdx?$/, '')}`}
-            class={`hpw-link ${categoryClass(post.data.category)}`}
-            {...((post.body ?? '').includes('This post is a placeholder') ? { onclick: 'return false' } : {})}
-          >
+          <a href={item.href} class="hpw-link">
             <span class="hpw-node" aria-hidden="true"></span>
             <div class="hpw-meta">
-              <span class="hpw-date">{formatDate(post.data.pubDate)}</span>
-              {post.data.topic && <span class="hpw-dot"></span>}
-              {post.data.topic && <span class="hpw-date hpw-topic">{post.data.topic}</span>}
+              <span class="hpw-date">{item.year}</span>
               <span class="hpw-dot"></span>
-              <span class="hpw-read">{estimateReadTime(post.body ?? '')} min read</span>
-              {post.data.category && <span class="hpw-cat">{post.data.category}</span>}
+              <span class="hpw-date">{item.domain}</span>
+              <span class="hpw-cat">{item.kind}</span>
             </div>
-            <div class="hpw-title">{post.data.title}</div>
-            <p class="hpw-excerpt">{post.data.description}</p>
+            <div class="hpw-title">{item.title}</div>
+            {item.blurb && <p class="hpw-excerpt">{item.blurb}</p>}
           </a>
         </li>
       ))}
     </ol>
-    <a href="/writing" class="hpw-all">All writing</a>
+    <a href="/highlights" class="hpw-all">All work</a>
   </section>
 </Base>
 
