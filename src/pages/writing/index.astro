@@ -24,12 +24,19 @@ function categoryClass(cat?: string) {
 }
 ---
 
-<Base title="Writing — Sarah Barns">
+<Base title="Interviews & Essays — Sarah Barns">
   <div class="page-header">
-    <p class="page-kicker"><span class="ktick"></span><em>notes &amp; essays</em></p>
-    <h1>Writing</h1>
-    <p class="page-intro">On technology, place, governance, and the slow work of paying attention.</p>
+    <p class="page-kicker"><span class="ktick"></span><em>published &amp; in conversation</em></p>
+    <h1>Interviews &amp; Essays</h1>
+    <p class="page-intro">
+      Essays and commentary for Inside Story, The Conversation, Griffith Review and others,
+      alongside interviews and conversations about the work.
+    </p>
   </div>
+
+  <WorkList items={essays} />
+
+  <div class="wr-divider"><span>Notes and posts from this site</span></div>
 
   <ul class="post-list">
     {posts.map(post => (
@@ -50,8 +57,6 @@ function categoryClass(cat?: string) {
     ))}
   </ul>
 
-  <div class="wr-divider"><span>Essays, interviews &amp; commentary</span></div>
-  <WorkList items={essays} />
 </Base>
 
 <style>
