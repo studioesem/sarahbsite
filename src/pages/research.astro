@@ -113,7 +113,11 @@ function typeClass(t: string) {
             {pub.data.openAccess && (
               <a class="pub-oa" href={pub.data.openAccess} rel="noopener">
                 <span class="pub-oa-dot" aria-hidden="true"></span>
-                {pub.data.audio || pub.data.openAccess.includes('soundcloud.com') ? 'Listen' : 'Free to read'}
+                {/youtube\.com|youtu\.be|vimeo/.test(pub.data.openAccess)
+                  ? 'Watch'
+                  : pub.data.audio || pub.data.openAccess.includes('soundcloud.com')
+                    ? 'Listen'
+                    : 'Free to read'}
               </a>
             )}
           </div>
