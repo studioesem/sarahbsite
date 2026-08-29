@@ -50,7 +50,7 @@ const publications = defineCollection({
       'Monograph', 'Book', 'Journal Papers', 'Book Chapters', 'Essay',
       'Report', 'Working Paper', 'White Paper', 'PhD thesis',
       'Commissioned Research Contracts', 'Commissioned Strategy & Advisory',
-      'Conferences', 'Dataset', 'Creative Research', 'Voices',
+      'Conferences', 'Keynotes & Invited Talks', 'Dataset', 'Creative Research', 'Voices',
     ]),
     venue: z.string(),                 // journal, publisher, or outlet
     authors: z.string().optional(),    // omit when sole-authored

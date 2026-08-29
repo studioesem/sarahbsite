@@ -20,7 +20,7 @@ const researchProjects = (await getCollection('projects'))
 
 const TYPE_ORDER = [
   'Monograph', 'Book', 'PhD thesis', 'Journal Papers', 'Book Chapters', 'Essay',
-  'Conferences', 'Dataset', 'Creative Research', 'Voices',
+  'Conferences', 'Keynotes & Invited Talks', 'Dataset', 'Creative Research', 'Voices',
 ];
 const types = TYPE_ORDER.filter(t => pubs.some(p => p.data.type === t));
 
