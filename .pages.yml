@@ -129,12 +129,12 @@ content:
         type: string
       - name: areas
         label: Content areas
-        description: Arts, Sound, Technology, Place, History — pick any that apply
+        description: Arts, Listening & Composition, Technology, Place, History — pick any that apply
         type: select
         list: true
         options:
           multiple: true
-          values: [Arts, Sound, Technology, Place, History]
+          values: [Arts, Listening & Composition, Technology, Place, History]
       - name: openAccess
         label: Open access copy
         description: Repository URL, Zenodo link, or a PDF on this site — shows a "free to read" chip

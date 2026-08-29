@@ -24,7 +24,7 @@ const TYPE_ORDER = [
 ];
 const types = TYPE_ORDER.filter(t => pubs.some(p => p.data.type === t));
 
-const AREA_ORDER = ['Arts', 'Sound', 'Technology', 'Place', 'History'];
+const AREA_ORDER = ['Arts', 'Listening & Composition', 'Technology', 'Place', 'History'];
 const areas = AREA_ORDER.filter(a => pubs.some(p => p.data.areas?.includes(a)));
 
 function typeClass(t: string) {
