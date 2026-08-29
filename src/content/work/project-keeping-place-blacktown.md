@@ -4,7 +4,7 @@ year: 2016
 domain: "Creative"
 type: "Creative Project"
 venue: "MCA Australia · Esem Projects"
-award: "MAGNA Digital Interpretation Award 2016"
-note: "Digital storytelling project with the Museum of Contemporary Art Australia for the Blacktown Native Institution site, carrying the histories of one of the country's most significant First Nations sites into digital form."
+award: "Museums and Galleries NSW Award for Digital Cultural Heritage, 2016"
+note: "Digital storytelling project with the Museum of Contemporary Art Australia for the Blacktown Native Institution site, carrying the histories of one of the country's most significant First Nations sites into digital form. Received a Museums and Galleries NSW Award for Digital Cultural Heritage."
 areas: [Arts, Place, Heritage]
 ---
