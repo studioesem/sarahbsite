@@ -1,7 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
 import { getCollection } from 'astro:content';
-import WorkList from '../components/WorkList.astro';
 
 // Client-facing page: a short account of the offer, a handful of engagements,
 // and a way through to the full record on /research.
@@ -9,10 +8,6 @@ const all = (await getCollection('work')).filter(p => !p.data.draft);
 const pick = (type: string) => all
   .filter(p => p.data.type === type)
   .sort((a, b) => b.data.year - a.data.year);
-
-const domainItems = all
-  .filter(p => p.data.domain === 'Strategy & Delivery')
-  .sort((a, b) => b.data.year - a.data.year || a.data.title.localeCompare(b.data.title));
 
 const GROUPS = [
   {
@@ -33,17 +28,11 @@ const GROUPS = [
 }).filter(g => g.total > 0);
 ---
 
-<Base title="Strategy — Sarah Barns">
+<Base title="Strategy & Delivery — Sarah Barns">
   <div class="page-header">
     <p class="page-kicker"><span class="ktick"></span><em>practice &amp; advisory</em></p>
     <h1>Strategy &amp; Delivery</h1>
     <p class="page-intro">A highly experienced strategic advisor for a range of public and private organisations, spanning technology, urban transformation, placemaking, heritage and the arts.</p>
-  </div>
-
-
-  <div class="cta">
-    <p>Interested in working together? I take on a small number of strategy and advisory engagements each year.</p>
-    <a href="mailto:sarah@studioesem.com">Get in touch</a>
   </div>
 
   {GROUPS.map(group => (
@@ -55,7 +44,11 @@ const GROUPS = [
           <div class="pub-title">
             {r.data.href ? <a href={r.data.href} rel="noopener">{r.data.title}</a> : r.data.title}
           </div>
-          <div class="pub-details">{r.data.venue}, {r.data.yearLabel ?? r.data.year}</div>
+          <div class="pub-details">
+            {r.data.authors && <span>{r.data.authors}, </span>}
+            {r.data.venue}, {r.data.yearLabel ?? r.data.year}
+          </div>
+          {r.data.note && <p class="strategy-description">{r.data.note}</p>}
           {r.data.openAccess && (
             <a class="pub-oa" href={r.data.openAccess} rel="noopener">
               <span class="pub-oa-dot" aria-hidden="true"></span>Free to read
@@ -66,31 +59,37 @@ const GROUPS = [
     </section>
   ))}
 
-  <div class="wr-divider"><span>The full record</span></div>
-  <WorkList items={domainItems} />
-
   <section class="strategy-cta">
     <p>Enquiries about strategy, advisory or research partnerships:
       <a href="mailto:sarah@studioesem.com">sarah@studioesem.com</a></p>
   </section>
-    </div>
-  ))}
-
-          </div>
-        </div>
-      ))}
-    </div>
-  )}
 </Base>
 
-<script>
-  // Scroll-driven node highlight — same mechanism as the writing list & manifesto thread
-  const items = document.querySelectorAll('.strategy-item');
-  if (items.length && 'IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    const obs = new IntersectionObserver(
-      (entries) => entries.forEach((e) => e.target.classList.toggle('is-active', e.isIntersecting)),
-      { rootMargin: '-45% 0px -45% 0px', threshold: 0 }
-    );
-    items.forEach((el) => obs.observe(el));
+<style>
+  .strategy-h2 {
+    font-family: var(--display); font-weight: 400;
+    font-size: clamp(1.4rem, 2.6vw, 1.75rem); letter-spacing: -0.005em;
+    line-height: 1.2; color: var(--text); margin: 0 0 0.6rem;
+    scroll-margin-top: 1.5rem;
   }
-</script>
+  .strategy-lede {
+    font-size: 1.02rem; color: var(--text-dim); line-height: 1.55;
+    max-width: 62ch; margin: 0 0 1.2rem;
+  }
+  .strategy-description { font-size: 0.95rem; color: var(--text-dim); line-height: 1.6; margin: 0.4rem 0 0; max-width: 68ch; }
+  #research-projects, #strategy-advisory { scroll-margin-top: 1.5rem; }
+  .pub-oa {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    font-family: var(--heading); font-size: 0.66rem; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.09em;
+    color: var(--oa-ink); text-decoration: none;
+    background: var(--oa-bg); border: 1px solid var(--oa-line);
+    border-radius: 2px; padding: 0.16rem 0.45rem; margin-top: 0.5rem;
+  }
+  .pub-oa:hover { border-color: var(--oa-ink); background: var(--oa-bg-hover); }
+  .pub-oa-dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+  .strategy-cta {
+    margin-top: 3rem; padding-top: 1.6rem; border-top: 1px solid var(--border);
+    font-family: var(--heading); font-size: 0.9rem; color: var(--text-dim);
+  }
+</style>
