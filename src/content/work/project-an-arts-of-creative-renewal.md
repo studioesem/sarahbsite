@@ -1,11 +1,11 @@
 ---
-title: "An Arts of Creative Renewal with HASSELL"
-year: 2021
-yearLabel: "2022"
+title: "An Arts of Creative Renewal"
+year: 2022
+yearLabel: "2022–2023"
 domain: "Strategy & Delivery"
 type: "Strategy Project"
-venue: "HASSELL · Western Sydney University"
-note: "Working with HASSELL's Sydney team I worked with Western Sydney"
-draft: true
-areas: [Place, Technology]
+venue: "Western Sydney University, with HASSELL · Esem Projects"
+authors: "Sarah Barns & Michael Killalea (Esem Projects)"
+note: "Creative renewal strategy for Western Sydney University's Hawkesbury campus, developed with HASSELL as lead consultant. A framework for how arts and cultural programming can carry the renewal of a campus and its surrounding landscape."
+areas: [Arts, Place, Heritage]
 ---

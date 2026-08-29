@@ -13,12 +13,18 @@ const GROUPS = [
   {
     id: 'strategy-advisory',
     title: 'Commissioned Strategy & Advisory',
-    lede: 'Selected engagements.',
+    lede: 'Commissioned strategy, advisory and policy work.',
     type: 'Commissioned Strategy & Advisory',
+  },
+  {
+    id: 'strategy-projects',
+    title: 'Strategy Projects',
+    lede: 'Delivered programs and place strategies.',
+    type: 'Strategy Project',
   },
 ].map(g => {
   const items = pick(g.type);
-  return { ...g, total: items.length, items: items.filter(p => p.data.highlight) };
+  return { ...g, total: items.length, items };
 }).filter(g => g.total > 0);
 ---
 
@@ -71,7 +77,7 @@ const GROUPS = [
     max-width: 62ch; margin: 0 0 1.2rem;
   }
   .strategy-description { font-size: 0.95rem; color: var(--text-dim); line-height: 1.6; margin: 0.4rem 0 0; max-width: 68ch; }
-  #strategy-advisory { scroll-margin-top: 1.5rem; }
+  #strategy-advisory, #strategy-projects { scroll-margin-top: 1.5rem; }
   .pub-oa {
     display: inline-flex; align-items: center; gap: 0.4rem;
     font-family: var(--heading); font-size: 0.66rem; font-weight: 500;
