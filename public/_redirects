@@ -1,0 +1,4 @@
+# Retired routes. Both were in the sitemap, so search results and old links
+# still point at them; send those readers somewhere useful rather than a 404.
+/projects   /highlights   301
+/font-lab   /             301
