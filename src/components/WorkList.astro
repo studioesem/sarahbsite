@@ -9,6 +9,12 @@ interface Props {
 }
 const { items, typeOrder, groups } = Astro.props;
 
+// Creative and strategy entries carry their destination in a `links` array
+// rather than `href`, which is the publisher field. Without this fallback
+// their titles render as dead text and the link data is never used.
+const titleHref = (pub: CollectionEntry<'work'>) =>
+  pub.data.href ?? pub.data.links?.[0]?.href ?? null;
+
 // Pills follow the same sequence as the sections below them.
 const TYPE_ORDER = typeOrder ?? [
   'Monograph', 'Book', 'Journal Papers', 'Book Chapters',
@@ -56,8 +62,8 @@ function typeClass(t: string) {
         <div class="pub-year">{pub.data.yearLabel ?? pub.data.year}</div>
         <div class="pub-body">
           <h2 class="pub-row-title">
-            {pub.data.href
-              ? <a href={pub.data.href} rel="noopener">{pub.data.title}</a>
+            {titleHref(pub)
+              ? <a href={titleHref(pub)} rel="noopener">{pub.data.title}</a>
               : pub.data.title}
           </h2>
           <div class="pub-row-details">
@@ -103,8 +109,8 @@ function typeClass(t: string) {
         <div class="pub-year">{pub.data.yearLabel ?? pub.data.year}</div>
         <div class="pub-body">
           <h2 class="pub-row-title">
-            {pub.data.href
-              ? <a href={pub.data.href} rel="noopener">{pub.data.title}</a>
+            {titleHref(pub)
+              ? <a href={titleHref(pub)} rel="noopener">{pub.data.title}</a>
               : pub.data.title}
           </h2>
           <div class="pub-row-details">
