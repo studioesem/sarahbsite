@@ -12,6 +12,7 @@ interface Props {
     title: string;
     description: string;
     pubDate: string;
+    updatedDate?: string;
     category?: string;
     topic?: string;
     resources?: Resource[];
@@ -28,9 +29,32 @@ const categoryClass = frontmatter.category
 
 const resources = frontmatter.resources ?? [];
 const isExternal = (href: string) => /^https?:\/\//.test(href);
+
+// Per-post Article schema. The author points at the same @id used by the Person
+// graph in Base.astro, so each piece is attached to Sarah's identity rather than
+// floating free. datePublished/dateModified are what search engines and crawlers
+// read as freshness; without them a post is just undated text.
+const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://sarahbarns.com').href;
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  '@id': canonical + '#article',
+  headline: frontmatter.title,
+  description: frontmatter.description,
+  datePublished: new Date(frontmatter.pubDate).toISOString(),
+  dateModified: new Date(frontmatter.updatedDate ?? frontmatter.pubDate).toISOString(),
+  mainEntityOfPage: canonical,
+  url: canonical,
+  inLanguage: 'en-AU',
+  ...(frontmatter.topic ? { about: frontmatter.topic } : {}),
+  ...(frontmatter.category ? { genre: frontmatter.category } : {}),
+  author: { '@id': 'https://civicinterplay.io/#sarahbarns' },
+  publisher: { '@id': 'https://civicinterplay.io/#sarahbarns' },
+};
 ---
 
 <Base title={`${frontmatter.title} — Sarah Barns`} description={frontmatter.description} ogType="article">
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)}></script>
   <article>
     <div class="post-page-header">
       {frontmatter.category && <span class={`post-category ${categoryClass}`}>{frontmatter.category}</span>}
