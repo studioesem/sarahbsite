@@ -8,5 +8,5 @@ authors: "Sarah Barns & Michael Killalea (Esem Projects)"
 note: "Audio-visual interpretation for the Mt Stromlo Observatory Director’s Residence restoration. Winner, Outstanding Heritage Award, National Trust ACT."
 areas: [Arts, Place, History, Listening & Composition, Heritage]
 ntro: true
-award: "National Trust ACT Heritage Award 2015"
+award: "Outstanding Heritage Award, National Trust ACT, 2015"
 ---
