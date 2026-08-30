@@ -2,3 +2,6 @@
 # still point at them; send those readers somewhere useful rather than a 404.
 /projects   /highlights   301
 /font-lab   /             301
+
+# The quotes page moved out of public/ and into the layout, losing its .html.
+/places-are-made-of-wax.html   /places-are-made-of-wax   301
