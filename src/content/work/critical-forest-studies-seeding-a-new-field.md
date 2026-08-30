@@ -3,6 +3,7 @@ title: "Critical Forest Studies: Seeding a New Field from Underground to Oversto
 year: 2026
 domain: "Research"
 type: "Journal Papers"
+draft: true
 venue: "Australian Journal of Environmental Education"
 href: "https://doi.org/10.1017/aee.2026.10153"
 doi: "10.1017/aee.2026.10153"
