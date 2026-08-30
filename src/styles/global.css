@@ -331,6 +331,10 @@ body { letter-spacing: -0.011em; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
 @media (max-width: 640px) {
+  /* A phone is held further from the eye than a laptop, and the column is
+     narrower. Lift the root size so every rem-based size comes up with it,
+     rather than patching each block of copy separately. */
+  html { font-size: 18px; }
   .profile { flex-direction: column; gap: 1rem; }
   .avatar { width: 70px; height: 70px; }
   .post-link { margin: 0 -1rem; padding: 1.1rem 1rem; }
