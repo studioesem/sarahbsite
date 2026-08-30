@@ -6,6 +6,5 @@ domain: "Research"
 type: "Commissioned Research Contracts"
 venue: "City of Parramatta"
 note: "Commissioned heritage research for the City of Parramatta, co-authored with Phillip Mar, exploring the movements and patterns of migration that have shaped Parramatta through time."
-draft: true
 areas: [Place, Technology, Heritage]
 ---

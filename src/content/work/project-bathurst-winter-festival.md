@@ -6,7 +6,6 @@ domain: "Creative"
 type: "Creative Project"
 venue: "Bathurst Regional Council · Esem Projects"
 note: "A decade of festival curation and audio-visual production for the Bathurst Winter Festival, one of regional NSW's longest-running collaborations between Esem Projects and a local council."
-draft: true
 areas: [Arts, Place]
 links:
   - label: Studio ESEM

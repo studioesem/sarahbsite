@@ -6,7 +6,6 @@ domain: "Research"
 type: "Commissioned Research Contracts"
 venue: "RMIT Centre for Urban Research"
 note: "RMIT research fellowship on culture-based regeneration, studying urban transformation sites through ecological regeneration and decolonisation, including evaluation frameworks for Miyawaki forest programs linking ecological and social custodianship."
-draft: true
 areas: [Place, Technology]
 links:
   - label: sarahbarns.me
