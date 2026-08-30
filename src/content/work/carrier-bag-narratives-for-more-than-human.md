@@ -4,6 +4,7 @@ year: 2026
 domain: "Research"
 type: "Conferences"
 venue: "Companion Publication of the 2026 ACM Designing Interactive Systems Conference (DIS '26)"
+authors: "Burcu Nimet Dumlu, Hamed Seiied Alavi, Sarah Barns, Berk Göksenin Tan, Joseph Lindley, Takatoshi Yoshida & Kouta Minamizawa"
 href: "https://doi.org/10.1145/3802974.3807998"
 doi: "10.1145/3802974.3807998"
 openAccess: "https://doi.org/10.1145/3802974.3807998"

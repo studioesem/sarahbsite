@@ -4,6 +4,7 @@ year: 2015
 domain: "Research"
 type: "Journal Papers"
 venue: "The Senses & Society"
+authors: "Sarah Barns & Shanti Sumartojo"
 href: "https://doi.org/10.1080/17458927.2015.1042243"
 doi: "10.1080/17458927.2015.1042243"
 openAccess: "https://figshare.com/articles/journal_contribution/When_one_idea_led_to_another_Re-inscribing_and_recombining_thinking_spaces_using_night-time_projections_at_the_Australian_National_University/27476982"

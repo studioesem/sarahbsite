@@ -4,6 +4,7 @@ year: 2018
 domain: "Research"
 type: "Book Chapters"
 venue: "Inside Smart Cities: Place, Politics and Urban Innovation"
+authors: "Sarah Barns & Andrea Pollio"
 href: "https://doi.org/10.4324/9781351166201-13"
 doi: "10.4324/9781351166201-13"
 openAccess: "https://figshare.com/articles/chapter/Parramatta_Smart_City_and_the_Quest_to_Build_Australia_s_Next_Great_City/27421320"

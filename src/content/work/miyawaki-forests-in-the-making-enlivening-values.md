@@ -4,6 +4,7 @@ year: 2025
 domain: "Research"
 type: "Journal Papers"
 venue: "Environment and Planning D: Society and Space"
+authors: "Sarah Barns, Scott Hawken, Grey Coupland & Kazuo Asahiro"
 href: "https://doi.org/10.1177/02637758251383619"
 doi: "10.1177/02637758251383619"
 openAccess: "https://figshare.com/articles/journal_contribution/Miyawaki_forests-in-the-making_Enlivening_values_of_human_nature_care_and_gathering_through_the_cultivation_of_Miyawaki_forests/30399751"

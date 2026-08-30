@@ -294,7 +294,10 @@ const DOMAIN_HREF: Record<string, string> = {
     });
   });
 
-  // Strand filter
+  // Topic filter. A card carries every area it belongs to, pipe-separated, so
+  // this is a membership test rather than an equality one: Last Drinks is Arts
+  // and Place and History and Heritage and Listening, and should survive all
+  // five filters.
   const filters = document.querySelectorAll<HTMLButtonElement>('.hl-filter');
   const cells = document.querySelectorAll<HTMLLIElement>('.hl-cell');
   filters.forEach((f) => {
@@ -303,9 +306,10 @@ const DOMAIN_HREF: Record<string, string> = {
         o.classList.toggle('is-on', o === f);
         o.setAttribute('aria-pressed', String(o === f));
       });
-      const strand = f.dataset.strand;
+      const topic = f.dataset.topic;
       cells.forEach((c) => {
-        c.hidden = strand !== 'all' && c.dataset.strand !== strand;
+        const areas = (c.dataset.topics ?? '').split('|').filter(Boolean);
+        c.hidden = topic !== 'all' && !areas.includes(topic ?? '');
       });
     });
   });

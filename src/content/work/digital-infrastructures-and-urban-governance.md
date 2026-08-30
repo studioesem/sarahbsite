@@ -4,6 +4,7 @@ year: 2017
 domain: "Research"
 type: "Journal Papers"
 venue: "Urban Policy and Research"
+authors: "Sarah Barns, Ellie Cosgrave, Michele Acuto & Donald McNeill"
 href: "https://doi.org/10.1080/08111146.2016.1235032"
 doi: "10.1080/08111146.2016.1235032"
 openAccess: "https://figshare.com/articles/journal_contribution/Digital_Infrastructures_and_Urban_Governance/27573831"
