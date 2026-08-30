@@ -3,7 +3,11 @@ import { getCollection, render } from 'astro:content';
 import BlogPost from '../../layouts/BlogPost.astro';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog');
+  // The index already hides drafts, but without this they still got their own
+  // built page and a sitemap entry, so unfinished writing was publicly
+  // reachable. Drafts stay visible in `astro dev` for previewing.
+  const posts = (await getCollection('blog'))
+    .filter(post => import.meta.env.DEV || !post.data.draft);
   return posts.map(post => ({
     params: { slug: post.id.replace(/\.mdx?$/, '') },
     props: { post },
