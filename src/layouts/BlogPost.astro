@@ -30,7 +30,7 @@ const resources = frontmatter.resources ?? [];
 const isExternal = (href: string) => /^https?:\/\//.test(href);
 ---
 
-<Base title={`${frontmatter.title} — Sarah Barns`} description={frontmatter.description}>
+<Base title={`${frontmatter.title} — Sarah Barns`} description={frontmatter.description} ogType="article">
   <article>
     <div class="post-page-header">
       {frontmatter.category && <span class={`post-category ${categoryClass}`}>{frontmatter.category}</span>}

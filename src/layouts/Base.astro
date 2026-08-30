@@ -9,6 +9,10 @@ interface Props {
   title?: string;
   description?: string;
   banner?: BannerSpec;
+  /** Share-card image. Root-relative; resolved against the site origin below. */
+  image?: string;
+  /** 'article' on individual essays, 'website' everywhere else. */
+  ogType?: string;
 }
 
 const NAV = [
@@ -33,10 +37,17 @@ const DEFAULT_BANNER: BannerSpec = {
 
 const {
   title = 'Sarah Barns',
-  description = 'Public historian and creative producer working with digital methods to enliven storied-connections between people, places, and habitats.',
+  description = 'Public historian and scholar-practitioner, specialising in collaborative, archive-led creative practice and the civic design of digital infrastructure.',
   banner = DEFAULT_BANNER,
+  image = '/og-default.jpg',
+  ogType = 'website',
 } = Astro.props;
 const currentPath = Astro.url.pathname;
+
+// Absolute URLs: Open Graph and canonical tags are ignored when relative.
+const origin = Astro.site ?? new URL('https://sarahbarns.com');
+const canonicalURL = new URL(currentPath, origin).href;
+const imageURL = new URL(image, origin).href;
 const hasCaption = Boolean(banner.captionTitle || banner.captionBody);
 
 // Author identity graph. Identical block also lives on civicinterplay.io,
@@ -107,8 +118,26 @@ const identityGraph = {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content={description} />
   <title>{title}</title>
+  <link rel="canonical" href={canonicalURL} />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="alternate" type="application/rss+xml" title="Sarah Barns" href="/rss.xml" />
+
+  <meta property="og:type" content={ogType} />
+  <meta property="og:site_name" content="Sarah Barns" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonicalURL} />
+  <meta property="og:image" content={imageURL} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Archival newspaper text projected onto a wall, with two people walking through the projection" />
+  <meta property="og:locale" content="en_AU" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={imageURL} />
+
   <script type="application/ld+json" set:html={JSON.stringify(identityGraph)}></script>
 </head>
 <body>
