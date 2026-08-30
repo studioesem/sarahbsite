@@ -166,8 +166,9 @@ nav { padding: 1.4rem 0; display: flex; justify-content: space-between; align-it
 .all-posts a { font-family: var(--heading); font-size: 0.9rem; }
 .all-posts a::after { content: ' →'; }
 
-.prose { font-size: 1.06rem; line-height: 1.62; color: var(--text); animation: fadeIn 0.8s ease 0.15s both; text-align: justify; -webkit-hyphens: auto; hyphens: auto; }
-.prose h2, .prose h3, .prose blockquote, .prose pre, .prose code { -webkit-hyphens: none; hyphens: none; text-align: left; }
+/* No hyphenation anywhere: never break a word across two lines. */
+.prose { font-size: 1.06rem; line-height: 1.62; color: var(--text); animation: fadeIn 0.8s ease 0.15s both; text-align: justify; -webkit-hyphens: none; hyphens: none; }
+.prose h2, .prose h3, .prose blockquote, .prose pre, .prose code { text-align: left; }
 .prose p { margin-bottom: 1.3rem; }
 .prose strong { font-weight: 500; color: var(--text); }
 .prose em { font-style: italic; color: var(--text); }
