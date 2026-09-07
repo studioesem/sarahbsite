@@ -8,4 +8,7 @@ authors: "Studio ESEM"
 href: "https://www.studioesem.com/projects/future-now"
 note: "Video portraits of Australians building climate solutions, community changemaker interviews and network visualisations mapping patterns of resilience, shown in-gallery alongside an AI-driven artwork. Includes the Future Now Makers portrait series."
 areas: [Arts, Place, Technology]
+image: "/projects/changemaker-farm-interview.jpg"
+imageAlt: "A farmer in a wide-brimmed hat on a track beside a restored farm dam, filmed for a portrait interview"
+highlight: true
 ---

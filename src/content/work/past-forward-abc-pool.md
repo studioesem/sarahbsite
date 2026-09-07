@@ -8,4 +8,7 @@ authors: "Sarah Barns"
 note: "Negotiated the release of ABC television and radio archive material under CC BY 2.0 through ABC Pool. This moved broadcast recordings out of a closed archive and into public circulation, where they could be listened to, reused and rebuilt on. The recordings gathered here under Voices came out of this program."
 licence: "CC BY 2.0"
 areas: [Listening & Composition, History, Arts, Technology]
+image: "/projects/past-forward-ndf-2012.jpg"
+imageAlt: "Title slide for Past Forward: Speculative adventures in the city's archive, beside a Revox reel-to-reel tape recorder"
+highlight: true
 ---

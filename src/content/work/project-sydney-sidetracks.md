@@ -14,4 +14,6 @@ links:
     href: /papers/sydney-sidetracks-anzca-2009.pdf
 highlight: true
 hero: true
+image: "/projects/foster-street-archival.jpg"
+imageAlt: "Archival photograph of a lone figure walking down Foster Street, Sydney"
 ---

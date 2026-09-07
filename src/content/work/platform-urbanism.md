@@ -13,4 +13,6 @@ isbn: "9789813297258"
 areas: [Arts, Technology, Place]
 highlight: true
 hero: true
+image: "/projects/tokyo-train-phones.jpg"
+imageAlt: "Four commuters seated side by side on a Tokyo train, each absorbed in a smartphone"
 ---

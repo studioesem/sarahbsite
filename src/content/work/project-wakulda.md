@@ -14,4 +14,6 @@ links:
     href: https://www.studioesem.com/projects/wakulda
 highlight: true
 hero: true
+image: "/projects/workshop-bottlecap-heart.jpg"
+imageAlt: "Workshop participants seated in a circle around a mosaic heart made from bottle caps"
 ---
