@@ -16,4 +16,6 @@ links:
     href: https://www.storybox.co/birds-of-australia
   - label: Australian Museum
     href: https://australian.museum/get-involved/services/touring-exhibits/birds-storybox/
+highlight: true
+hero: true
 ---

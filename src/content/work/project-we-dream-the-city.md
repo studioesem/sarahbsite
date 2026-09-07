@@ -12,4 +12,5 @@ authors: "Sarah Barns, audio research and creative direction, with music composi
 links:
   - label: Studio ESEM
     href: https://www.studioesem.com/projects/we-dream-the-city
+hero: true
 ---

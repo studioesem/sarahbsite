@@ -12,4 +12,6 @@ links:
     href: https://web.archive.org/web/20110906062902/http://www.abc.net.au/innovation/sidetracks/downloads.htm
   - label: ANZCA09 paper (PDF)
     href: /papers/sydney-sidetracks-anzca-2009.pdf
+highlight: true
+hero: true
 ---

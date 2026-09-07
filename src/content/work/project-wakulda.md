@@ -1,5 +1,5 @@
 ---
-title: "Wakulda: Weaving Stories as One"
+title: "Wakulda: Weaving our Stories as One"
 year: 2021
 yearLabel: "2021–2025"
 domain: "Creative"
@@ -12,4 +12,6 @@ authors: "Sarah Barns, audio research and creative direction, with music composi
 links:
   - label: Studio ESEM
     href: https://www.studioesem.com/projects/wakulda
+highlight: true
+hero: true
 ---

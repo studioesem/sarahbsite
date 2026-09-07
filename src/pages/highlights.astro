@@ -38,7 +38,7 @@ const DOMAIN_HREF: Record<string, string> = {
 
     <ul class="proj-grid">
       {items.map(p => (
-        <li class="hl-cell" data-topics={(p.data.areas ?? []).join('|')}>
+        <li class={`hl-cell${p.data.hero ? ' is-featured' : ''}`} data-strand={p.data.domain} data-topics={(p.data.areas ?? []).join('|')}>
           <div class="proj-card">
             <div class="proj-inner">
               <div class="proj-face proj-front">
@@ -145,9 +145,10 @@ const DOMAIN_HREF: Record<string, string> = {
 
   /* Imageless front: strand-tinted typographic tile with a large ghost year */
   .proj-front-blank { position: absolute; inset: 0; }
-  .hl-cell[data-strand='Strategy'] .proj-front { background: var(--accent-bg); }
+  .hl-cell[data-strand='Strategy & Delivery'] .proj-front { background: var(--accent-bg); }
   .hl-cell[data-strand='Creative'] .proj-front { background: rgba(214, 31, 58, 0.06); }
   .hl-cell[data-strand='Research'] .proj-front { background: rgba(0, 0, 0, 0.045); }
+  .hl-cell[data-strand='Writing & Essays'] .proj-front { background: rgba(0, 0, 0, 0.028); }
   .proj-big-year {
     position: absolute; top: -0.18em; right: 0.05em;
     font-family: var(--serif); font-size: clamp(4.5rem, 9vw, 7rem); line-height: 1;

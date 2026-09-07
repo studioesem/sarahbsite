@@ -8,4 +8,5 @@ href: "https://meatspacepress.com/how-to-run-a-company-like-amazon-and-other-fab
 featured: true
 isbn: "9780995577671"
 areas: [Place]
+highlight: true
 ---

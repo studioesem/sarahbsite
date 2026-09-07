@@ -11,4 +11,6 @@ note: "How digital platforms restructure urban life, public services and civic p
 featured: true
 isbn: "9789813297258"
 areas: [Arts, Technology, Place]
+highlight: true
+hero: true
 ---
