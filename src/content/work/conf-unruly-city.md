@@ -5,5 +5,5 @@ domain: "Research"
 type: "Conferences"
 venue: "Remembering the Green Bans, Institute of Australian Geographers Conference, University of Wollongong"
 note: "Refereed conference paper, 3–6 July 2011."
-areas: [History, Place]
+areas: [History, Place, Heritage]
 ---

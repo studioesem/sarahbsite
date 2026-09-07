@@ -8,6 +8,8 @@ const items = (await getCollection('work'))
   .filter(p => !p.data.draft && p.data.highlight)
   .sort((a, b) => b.data.year - a.data.year || a.data.title.localeCompare(b.data.title));
 
+// Heritage is deliberately absent: it stays on the works themselves, but as a
+// chip it sat awkwardly beside History, which covers the same ground here.
 const AREA_ORDER = ['Arts', 'Listening & Composition', 'Ecology', 'Technology', 'Place', 'History'];
 const topics = AREA_ORDER.filter(a => items.some(i => i.data.areas?.includes(a)));
 

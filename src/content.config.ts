@@ -53,7 +53,7 @@ const work = defineCollection({
     hero: z.boolean().optional(),      // render as a 2x2 feature tile on /highlights
     licence: z.string().optional(),    // e.g. "CC BY 2.0" — shown as a chip
     // Content areas — cross-cutting, so a work can sit in more than one.
-    areas: z.array(z.enum(['Arts', 'Listening & Composition', 'Technology', 'Place', 'History', 'Ecology'])).optional(),
+    areas: z.array(z.enum(['Arts', 'Listening & Composition', 'Technology', 'Place', 'History', 'Heritage', 'Ecology'])).optional(),
     featured: z.boolean().optional(),  // featured = also listed on the About page
     draft: z.boolean().optional(),
   }),

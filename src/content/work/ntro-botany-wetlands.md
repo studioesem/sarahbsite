@@ -7,5 +7,5 @@ venue: "Sydney Airport Corporation"
 authors: "Sarah Barns & Michael Killalea (Esem Projects)"
 note: "Heritage walk design concepts for the Botany Wetlands."
 ntro: true
-areas: [Place, Arts, History]
+areas: [Heritage, Place, Arts]
 ---
