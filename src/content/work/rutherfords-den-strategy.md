@@ -5,6 +5,6 @@ domain: "Strategy & Delivery"
 type: "Commissioned Strategy & Advisory"
 venue: "Arts Centre of Christchurch"
 authors: "Sarah Barns & Michael Killalea"
-areas: [Arts, Technology, Heritage]
+areas: [Arts, Technology, History]
 highlight: true
 ---

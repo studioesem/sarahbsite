@@ -8,7 +8,7 @@ const items = (await getCollection('work'))
   .filter(p => !p.data.draft && p.data.highlight)
   .sort((a, b) => b.data.year - a.data.year || a.data.title.localeCompare(b.data.title));
 
-const AREA_ORDER = ['Arts', 'Listening & Composition', 'Heritage', 'Technology', 'Place', 'History'];
+const AREA_ORDER = ['Arts', 'Listening & Composition', 'Ecology', 'Technology', 'Place', 'History'];
 const topics = AREA_ORDER.filter(a => items.some(i => i.data.areas?.includes(a)));
 
 const DOMAIN_HREF: Record<string, string> = {
@@ -297,8 +297,7 @@ const DOMAIN_HREF: Record<string, string> = {
 
   // Topic filter. A card carries every area it belongs to, pipe-separated, so
   // this is a membership test rather than an equality one: Last Drinks is Arts
-  // and Place and History and Heritage and Listening, and should survive all
-  // five filters.
+  // and Place and History and Listening, and should survive all four filters.
   const filters = document.querySelectorAll<HTMLButtonElement>('.hl-filter');
   const cells = document.querySelectorAll<HTMLLIElement>('.hl-cell');
   filters.forEach((f) => {

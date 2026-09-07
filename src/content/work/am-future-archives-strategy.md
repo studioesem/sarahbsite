@@ -5,5 +5,5 @@ domain: "Strategy & Delivery"
 type: "Commissioned Strategy & Advisory"
 venue: "Australian Museum"
 authors: "Sarah Barns"
-areas: [Heritage, Technology, Arts]
+areas: [Technology, Arts, History]
 ---
