@@ -6,5 +6,5 @@ type: "Commissioned Research Contracts"
 venue: "Create NSW"
 authors: "Deborah Stevenson, Sarah Barns & Phillip Mar"
 areas: [Arts]
-highlight: true
+highlight: false
 ---
