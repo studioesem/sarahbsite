@@ -14,5 +14,4 @@ links:
     href: https://www.studioesem.com/projects/we-dream-the-city
   - label: Watch the projection
     href: https://pub-ad49534f35cf43908a9f083c81526736.r2.dev/FINAL_We%20Dream%20The%20City_9244x1080_Audio-Update.mp4
-hero: true
 ---
