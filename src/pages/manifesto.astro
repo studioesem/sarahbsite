@@ -9,7 +9,8 @@ const principles = [
   { name: 'Technology can be a gift.', text: 'Many who own the world’s most powerful technologies use them as sources of power and wealth. But this is not the only path. Technology can inspire connection, curiosity, and even presence.' },
   { name: 'People in places are not users.', text: 'The dominant way of designing technologies puts “the user” at the centre. This user is abstracted from their place, their community, their environment. Technologies are optimised in ways that take us away from the places we live in. We are citizens, not consumers. We are neighbours, not data points.' },
   { name: 'Enlivenment is a space of possibility, not a solution.', text: 'A commitment to enlivenment is about creating conditions, not determining outcomes. It is quite distinct from the impulse to control, to contain, or to use expertise to prescribe what comes next.' },
-  { name: 'Care as the foundation of value.', text: 'Those who tend to and shape places should be visible, supported, and recognised. Care is the infrastructure upon which other good things can happen.' },
+  { name: 'Care as the foundation of value.', text: 'Those who tend to and shape places should be visible, supported, and recognised. Care is the infrastructure upon which other good things can happen.' },  { name: 'We are creatures.', text: 'Humans are not above the earth. We are nurtured by complex ecosystems that span human and more-than-human intelligences and practices. We ignore the complexity of the natural world and its many different forms of species intelligence at our peril.' },
+  { name: 'Enquiry over assertions.', text: 'We live in a time when shared values are there to be cultivated with others, not used to divide or put others down. Practising in public spaces helps build stronger relations on the ground.' },
 ];
 ---
 
@@ -31,7 +32,7 @@ const principles = [
 
   <header class="topbar">
     <a class="back" href="/"><span class="arr">&#8592;</span> Sarah Barns</a>
-    <a class="src" href="https://civicinterplay.substack.com/p/from-enlightenment-to-enlivenment">Civic Interplay <span class="arr">&#8599;</span></a>
+    <a class="src" href="https://sarahlbarns.substack.com/p/from-enlightenment-to-enlivenment">Civic Interplay <span class="arr">&#8599;</span></a>
   </header>
 
   <main id="manifesto" class="wrap">
@@ -40,6 +41,7 @@ const principles = [
       <p class="kicker"><span class="tick"></span><em>a manifesto, of sorts</em></p>
       <h1 class="m-title">From enlightenment to <span class="enliven">enlivenment</span></h1>
       <p class="m-meta">Sarah Barns &middot; 2025</p>
+      <p class="m-note">I worked on this piece as a &lsquo;state of play&rsquo; of my views on working with technology to create lively and meaningful places. It is a snapshot of my thoughts at a point in time, October 2025.</p>
     </div>
 
     <article class="manifesto">
@@ -98,7 +100,7 @@ const principles = [
       <section class="sec" data-i="05">
         <header class="sec-head"><span class="sec-no">05</span><h2>The principles</h2></header>
         <div class="sec-body">
-          <p class="lede">These guide a practice that interweaves place-stories with digital architectures.</p>
+          <p class="lede">These guide a practice that interweaves place-stories with digital architectures. I call this &lsquo;restorying places&rsquo;.</p>
         </div>
         <ol class="principles">
           {principles.map((p, i) => (
@@ -114,7 +116,6 @@ const principles = [
       </section>
 
       <section class="sec sec-final" data-i="06">
-        <header class="sec-head"><span class="sec-no">06</span><h2>An invitation</h2></header>
         <blockquote class="pq pq-final">So: we don&rsquo;t plan places. We enliven them.</blockquote>
         <div class="sec-body">
           <p>My work is an invitation to ask the questions that matter about the places we inhabit and the technologies that increasingly inhabit them alongside us. To keep asking, because the asking itself is the practice. To sculpt, together, a reality in which technology and place are in relationship rather than in conflict.</p>
@@ -242,6 +243,10 @@ const principles = [
     .m-meta {
       font-family: var(--label); font-size: 0.74rem; letter-spacing: 0.08em;
       text-transform: uppercase; color: var(--paper-faint); margin-top: 1.4rem;
+    }
+    .m-note {
+      font-family: var(--label); font-size: 0.74rem; letter-spacing: 0.02em; line-height: 1.7;
+      color: var(--paper-faint); margin-top: 0.9rem; width: min(34rem, 85vw);
     }
 
     /* ---- the thread ---- */
