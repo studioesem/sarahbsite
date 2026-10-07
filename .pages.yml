@@ -26,6 +26,10 @@ content:
         label: Year label (override)
         description: 'Only if the displayed year differs, e.g. "In progress" or "c2011"'
         type: string
+      - name: date
+        label: Date (optional)
+        description: 'Exact date, if known. Puts new work in the right place in Recent activity on the home page.'
+        type: date
       - name: domain
         label: Domain
         type: select

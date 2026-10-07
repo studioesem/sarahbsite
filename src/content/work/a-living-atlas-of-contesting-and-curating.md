@@ -1,6 +1,7 @@
 ---
 title: "Data Centres Transparency Project: Mapping AI Sovereignties through Civic AI (Australian view)"
 year: 2026
+date: 2026-08-18
 domain: "Research"
 type: "Dataset"
 venue: "Zenodo"

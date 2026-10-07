@@ -25,6 +25,7 @@ const work = defineCollection({
     title: z.string(),
     year: z.number(),                  // used to order and to group the list
     yearLabel: z.string().optional(),  // override, e.g. "In progress" or "2019–2021"
+    date: z.coerce.date().optional(),  // exact date when known; puts it in order in Recent activity
     // What kind of output this is.
     domain: z.enum(['Research', 'Creative', 'Strategy & Delivery', 'Writing & Essays', 'Voices']),
     type: z.enum([

@@ -1,9 +1,10 @@
 ---
 title: "Rethinking the AI stack from the ground up, through recursive monitoring methods"
 year: 2026
+date: 2026-08-17
 domain: "Research"
 type: "Conferences"
-venue: "Data for Policy CIC - Zenodo"
+venue: "Data for Policy, Barcelona"
 href: "https://doi.org/10.5281/zenodo.21980636"
 doi: "10.5281/zenodo.21980636"
 openAccess: "https://doi.org/10.5281/zenodo.21980636"
