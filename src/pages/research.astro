@@ -4,7 +4,7 @@ import WorkList from '../components/WorkList.astro';
 import { getCollection } from 'astro:content';
 
 // Sarah's order: book, journal articles, chapters, commissioned reports,
-// then the archive and recordings.
+// then the archive and recordings. Talks live on /talks.
 const GROUPS = [
   { title: 'Book',                    types: ['Monograph', 'Book'] },
   { title: 'Journal papers',          types: ['Journal Papers'] },
@@ -12,14 +12,13 @@ const GROUPS = [
   { title: 'Commissioned research',   types: ['Commissioned Research Contracts'] },
   { title: 'Working papers',          types: ['Working Paper'] },
   { title: 'Fellowships',             types: ['Fellowships'] },
-  { title: 'Keynotes & invited talks', types: ['Keynotes & Invited Talks'] },
-  { title: 'Conference papers',       types: ['Conferences'] },
   { title: 'Doctoral research',       types: ['PhD thesis'] },
   { title: 'Datasets',                types: ['Dataset'] },
 ];
 
 const items = (await getCollection('work'))
-  .filter(p => !p.data.draft && p.data.domain === 'Research')
+  .filter(p => !p.data.draft && p.data.domain === 'Research'
+    && !['Invited Keynotes', 'Presentations & Talks', 'Conferences'].includes(p.data.type))
   .sort((a, b) => b.data.year - a.data.year || a.data.title.localeCompare(b.data.title));
 ---
 

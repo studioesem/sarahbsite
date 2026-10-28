@@ -6,4 +6,5 @@ type: "Conferences"
 venue: "AI Urbanism Symposium"
 note: "Presented ahead of the book chapter of the same name."
 areas: [Technology, Place]
+draft: true
 ---

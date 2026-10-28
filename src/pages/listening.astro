@@ -10,7 +10,7 @@ const all = (await getCollection('work')).filter(p => !p.data.draft);
 const items = all
   .filter(p => p.data.areas?.includes('Listening & Composition')
     && p.data.domain !== 'Voices'
-    && p.data.type !== 'Keynotes & Invited Talks')
+    && !['Invited Keynotes', 'Presentations & Talks'].includes(p.data.type))
   .sort((a, b) => b.data.year - a.data.year || a.data.title.localeCompare(b.data.title));
 
 const voices = all
@@ -23,8 +23,8 @@ const voices = all
     <p class="page-kicker"><span class="ktick"></span><em>a listening practice</em></p>
     <h1>Listening &amp; Composition</h1>
     <p class="page-intro">
-      My sound and listening practice cuts across research, creative practice, and community
-      partnerships.
+      My sound and listening practice responds to personal experiences of places in transition
+      through multi-sensory storytelling and experiential encounter.
     </p>
   </div>
 

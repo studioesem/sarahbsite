@@ -9,4 +9,6 @@ note: "An immersive exhibition in Gathang voices and language at Port Macquarie 
 areas: [Arts, Place, Heritage, Listening & Composition]
 authors: "Aunty Rhonda Radley with Studio ESEM (Sarah Barns and Michael Killalea) and Andy Noonan"
 highlight: true
+image: "/projects/birrbay-barray-djuyal.jpg"
+imageAlt: "Forest canopy projected across two walls of the gallery at Port Macquarie Museum"
 ---

@@ -32,7 +32,7 @@ const work = defineCollection({
       'Monograph', 'Book', 'Journal Papers', 'Book Chapters', 'Essay',
       'Working Paper', 'PhD thesis',
       'Commissioned Research Contracts', 'Commissioned Strategy & Advisory', 'Fellowships',
-      'Conferences', 'Keynotes & Invited Talks', 'Interviews', 'Dataset',
+      'Conferences', 'Invited Keynotes', 'Presentations & Talks', 'Interviews & Media', 'Dataset',
       'Creative Research', 'Voices',
       'Creative Project', 'Exhibitions & Installations', 'Strategy Project', 'Research Project',
     ]),

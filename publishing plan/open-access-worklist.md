@@ -104,3 +104,4 @@ Journal papers and chapters first, since those have publisher conditions to chec
 - Miyawaki forests-in-the-making: Enlivening values of human–nature care and gathering through the cultivation of Miyawaki forests — `"10.1177/02637758251383619"`
 - Rethinking the AI stack from the ground up, through recursive monitoring methods — `"10.5281/zenodo.21980636"`
 - The Concrete Remains: The art of the modern in downtown Sydney — `"10.5130/978-1-86365-432-6"`
+  - **Resolved 28 Oct 2026:** full book PDF on UTS OPUS, https://opus.lib.uts.edu.au/bitstream/10453/27051/1/2012007954OK.pdf (now the entry's `openAccess`).

@@ -4,7 +4,7 @@ import { getCollection } from 'astro:content';
 import WorkList from '../../components/WorkList.astro';
 
 const essays = (await getCollection('work'))
-  .filter(p => !p.data.draft && p.data.domain === 'Writing & Essays')
+  .filter(p => !p.data.draft && p.data.domain === 'Writing & Essays' && p.data.type !== 'Interviews & Media')
   .sort((a, b) => b.data.year - a.data.year || a.data.title.localeCompare(b.data.title));
 
 function categoryClass(cat?: string) {
@@ -12,13 +12,12 @@ function categoryClass(cat?: string) {
 }
 ---
 
-<Base title="Interviews & Essays — Sarah Barns">
+<Base title="Essays — Sarah Barns">
   <div class="page-header">
-    <p class="page-kicker"><span class="ktick"></span><em>published &amp; in conversation</em></p>
-    <h1>Interviews &amp; Essays</h1>
+    <p class="page-kicker"><span class="ktick"></span><em>published</em></p>
+    <h1>Essays</h1>
     <p class="page-intro">
-      Essays and commentary for Inside Story, The Conversation, Griffith Review and others,
-      alongside interviews and conversations.
+      Essays and commentary for Inside Story, The Conversation, Griffith Review and others.
     </p>
   </div>
 

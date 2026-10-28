@@ -2,7 +2,7 @@
 title: "Planetary Civics: In Conversation with Rosi Braidotti"
 year: 2024
 domain: "Research"
-type: "Keynotes & Invited Talks"
+type: "Presentations & Talks"
 venue: "Planetary Civics In Conversation series, RMIT University"
 note: "Part of the Planetary Civics In Conversation series. Convened and hosted by Sarah Barns. Braidotti's work is a stated influence on Superorganism: Listening to the Anthropocene."
 areas: [Arts, Place, Technology]

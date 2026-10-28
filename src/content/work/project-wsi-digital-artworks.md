@@ -19,4 +19,6 @@ links:
   - label: Unboxing Aviation Archives
     href: https://www.wsiairport.com.au/unboxing-air-archives
 highlight: true
+image: "/projects/wsi-wings-of-desire.jpg"
+imageAlt: "A silver biplane with WOMAN on its lower wing flies across a blue sky, from Wings of Desire"
 ---

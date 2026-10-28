@@ -1,0 +1,29 @@
+---
+import Base from '../layouts/Base.astro';
+import WorkList from '../components/WorkList.astro';
+import { getCollection } from 'astro:content';
+
+const GROUPS = [
+  { title: 'Invited keynotes',      types: ['Invited Keynotes'] },
+  { title: 'Presentations & talks', types: ['Presentations & Talks'] },
+  { title: 'Conferences',           types: ['Conferences'] },
+  { title: 'Interviews & media',    types: ['Interviews & Media'] },
+];
+
+// Newest first; `date` where set, otherwise 1 July of the year.
+const when = (p) => p.data.date ? new Date(p.data.date).getTime() : new Date(p.data.year, 6, 1).getTime();
+const items = (await getCollection('work'))
+  .filter(p => !p.data.draft && GROUPS.some(g => g.types.includes(p.data.type)))
+  .sort((a, b) => when(b) - when(a) || a.data.title.localeCompare(b.data.title));
+---
+
+<Base title="Talks & Media — Sarah Barns">
+  <div class="page-header">
+    <h1>Talks &amp; Media</h1>
+    <p class="page-intro">
+      Keynotes, invited talks, conference papers, and interviews and conversations.
+    </p>
+  </div>
+
+  <WorkList items={items} groups={GROUPS} typeOrder={GROUPS.flatMap(g => g.types)} />
+</Base>
