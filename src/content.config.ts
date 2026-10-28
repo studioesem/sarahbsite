@@ -34,7 +34,7 @@ const work = defineCollection({
       'Commissioned Research Contracts', 'Commissioned Strategy & Advisory', 'Fellowships',
       'Conferences', 'Keynotes & Invited Talks', 'Interviews', 'Dataset',
       'Creative Research', 'Voices',
-      'Creative Project', 'Exhibitions', 'Strategy Project', 'Research Project',
+      'Creative Project', 'Exhibitions & Installations', 'Strategy Project', 'Research Project',
     ]),
     ntro: z.boolean().optional(),      // counted as a non-traditional research output
     image: z.string().optional(),

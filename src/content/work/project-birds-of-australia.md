@@ -3,7 +3,7 @@ title: "Birds of Australia STORYBOX"
 year: 2023
 yearLabel: "2023–2025"
 domain: "Creative"
-type: "Creative Project"
+type: "Exhibitions & Installations"
 venue: "Australian Museum · STORYBOX Places"
 href: "https://www.storybox.co/birds-of-australia"
 image: "/projects/birds-of-australia-exhibition.jpg"

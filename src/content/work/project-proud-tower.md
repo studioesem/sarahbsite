@@ -2,7 +2,7 @@
 title: "The Proud Tower"
 year: 2017
 domain: "Creative"
-type: "Creative Project"
+type: "Exhibitions & Installations"
 venue: "Sydney Water · Inner West Council · Esem Projects"
 note: "A 50-year celebration of the Petersham Water Tower, illuminating a beloved Inner West landmark with the stories of the community that grew up beneath it."
 areas: [Arts, Place]

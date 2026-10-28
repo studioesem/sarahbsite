@@ -1,7 +1,7 @@
 ---
 title: "Restorying the public gathering spaces of media architecture"
 year: 2026
-date: 2026-10-01
+date: 2026-09-29
 domain: "Research"
 type: "Keynotes & Invited Talks"
 venue: "Public Cultures Research Group, University of Melbourne"

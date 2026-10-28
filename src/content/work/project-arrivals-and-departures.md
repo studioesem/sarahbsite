@@ -2,7 +2,7 @@
 title: "Arrivals and Departures"
 year: 2015
 domain: "Creative"
-type: "Creative Project"
+type: "Exhibitions & Installations"
 venue: "Barangaroo Delivery Authority · Esem Projects"
 image: "/projects/container-exhibition.jpg"
 imageAlt: "Shipping containers transformed into memory palaces at Barangaroo's Welcome Celebrations"

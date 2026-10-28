@@ -2,7 +2,7 @@
 title: "My City: Gadigal Metro Station Interpretation"
 year: 2024
 domain: "Creative"
-type: "Creative Project"
+type: "Exhibitions & Installations"
 venue: "Sydney Metro, with GML Heritage"
 image: "/projects/gadigal-station-projection.jpg"
 imageAlt: "Projection at Gadigal Metro Station reading 'A city stands on ancestral lands, Yagu, winima'"

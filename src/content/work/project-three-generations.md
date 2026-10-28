@@ -2,7 +2,7 @@
 title: "Three Generations"
 year: 2018
 domain: "Creative"
-type: "Creative Project"
+type: "Exhibitions & Installations"
 venue: "Inner West Council · Esem Projects"
 image: "/projects/three-generations-title.jpg"
 imageAlt: "Three Generations title card, the many faces of Ashfield, and the many journeys taken to be here"

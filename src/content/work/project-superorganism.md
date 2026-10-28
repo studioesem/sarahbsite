@@ -4,7 +4,7 @@ year: 2020
 yearLabel: "2020–2023"
 href: "https://www.studioesem.com/projects/superorganism"
 domain: "Creative"
-type: "Creative Project"
+type: "Exhibitions & Installations"
 venue: "Botanica Festival · City of Brisbane · City of Melbourne · Vivid Sydney"
 image: "/projects/tree-installation-dusk.jpg"
 imageAlt: "A large fig tree threaded with lights and speakers at dusk, audience gathered beneath"

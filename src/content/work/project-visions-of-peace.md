@@ -2,7 +2,7 @@
 title: "Visions of Peace"
 year: 2018
 domain: "Creative"
-type: "Creative Project"
+type: "Exhibitions & Installations"
 venue: "Liverpool City Council · Liverpool Girls High School"
 authors: "Sarah Barns (Studio ESEM), creative direction with Michael Killalea; sound design by Gary Sinclair; Indigenous artwork by Blak Douglas"
 href: "https://www.studioesem.com/projects/visions-of-peace"
