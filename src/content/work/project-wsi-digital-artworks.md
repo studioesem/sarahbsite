@@ -6,7 +6,7 @@ domain: "Creative"
 type: "Exhibitions & Installations"
 venue: "Western Sydney International (Nancy-Bird Walton) Airport"
 href: "https://www.wsiairport.com.au/digital-art"
-note: "Digital artworks for the opening of Western Sydney International Airport, made by Studio ESEM with AX Interactive. They include Come On. Let's Play, an interactive dance work with dancers filmed across Western Sydney; The Street Beneath Our Feet, a durational work celebrating the dance culture of Greater Western Sydney; and Unboxing Aviation Archives, a six-screen display drawn from aviation archives, including Nancy-Bird Walton's 1935 barnstorming tour."
+note: "Digital artworks for the opening of Western Sydney International Airport, made by Studio ESEM with AX Interactive. They include Come On. Let's Play, an interactive dance work with dancers filmed across Western Sydney; The Street Beneath Our Feet, a durational work celebrating the dance culture of Greater Western Sydney; and Unboxing Aviation Archives, a six-screen display drawn from aviation archives, including Nancy-Bird Walton's 1935 barnstorming tour; and Wings of Desire."
 areas: [Arts, Place, Heritage, Technology]
 authors: "Studio ESEM (Sarah Barns and Michael Killalea) with AX Interactive"
 links:

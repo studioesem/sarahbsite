@@ -1,7 +1,7 @@
 ---
 title: "Birrbay Barray Djuyal"
 year: 2026
-date: 2026-10-27
+date: 2026-10-26
 domain: "Creative"
 type: "Exhibitions & Installations"
 venue: "Port Macquarie Museum"
