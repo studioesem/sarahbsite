@@ -5,3 +5,7 @@
 
 # The quotes page moved out of public/ and into the layout, losing its .html.
 /places-are-made-of-wax.html   /places-are-made-of-wax   301
+
+# The Sense-Abilities workshop page (7 Dec 2026) moved to its own domain.
+/sense-abilities    https://ntwwkbfk.net/   301
+/sense-abilities/*  https://ntwwkbfk.net/   301
